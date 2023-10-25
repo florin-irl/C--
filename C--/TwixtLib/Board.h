@@ -6,6 +6,9 @@ class Board
 public:
 	Board();
 	~Board() = default;
+
+
+	void switchTurn();
 private:
 	int m_boardSize;
 	Peg m_turn;

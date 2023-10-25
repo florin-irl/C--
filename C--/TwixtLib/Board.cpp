@@ -17,3 +17,12 @@ Board::Board()
 	}
 
 }
+
+void Board::switchTurn()
+{
+	if (m_turn == Peg::RedPeg)
+		m_turn = Peg::BlackPeg;
+	else
+		m_turn = Peg::RedPeg;
+}
+
