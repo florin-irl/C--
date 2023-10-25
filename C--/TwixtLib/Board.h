@@ -8,7 +8,8 @@ public:
 	Board(int boardSize, int nrPegs, int nrBridges);
 	~Board() = default;
 
-	void switchTurn();
+	Peg GetTurn() const;
+	void SwitchTurn();
 private:
 	int m_boardSize;
 	Peg m_turn;
