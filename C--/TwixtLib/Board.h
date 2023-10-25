@@ -15,11 +15,10 @@ private:
 	int m_boardSize;
 	Peg m_turn;
 
-	int m_nrOfPegsPlayer1;
-	int m_nrOfBridgesPlayer1;
-	int m_nrOfPegsPlayer2;
-	int m_nrOfBridgesPlayer2;
-
+	int m_redPegsRemaining;
+	int m_redBridgesRemaining;
+	int m_blackPegsRemaining;
+	int m_blackBridgesRemaining;
 
 	std::vector<std::vector<Peg*>> m_board;
 };

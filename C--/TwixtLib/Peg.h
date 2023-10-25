@@ -3,6 +3,5 @@ enum class Peg
 {
 	RedPeg,
 	BlackPeg
-
 };
 

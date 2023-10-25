@@ -77,7 +77,11 @@ void Board::PlacePeg(int line, int column)
 	}
 
 	m_board[line][column] = new Peg(m_turn);
-
+	
+	if (m_turn == Peg::RedPeg)
+		m_redPegsRemaining--;
+	else
+		m_blackPegsRemaining--;
 }
 
 void Board::SwitchTurn()
