@@ -4,7 +4,7 @@
 class Board
 {
 public:
-	
+	Board();
 private:
 	int m_boardSize;
 	Peg m_turn;
