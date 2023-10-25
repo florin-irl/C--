@@ -1,10 +1,8 @@
 #pragma once
-#include "Game_Piece.h"
-class Peg : public Game_Piece
+enum class Peg
 {
-public:
-
-private:
+	RedPeg,
+	BlackPeg
 
 };
 
