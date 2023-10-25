@@ -38,10 +38,7 @@ Board::Board(int boardSize, int nrPegs, int nrBridges)
 
 void Board::SwitchTurn()
 {
-	if (m_turn == Peg::RedPeg)
-		m_turn = Peg::BlackPeg;
-	else
-		m_turn = Peg::RedPeg;
+	m_turn = (m_turn == Peg::RedPeg) ? Peg::BlackPeg : Peg::RedPeg;
 }
 
 Peg Board::GetTurn() const
