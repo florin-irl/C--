@@ -5,8 +5,8 @@ class Board
 {
 public:
 	Board();
+	Board(int boardSize, int nrPegs, int nrBridges);
 	~Board() = default;
-
 
 	void switchTurn();
 private:
