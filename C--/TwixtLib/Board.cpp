@@ -3,10 +3,10 @@
 Board::Board()
 	:m_boardSize{ 24 }
 	, m_turn{ Peg::RedPeg }
-	, m_nrOfPegsPlayer1{ 50 }
-	, m_nrOfBridgesPlayer1{ 50 }
-	, m_nrOfPegsPlayer2{ 50 }
-	, m_nrOfBridgesPlayer2{ 50 }
+	, m_redPegsRemaining{ 50 }
+	, m_redBridgesRemaining{ 50 }
+	, m_blackPegsRemaining{ 50 }
+	, m_blackBridgesRemaining{ 50 }
 {
 	m_board.resize(m_boardSize);
 	for (int row = 0; row < m_boardSize; row++)
@@ -21,10 +21,10 @@ Board::Board()
 Board::Board(int boardSize, int nrPegs, int nrBridges)
 	:m_boardSize{ boardSize }
 	, m_turn{ Peg::RedPeg }
-	, m_nrOfPegsPlayer1{ nrPegs }
-	, m_nrOfBridgesPlayer1{ nrBridges }
-	, m_nrOfPegsPlayer2{ nrPegs }
-	, m_nrOfBridgesPlayer2{ nrBridges }
+	, m_redPegsRemaining{ nrPegs }
+	, m_redBridgesRemaining{ nrBridges }
+	, m_blackPegsRemaining{ nrPegs }
+	, m_blackBridgesRemaining{ nrBridges }
 {
 	m_board.resize(m_boardSize);
 
@@ -43,12 +43,10 @@ void Board::PlacePeg(int line, int column)
 		//throw exception
 	}
 
-
 	if (column<0 || column>m_boardSize - 1)
 	{
 		//throw exception
 	}
-
 
 	if (m_board[line][column])
 	{
