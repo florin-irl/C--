@@ -36,6 +36,50 @@ Board::Board(int boardSize, int nrPegs, int nrBridges)
 	}
 }
 
+void Board::PlacePeg(int line, int column)
+{
+	if (line<0 || line>m_boardSize - 1)
+	{
+		//throw exception
+	}
+
+
+	if (column<0 || column>m_boardSize - 1)
+	{
+		//throw exception
+	}
+
+
+	if (m_board[line][column])
+	{
+		//throw exception
+	}
+
+
+	if (
+		(line == 0 && column == 0)
+		|| (line == 0 && column == m_boardSize - 1)
+		|| (line == m_boardSize - 1 && column == 0)
+		|| (line == m_boardSize - 1 && column == m_boardSize - 1)
+		)
+	{
+		//throw exception
+	}
+
+	if (m_turn == Peg::RedPeg && (column == 0 || column == m_boardSize - 1))
+	{
+		//throw exception
+	}
+
+	if (m_turn == Peg::BlackPeg && (line == 0 || line == m_boardSize - 1))
+	{
+		//throw exception
+	}
+
+	m_board[line][column] = new Peg(m_turn);
+
+}
+
 void Board::SwitchTurn()
 {
 	m_turn = (m_turn == Peg::RedPeg) ? Peg::BlackPeg : Peg::RedPeg;

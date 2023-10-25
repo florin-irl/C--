@@ -8,6 +8,7 @@ public:
 	Board(int boardSize, int nrPegs, int nrBridges);
 	~Board() = default;
 
+	void PlacePeg(int line, int column);
 	Peg GetTurn() const;
 	void SwitchTurn();
 private:
