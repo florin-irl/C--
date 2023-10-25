@@ -18,6 +18,16 @@ Board::Board()
 
 }
 
+Board::Board(int boardSize, int nrPegs, int nrBridges)
+	:m_boardSize{ boardSize }
+	, m_turn{ Peg::RedPeg }
+	, m_nrOfPegsPlayer1{ nrPegs }
+	, m_nrOfBridgesPlayer1{ nrBridges }
+	, m_nrOfPegsPlayer2{ nrPegs }
+	, m_nrOfBridgesPlayer2{ nrBridges }
+{
+}
+
 void Board::switchTurn()
 {
 	if (m_turn == Peg::RedPeg)
