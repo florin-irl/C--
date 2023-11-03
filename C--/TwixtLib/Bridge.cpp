@@ -15,3 +15,12 @@ Position Bridge::GetSecondPegPos() const
 {
 	return m_secondPegPos;
 }
+
+bool Bridge::operator==(const Bridge& other)
+{
+	if (this->GetFirstPegPos() == other.GetFirstPegPos() && this->GetSecondPegPos() == other.GetSecondPegPos())
+		return true;
+	if (this->GetFirstPegPos() == other.GetSecondPegPos() && this->GetSecondPegPos() == other.GetFirstPegPos())
+		return true;
+	return false;
+}
