@@ -21,13 +21,10 @@
     <ClInclude Include="Board.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Peg.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Bridge.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Game_Piece.h">
+    <ClInclude Include="Position.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -38,13 +35,10 @@
     <ClCompile Include="Board.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Peg.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Bridge.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Game_Piece.cpp">
+    <ClCompile Include="Position.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

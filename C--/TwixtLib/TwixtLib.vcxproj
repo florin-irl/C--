@@ -130,15 +130,13 @@
     <ClInclude Include="Board.h" />
     <ClInclude Include="Bridge.h" />
     <ClInclude Include="Game.h" />
-    <ClInclude Include="Game_Piece.h" />
-    <ClInclude Include="Peg.h" />
+    <ClInclude Include="Position.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Board.cpp" />
     <ClCompile Include="Bridge.cpp" />
     <ClCompile Include="Game.cpp" />
-    <ClCompile Include="Game_Piece.cpp" />
-    <ClCompile Include="Peg.cpp" />
+    <ClCompile Include="Position.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
