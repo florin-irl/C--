@@ -6,3 +6,8 @@ Position::Position(int row, int col)
 {
 }
 
+int Position::GetRow() const
+{
+	return m_row;
+}
+
