@@ -7,6 +7,8 @@ public:
 	int GetRow() const;
 	int GetCol() const;
 
+	bool operator==(const Position& other);
+
 private:
 	int m_row;
 	int m_col;
