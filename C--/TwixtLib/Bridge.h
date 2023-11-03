@@ -1,10 +1,11 @@
 #pragma once
-#include "Game_Piece.h"
-class Bridge : public Game_Piece
+#include "Position.h"
+
+class Bridge
 {
 public:
-
+	Bridge(Position firstPegPos, Position secondPegPos);
 private:
-
+	Position m_firstPegPos, m_secondPegPos;
 };
 
