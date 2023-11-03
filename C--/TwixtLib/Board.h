@@ -1,25 +1,20 @@
 #pragma once
-#include "Peg.h"
+#include "EPiece.h"
+#include "Bridge.h"
 #include <vector>
+#include <unordered_set>
+
 class Board
 {
 public:
 	Board();
-	Board(int boardSize, int nrPegs, int nrBridges);
-	~Board() = default;
-
-	void PlacePeg(int line, int column);
-	Peg GetTurn() const;
-	void SwitchTurn();
 private:
 	int m_boardSize;
-	Peg m_turn;
-
-	int m_redPegsRemaining;
-	int m_redBridgesRemaining;
-	int m_blackPegsRemaining;
-	int m_blackBridgesRemaining;
-
-	std::vector<std::vector<Peg*>> m_board;
+	std::vector<std::vector<EPiece>> m_board;
+	std::unordered_set<Bridge> m_bridges;
+	std::vector<Bridge> m_vBridgeGenerator1;
+	std::vector<Bridge> m_vBridgeGenerator2;
+	std::vector<Bridge> m_vBridgeGenerator3;
+	std::vector<Bridge> m_vBridgeGenerator4;
 };
 
