@@ -5,6 +5,7 @@ public:
 	Position(int row,int col);
 
 	int GetRow() const;
+	int GetCol() const;
 
 private:
 	int m_row;

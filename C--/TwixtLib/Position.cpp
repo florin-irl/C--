@@ -11,3 +11,8 @@ int Position::GetRow() const
 	return m_row;
 }
 
+int Position::GetCol() const
+{
+	return m_col;
+}
+
