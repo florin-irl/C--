@@ -10,3 +10,8 @@ Position Bridge::GetFirstPegPos() const
 {
 	return m_firstPegPos;
 }
+
+Position Bridge::GetSecondPegPos() const
+{
+	return m_secondPegPos;
+}
