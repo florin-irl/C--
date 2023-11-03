@@ -129,6 +129,8 @@
   <ItemGroup>
     <ClInclude Include="Board.h" />
     <ClInclude Include="Bridge.h" />
+    <ClInclude Include="EGameState.h" />
+    <ClInclude Include="EPiece.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Position.h" />
   </ItemGroup>
