@@ -30,3 +30,8 @@ void Board::PlacePeg(int line, int column)
 {
 	//to do
 }
+
+void Board::PlaceBridge(int firstLine, int firstColumn, int secondLine, int secondColumn)
+{
+	//TO DO
+}
