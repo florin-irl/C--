@@ -8,6 +8,7 @@ class Board
 {
 public:
 	Board();
+	Board(int boardSize);
 private:
 	int m_boardSize;
 	std::vector<std::vector<EPiece>> m_board;
