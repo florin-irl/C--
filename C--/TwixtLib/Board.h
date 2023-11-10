@@ -12,7 +12,7 @@ public:
 	Board(int boardSize);
 
 	EPiece GetPiece(int line, int column) const override;
-
+	std::unordered_set<Bridge> GetBridges() const override;
 private:
 	int m_boardSize;
 	std::vector<std::vector<EPiece>> m_board;

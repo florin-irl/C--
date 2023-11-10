@@ -20,3 +20,8 @@ EPiece Board::GetPiece(int line, int column) const
 {
 	return m_board[line][column];
 }
+
+std::unordered_set<Bridge> Board::GetBridges() const
+{
+	return m_bridges;
+}
