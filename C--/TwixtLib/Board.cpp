@@ -35,3 +35,8 @@ void Board::PlaceBridge(int firstLine, int firstColumn, int secondLine, int seco
 {
 	//TO DO
 }
+
+void Board::RemoveBridge(int firstLine, int firstColumn, int secondLine, int secondColumn)
+{
+	//TO DO
+}
