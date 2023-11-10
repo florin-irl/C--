@@ -8,3 +8,13 @@ Game::Game(int boardSize, int nrPegs, int nrBridges)
 	, m_blackBridgesRemaining{ nrBridges }
 {
 }
+
+EGameState Game::GetGameState() const
+{
+	return m_gameState;
+}
+
+std::unordered_set<Bridge> Game::GetBridges()
+{
+	return m_board->GetBridges();
+}
