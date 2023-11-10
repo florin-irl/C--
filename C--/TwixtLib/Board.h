@@ -15,6 +15,8 @@ public:
 	std::unordered_set<Bridge> GetBridges() const override;
 	void PlacePeg(int line, int column);
 	void PlaceBridge(int firstLine, int firstColumn, int secondLine, int secondColumn) override;
+	void RemoveBridge(int firstLine, int firstColumn, int secondLine, int secondColumn) override;
+	bool CheckGameWon(int line, int column) override;
 private:
 	int m_boardSize;
 	std::vector<std::vector<EPiece>> m_board;

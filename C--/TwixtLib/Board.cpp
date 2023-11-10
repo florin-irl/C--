@@ -40,3 +40,8 @@ void Board::RemoveBridge(int firstLine, int firstColumn, int secondLine, int sec
 {
 	//TO DO
 }
+
+bool Board::CheckGameWon(int line, int column)
+{
+	//TO DO
+}
