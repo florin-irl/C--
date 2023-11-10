@@ -7,6 +7,7 @@ class Game
 {
 public:
 	Game();
+	Game(int boardSize, int nrPegs, int nrBridges);
 private:
 	EGameState m_gameState;
 	EPiece m_turn;
