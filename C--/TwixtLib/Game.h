@@ -2,12 +2,17 @@
 #include "EGameState.h";
 #include "EPiece.h";
 #include "IBoard.h";
+#include "IGame.h"
 
-class Game
+class Game : public IGame
 {
 public:
 	Game();
 	Game(int boardSize, int nrPegs, int nrBridges);
+
+	EGameState GetGameState() const;
+	std::unordered_set<Bridge> GetBridges();
+
 private:
 	EGameState m_gameState;
 	EPiece m_turn;

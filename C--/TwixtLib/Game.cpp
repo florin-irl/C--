@@ -9,6 +9,11 @@ Game::Game(int boardSize, int nrPegs, int nrBridges)
 {
 }
 
+EGameState Game::GetGameState() const
+{
+	return m_gameState;
+}
+
 std::unordered_set<Bridge> Game::GetBridges()
 {
 	return m_board->GetBridges();
