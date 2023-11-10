@@ -25,3 +25,8 @@ std::unordered_set<Bridge> Board::GetBridges() const
 {
 	return m_bridges;
 }
+
+void Board::PlacePeg(int line, int column)
+{
+	//to do
+}

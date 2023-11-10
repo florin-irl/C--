@@ -13,6 +13,7 @@ public:
 
 	EPiece GetPiece(int line, int column) const override;
 	std::unordered_set<Bridge> GetBridges() const override;
+	void PlacePeg(int line, int column);
 private:
 	int m_boardSize;
 	std::vector<std::vector<EPiece>> m_board;
