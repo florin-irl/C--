@@ -15,3 +15,8 @@ Board::Board(int boardSize)
 		for (int col = 0; col < m_boardSize; col++)
 			m_board[row][col] = EPiece::None;
 }
+
+EPiece Board::GetPiece(int line, int column) const
+{
+	return m_board[line][column];
+}
