@@ -6,11 +6,11 @@ IBoardPtr IBoard::CreateBoard()
 }
 
 Board::Board()
-	:m_boardSize{24}
+	: m_boardSize{ 24 }
+	, m_turn{ EPiece::RedPeg }
 {
-	for (int row = 0;row < m_boardSize;row++)
-		for (int col = 0;col < m_boardSize;col++)
-			m_board[row][col] = EPiece::None;
+	InitializeBridgeGenerators();
+	InitializeBoard(m_boardSize);
 }
 
 Board::Board(int boardSize)
