@@ -27,5 +27,9 @@ private:
 	std::vector<Bridge> m_vBridgeGenerator2;
 	std::vector<Bridge> m_vBridgeGenerator3;
 	std::vector<Bridge> m_vBridgeGenerator4;
+
+	void InitializeBoard(int boardSize);
+
+	void InitializeBridgeGenerator1();
 };
 
