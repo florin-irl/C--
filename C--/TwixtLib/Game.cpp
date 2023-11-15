@@ -1,5 +1,10 @@
 #include "Game.h"
 
+IGamePtr IGame::CreateGame()
+{
+	return std::make_shared<Game>();
+}
+
 Game::Game(int boardSize, int nrPegs, int nrBridges)
 	:m_boardSize{ boardSize }
 	, m_redPegsRemaining{ nrPegs }
