@@ -88,3 +88,16 @@ void Board::InitializeBridgeGenerator2()
 	m_vBridgeGenerator2.emplace_back(Position(1, 0), Position(2, -2));
 	m_vBridgeGenerator2.emplace_back(Position(1, -1), Position(3, 0));
 }
+
+void Board::InitializeBridgeGenerator3()
+{
+	m_vBridgeGenerator3.emplace_back(Position(0, -3), Position(1, -1));
+	m_vBridgeGenerator3.emplace_back(Position(0, -2), Position(1, 0));
+	m_vBridgeGenerator3.emplace_back(Position(0, -1), Position(1, 1));
+	m_vBridgeGenerator3.emplace_back(Position(0, -2), Position(2, -1));
+	m_vBridgeGenerator3.emplace_back(Position(0, -1), Position(2, 0));
+	m_vBridgeGenerator3.emplace_back(Position(-1, -1), Position(1, 0));
+	m_vBridgeGenerator3.emplace_back(Position(0, -2), Position(2, 1));
+	m_vBridgeGenerator3.emplace_back(Position(0, -1), Position(2, -2));
+	m_vBridgeGenerator3.emplace_back(Position(-1, 0), Position(1, -1));
+}

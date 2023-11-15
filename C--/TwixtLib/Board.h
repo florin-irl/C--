@@ -32,5 +32,6 @@ private:
 
 	void InitializeBridgeGenerator1();
 	void InitializeBridgeGenerator2();
+	void InitializeBridgeGenerator3();
 };
 
