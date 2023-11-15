@@ -29,7 +29,7 @@ private:
 	std::vector<Bridge> m_vBridgeGenerator4;
 
 	void InitializeBoard(int boardSize);
-
+	void InitializeBridgeGenerators();
 	void InitializeBridgeGenerator1();
 	void InitializeBridgeGenerator2();
 	void InitializeBridgeGenerator3();

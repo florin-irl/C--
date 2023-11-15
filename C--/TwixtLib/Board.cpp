@@ -63,6 +63,14 @@ void Board::InitializeBoard(int boardSize)
 			m_board[row][col] = EPiece::None;
 }
 
+void Board::InitializeBridgeGenerators()
+{
+	InitializeBridgeGenerator1();
+	InitializeBridgeGenerator2();
+	InitializeBridgeGenerator3();
+	InitializeBridgeGenerator4();
+}
+
 void Board::InitializeBridgeGenerator1()
 {
 	m_vBridgeGenerator1.emplace_back(Position(0, 1), Position(1, -1));
