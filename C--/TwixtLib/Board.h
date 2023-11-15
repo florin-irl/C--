@@ -17,6 +17,7 @@ public:
 	void PlaceBridge(int firstLine, int firstColumn, int secondLine, int secondColumn) override;
 	void RemoveBridge(int firstLine, int firstColumn, int secondLine, int secondColumn) override;
 	bool CheckGameWon(int line, int column) override;
+	void SwitchTurn() override;
 private:
 	int m_boardSize;
 	EPiece m_turn;

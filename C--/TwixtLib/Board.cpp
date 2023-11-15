@@ -50,3 +50,8 @@ bool Board::CheckGameWon(int line, int column)
 {
 	//TO DO
 }
+
+void Board::SwitchTurn()
+{
+	m_turn = (m_turn == EPiece::RedPeg) ? EPiece::BlackPeg : EPiece::RedPeg;
+}
