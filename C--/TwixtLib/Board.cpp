@@ -1,5 +1,10 @@
 #include "Board.h"
 
+IBoardPtr IBoard::CreateBoard()
+{
+	return std::make_shared<Board>();
+}
+
 Board::Board()
 	:m_boardSize{24}
 {
