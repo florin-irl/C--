@@ -5,6 +5,25 @@
 #include <vector>
 #include <unordered_set>
 
+// Hash function for : std::unordered_set<Bridge> m_bridges; //
+
+namespace std {
+	template <>
+	struct hash<Position> {
+		std::size_t operator()(const Position& pos) const {
+			return std::hash<int>()(pos.GetRow()) ^ (std::hash<int>()(pos.GetCol()) << 1);
+		}
+	};
+
+	template <>
+	struct hash<Bridge> {
+		std::size_t operator()(const Bridge& bridge) const {
+			// Use the hash functions for Position to hash the Bridge
+			return hash<Position>()(bridge.GetFirstPegPos()) ^ (hash<Position>()(bridge.GetSecondPegPos()) << 1);
+		}
+	};
+}
+
 class Board : public IBoard
 {
 public:
