@@ -31,5 +31,6 @@ private:
 	void InitializeBoard(int boardSize);
 
 	void InitializeBridgeGenerator1();
+	void InitializeBridgeGenerator2();
 };
 
