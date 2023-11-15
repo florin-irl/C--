@@ -1,5 +1,16 @@
 #include "Board.h"
 
+// Utility functions //
+
+void Swap(int& x, int& y)
+{
+	int aux = x;
+	x = y;
+	y = aux;
+}
+
+// Board Functions //
+
 IBoardPtr IBoard::CreateBoard()
 {
 	return std::make_shared<Board>();
