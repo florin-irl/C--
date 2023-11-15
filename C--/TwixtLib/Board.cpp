@@ -14,11 +14,11 @@ Board::Board()
 }
 
 Board::Board(int boardSize)
-	: m_boardSize{ boardSize }
+	:m_boardSize{ boardSize }
+	, m_turn{ EPiece::RedPeg }
 {
-	for (int row = 0; row < m_boardSize; row++)
-		for (int col = 0; col < m_boardSize; col++)
-			m_board[row][col] = EPiece::None;
+	InitializeBridgeGenerators();
+	InitializeBoard(m_boardSize);
 }
 
 EPiece Board::GetPiece(int line, int column) const
