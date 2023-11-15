@@ -19,6 +19,7 @@ public:
 	bool CheckGameWon(int line, int column) override;
 private:
 	int m_boardSize;
+	EPiece m_turn;
 	std::vector<std::vector<EPiece>> m_board;
 	std::unordered_set<Bridge> m_bridges;
 	std::vector<Bridge> m_vBridgeGenerator1;
