@@ -41,3 +41,15 @@ public:
 inline OutOfBoundsException::OutOfBoundsException(const std::string& message)
 	: TwixtException(message)
 {}
+
+// EnemyBaseException class //
+
+class EnemyBaseException : public TwixtException
+{
+public:
+	EnemyBaseException(const std::string& message);
+};
+
+inline EnemyBaseException::EnemyBaseException(const std::string& message)
+	: TwixtException(message)
+{}
