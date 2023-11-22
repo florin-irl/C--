@@ -53,3 +53,15 @@ public:
 inline EnemyBaseException::EnemyBaseException(const std::string& message)
 	: TwixtException(message)
 {}
+
+// InvalidBridgeException class //
+
+class InvalidBridgeException : public TwixtException
+{
+public:
+	InvalidBridgeException(const std::string& message);
+};
+
+inline InvalidBridgeException::InvalidBridgeException(const std::string& message)
+	: TwixtException(message)
+{}
