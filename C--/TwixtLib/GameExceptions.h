@@ -65,3 +65,15 @@ public:
 inline InvalidBridgeException::InvalidBridgeException(const std::string& message)
 	: TwixtException(message)
 {}
+
+// BridgeInTheWayException class //
+
+class BridgeInTheWayException : public InvalidBridgeException
+{
+public:
+	BridgeInTheWayException(const std::string& message);
+};
+
+inline BridgeInTheWayException::BridgeInTheWayException(const std::string& message)
+	: InvalidBridgeException(message)
+{}
