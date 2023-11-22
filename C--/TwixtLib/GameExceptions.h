@@ -17,3 +17,11 @@ inline TwixtException::TwixtException()
 inline TwixtException::TwixtException(const std::string& message)
 	: std::logic_error(message)
 {}
+
+// OcuppiedPositionException class //
+
+class OcuppiedPositionException : public TwixtException
+{
+public:
+	OcuppiedPositionException(const std::string& message);
+};
