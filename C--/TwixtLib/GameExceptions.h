@@ -113,3 +113,15 @@ public:
 inline InexistentBridgeException::InexistentBridgeException(const std::string& message)
 	: InvalidBridgeException(message)
 {}
+
+// GameOverException //
+
+class GameOverException : public TwixtException
+{
+public:
+	GameOverException(const std::string& message);
+};
+
+inline GameOverException::GameOverException(const std::string& message)
+	: TwixtException(message)
+{}
