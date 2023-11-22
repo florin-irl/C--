@@ -11,6 +11,7 @@ class IGame
 {
 public:
 	static IGamePtr CreateGame();
+	virtual EPiece GetTurn() const = 0;
 	virtual EGameState GetGameState() = 0;
 	virtual EPiece GetPiece(int line, int column) = 0;
 	virtual std::unordered_set<Bridge> GetBridges() = 0;

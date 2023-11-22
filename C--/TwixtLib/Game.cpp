@@ -14,6 +14,11 @@ Game::Game(int boardSize, int nrPegs, int nrBridges)
 {
 }
 
+EPiece Game::GetTurn() const
+{
+	return m_board->GetTurn();
+}
+
 EGameState Game::GetGameState() const
 {
 	return m_gameState;
