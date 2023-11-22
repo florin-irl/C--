@@ -25,3 +25,7 @@ class OcuppiedPositionException : public TwixtException
 public:
 	OcuppiedPositionException(const std::string& message);
 };
+
+inline OcuppiedPositionException::OcuppiedPositionException(const std::string& message)
+	: TwixtException(message)
+{}
