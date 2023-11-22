@@ -10,3 +10,6 @@ public:
 	TwixtException(const std::string& message);
 };
 
+inline TwixtException::TwixtException()
+	: std::logic_error("Unknown exception")
+{}
