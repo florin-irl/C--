@@ -13,3 +13,7 @@ public:
 inline TwixtException::TwixtException()
 	: std::logic_error("Unknown exception")
 {}
+
+inline TwixtException::TwixtException(const std::string& message)
+	: std::logic_error(message)
+{}
