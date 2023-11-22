@@ -77,3 +77,15 @@ public:
 inline BridgeInTheWayException::BridgeInTheWayException(const std::string& message)
 	: InvalidBridgeException(message)
 {}
+
+// InvalidPegsForBridgeException class //
+
+class InvalidPegsForBridgeException : public InvalidBridgeException
+{
+public:
+	InvalidPegsForBridgeException(const std::string& message);
+};
+
+inline InvalidPegsForBridgeException::InvalidPegsForBridgeException(const std::string& message)
+	: InvalidBridgeException(message)
+{}
