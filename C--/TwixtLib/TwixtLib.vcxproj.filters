@@ -15,5 +15,6 @@
     <ClInclude Include="IBoard.h" />
     <ClInclude Include="Position.h" />
     <ClInclude Include="IGame.h" />
+    <ClInclude Include="GameExceptions.h" />
   </ItemGroup>
 </Project>
