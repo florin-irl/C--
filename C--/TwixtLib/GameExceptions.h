@@ -29,3 +29,15 @@ public:
 inline OcuppiedPositionException::OcuppiedPositionException(const std::string& message)
 	: TwixtException(message)
 {}
+
+// OutOfBoundsException class //
+
+class OutOfBoundsException : public TwixtException
+{
+public:
+	OutOfBoundsException(const std::string& message);
+};
+
+inline OutOfBoundsException::OutOfBoundsException(const std::string& message)
+	: TwixtException(message)
+{}
