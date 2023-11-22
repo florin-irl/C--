@@ -89,3 +89,15 @@ public:
 inline InvalidPegsForBridgeException::InvalidPegsForBridgeException(const std::string& message)
 	: InvalidBridgeException(message)
 {}
+
+// CantFormBridgeException class //
+
+class CantFormBridgeException : public InvalidBridgeException
+{
+public:
+	CantFormBridgeException(const std::string& message);
+};
+
+inline CantFormBridgeException::CantFormBridgeException(const std::string& message)
+	: InvalidBridgeException(message)
+{}
