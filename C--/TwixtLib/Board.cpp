@@ -32,6 +32,11 @@ Board::Board(int boardSize)
 	InitializeBoard(m_boardSize);
 }
 
+EPiece Board::GetTurn() const
+{
+	return m_turn;
+}
+
 EPiece Board::GetPiece(int line, int column) const
 {
 	return m_board[line][column];

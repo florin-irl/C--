@@ -30,6 +30,7 @@ public:
 	Board();
 	Board(int boardSize);
 
+	EPiece GetTurn() const override;
 	EPiece GetPiece(int line, int column) const override;
 	std::unordered_set<Bridge> GetBridges() const override;
 	void PlacePeg(int line, int column);
