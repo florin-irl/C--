@@ -101,3 +101,15 @@ public:
 inline CantFormBridgeException::CantFormBridgeException(const std::string& message)
 	: InvalidBridgeException(message)
 {}
+
+// InexistentBridgeException //
+
+class InexistentBridgeException : public InvalidBridgeException
+{
+public:
+	InexistentBridgeException(const std::string& message);
+};
+
+inline InexistentBridgeException::InexistentBridgeException(const std::string& message)
+	: InvalidBridgeException(message)
+{}
