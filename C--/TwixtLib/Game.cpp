@@ -6,6 +6,10 @@ IGamePtr IGame::CreateGame()
 	return std::make_shared<Game>();
 }
 
+Game::Game()
+	: Game(24, 50, 50)
+{}
+
 Game::Game(int boardSize, int nrPegs, int nrBridges)
 	: m_boardSize{ boardSize }
 	, m_gameState{ EGameState::Playing }
