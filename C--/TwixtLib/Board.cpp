@@ -133,7 +133,22 @@ void Board::PlaceBridge(int firstLine, int firstColumn, int secondLine, int seco
 
 void Board::RemoveBridge(int firstLine, int firstColumn, int secondLine, int secondColumn)
 {
-	//TO DO
+	// Verifica ca Bridge-ul sa fie de sus in jos //
+	if (firstLine > secondLine)
+	{
+		Swap(firstLine, secondLine);
+		Swap(firstColumn, secondColumn);
+	}
+
+	if (m_board[firstLine][firstColumn] != m_turn || m_board[secondLine][secondColumn] != m_turn)
+		throw InvalidPegsForBridgeException("You can't remove a bridge that is not yours !");
+
+	Bridge bridge(Position(firstLine, firstColumn), Position(secondLine, secondColumn));
+	if (m_bridges.find(bridge) == m_bridges.end())
+		throw InexistentBridgeException("The bridge you want to remove doesn't exist !");
+
+	Bridge bridgeToErase(Position(firstLine, firstColumn), Position(secondLine, secondColumn));
+	m_bridges.erase(bridgeToErase);
 }
 
 bool Board::CheckGameWon(int line, int column)
