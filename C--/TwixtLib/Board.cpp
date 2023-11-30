@@ -52,7 +52,22 @@ std::unordered_set<Bridge> Board::GetBridges() const
 
 void Board::PlacePeg(int line, int column)
 {
-	//to do
+	// Poti adauga o exceptie care este aruncata atunci cand incerci sa pui un peg de 2 in aceasi tura //
+
+	if (line < 0 || line > m_boardSize - 1 || column < 0 || column > m_boardSize - 1)
+		throw OutOfBoundsException("Line or column is out of bounds !");
+
+	if (
+		(m_turn == EPiece::RedPeg && (column == 0 || column == m_boardSize - 1))
+		||
+		(m_turn == EPiece::BlackPeg && (line == 0 || line == m_boardSize - 1))
+		)
+		throw EnemyBaseException("You can't place pegs in enemy base !");
+
+	if (m_board[line][column] != EPiece::None)
+		throw OcuppiedPositionException("This position is already occupied !");
+
+	m_board[line][column] = m_turn;
 }
 
 void Board::PlaceBridge(int firstLine, int firstColumn, int secondLine, int secondColumn)
