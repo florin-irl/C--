@@ -16,7 +16,7 @@ Position Bridge::GetSecondPegPos() const
 	return m_secondPegPos;
 }
 
-bool Bridge::operator==(const Bridge& other)
+bool Bridge::operator==(const Bridge& other) const
 {
 	if (this->GetFirstPegPos() == other.GetFirstPegPos() && this->GetSecondPegPos() == other.GetSecondPegPos())
 		return true;
