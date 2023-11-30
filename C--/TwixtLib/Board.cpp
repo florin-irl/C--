@@ -90,13 +90,18 @@ void Board::SwitchTurn()
 	m_turn = (m_turn == EPiece::RedPeg) ? EPiece::BlackPeg : EPiece::RedPeg;
 }
 
+// Private Methods //
+
 void Board::InitializeBoard(int boardSize)
 {
+	m_board.resize(boardSize);
+	for (int i = 0; i < boardSize; i++)
+		m_board[i].resize(boardSize);
+
 	for (int row = 0; row < m_boardSize; row++)
 		for (int col = 0; col < m_boardSize; col++)
 			m_board[row][col] = EPiece::None;
 }
-
 void Board::InitializeBridgeGenerators()
 {
 	InitializeBridgeGenerator1();
