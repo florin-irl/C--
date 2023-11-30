@@ -49,6 +49,37 @@ void Game::PlacePeg(int line, int column)
 	ChangeStateIfDraw();
 }
 
+void Game::PlaceBridge(int firstLine, int firstColumn, int secondLine, int secondColumn)
+{
+	if (m_gameState != EGameState::Playing)
+		throw GameOverException("The game is over ! You can t place bridges anymore !");
+
+	m_board->PlaceBridge(firstLine, firstColumn, secondLine, secondColumn); // This can Throw Exception //
+	if (m_board->GetTurn() == EPiece::RedPeg)
+		m_redBridgesRemaining--;
+	else
+		m_blackBridgesRemaining--;
+
+	int lineToVerify = -1;
+	int columnToVerify = -1;
+
+	if (firstLine == 0 || firstLine == m_boardSize - 1 || firstColumn == 0 || firstColumn == m_boardSize - 1)
+	{
+		lineToVerify = firstLine;
+		columnToVerify = firstColumn;
+	}
+	else if (secondLine == 0 || secondLine == m_boardSize - 1 || secondColumn == 0 || secondColumn == m_boardSize - 1)
+	{
+		lineToVerify = secondLine;
+		columnToVerify = secondColumn;
+	}
+
+	if (lineToVerify != -1 && columnToVerify != -1)
+		ChangeStateIfGameWon(lineToVerify, columnToVerify);
+
+	ChangeStateIfDraw();
+}
+
 void Game::ChangeStateIfDraw()
 {
 	if (m_redPegsRemaining == 0 && m_redBridgesRemaining == 0
