@@ -13,10 +13,9 @@ public:
 	std::unordered_set<Bridge> GetBridges();
 
 private:
-	EGameState m_gameState;
-	EPiece m_turn;
 	int m_boardSize;
-	IBoard* m_board;
+	EGameState m_gameState;
+	IBoardPtr m_board;
 	int m_redPegsRemaining;
 	int m_redBridgesRemaining;
 	int m_blackPegsRemaining;
