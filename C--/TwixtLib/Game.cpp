@@ -44,3 +44,9 @@ void Game::ChangeStateIfDraw()
 		)
 		m_gameState = EGameState::Draw;
 }
+
+void Game::ChangeStateIfGameWon(int line, int column)
+{
+	if (m_board->CheckGameWon(line, column) == true)
+		m_gameState = (m_board->GetTurn() == EPiece::RedPeg) ? EGameState::WonByRed : EGameState::WonByBlack;
+}

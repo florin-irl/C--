@@ -23,5 +23,6 @@ private:
 	int m_blackBridgesRemaining;
 
 	void ChangeStateIfDraw();
+	void ChangeStateIfGameWon(int line, int column);
 };
 
