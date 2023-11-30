@@ -11,6 +11,7 @@ public:
 	EGameState GetGameState() const;
 	EPiece GetPiece(int line, int column);
 	std::unordered_set<Bridge> GetBridges();
+	
 
 private:
 	int m_boardSize;
@@ -20,5 +21,7 @@ private:
 	int m_redBridgesRemaining;
 	int m_blackPegsRemaining;
 	int m_blackBridgesRemaining;
+
+	void ChangeStateIfDraw();
 };
 

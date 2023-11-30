@@ -35,3 +35,12 @@ std::unordered_set<Bridge> Game::GetBridges()
 {
 	return m_board->GetBridges();
 }
+
+void Game::ChangeStateIfDraw()
+{
+	if (m_redPegsRemaining == 0 && m_redBridgesRemaining == 0
+		&& m_blackPegsRemaining == 0 && m_blackBridgesRemaining == 0
+		&& m_gameState == EGameState::Playing
+		)
+		m_gameState = EGameState::Draw;
+}
