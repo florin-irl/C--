@@ -11,7 +11,7 @@ public:
 	EGameState GetGameState() const;
 	EPiece GetPiece(int line, int column);
 	std::unordered_set<Bridge> GetBridges();
-	
+	void PlacePeg(int line, int column) override;
 
 private:
 	int m_boardSize;

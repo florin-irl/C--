@@ -36,6 +36,19 @@ std::unordered_set<Bridge> Game::GetBridges()
 	return m_board->GetBridges();
 }
 
+void Game::PlacePeg(int line, int column)
+{
+	if (m_gameState != EGameState::Playing)
+		throw GameOverException("The game is over ! You can t place pegs anymore !");
+
+	m_board->PlacePeg(line, column); // This can Throw Exception //
+	if (m_board->GetTurn() == EPiece::RedPeg)
+		m_redPegsRemaining--;
+	else
+		m_blackPegsRemaining--;
+	ChangeStateIfDraw();
+}
+
 void Game::ChangeStateIfDraw()
 {
 	if (m_redPegsRemaining == 0 && m_redBridgesRemaining == 0
