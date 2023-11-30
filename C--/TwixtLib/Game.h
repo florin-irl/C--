@@ -1,7 +1,4 @@
 #pragma once
-#include "EGameState.h";
-#include "EPiece.h";
-#include "IBoard.h";
 #include "IGame.h"
 
 class Game : public IGame
