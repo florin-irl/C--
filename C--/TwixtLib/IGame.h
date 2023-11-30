@@ -17,7 +17,7 @@ public:
 	virtual void PlacePeg(int line, int column) = 0; // Can throw exceptions //
 	virtual void PlaceBridge(int firstLine, int firstColumn, int secondLine, int secondColumn) = 0;
 	virtual void RemoveBridge(int firstLine, int firstColumn, int secondLine, int secondColumn) = 0;
-	virtual bool IsGameOver() = 0;
+	virtual bool IsGameOver() const = 0;
 	virtual void SwitchTurn() = 0; // Can throw exceptions //
 	virtual ~IGame() = default;
 };

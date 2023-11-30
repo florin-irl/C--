@@ -92,6 +92,13 @@ void Game::RemoveBridge(int firstLine, int firstColumn, int secondLine, int seco
 		m_blackBridgesRemaining++;
 }
 
+bool Game::IsGameOver() const
+{
+	if (m_gameState == EGameState::WonByRed || m_gameState == EGameState::WonByBlack || m_gameState == EGameState::Draw)
+		return true;
+	return false;
+}
+
 void Game::ChangeStateIfDraw()
 {
 	if (m_redPegsRemaining == 0 && m_redBridgesRemaining == 0
