@@ -1,4 +1,5 @@
 #include "Board.h"
+#include "GameExceptions.h"
 
 // Utility functions //
 
@@ -39,6 +40,8 @@ EPiece Board::GetTurn() const
 
 EPiece Board::GetPiece(int line, int column) const
 {
+	if (line < 0 || line > m_boardSize - 1 || column < 0 || column > m_boardSize - 1)
+		throw OutOfBoundsException("Line or column is out of bounds !");
 	return m_board[line][column];
 }
 
