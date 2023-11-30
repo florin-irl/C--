@@ -154,6 +154,7 @@ void Board::RemoveBridge(int firstLine, int firstColumn, int secondLine, int sec
 bool Board::CheckGameWon(int line, int column)
 {
 	//TO DO
+	return false;
 }
 
 void Board::SwitchTurn()
