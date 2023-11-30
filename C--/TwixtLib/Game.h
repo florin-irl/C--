@@ -13,6 +13,8 @@ public:
 	std::unordered_set<Bridge> GetBridges();
 	void PlacePeg(int line, int column) override;
 	void PlaceBridge(int firstLine, int firstColumn, int secondLine, int secondColumn) override;
+	void RemoveBridge(int firstLine, int firstColumn, int secondLine, int secondColumn) override;
+
 private:
 	int m_boardSize;
 	EGameState m_gameState;

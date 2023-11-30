@@ -80,6 +80,18 @@ void Game::PlaceBridge(int firstLine, int firstColumn, int secondLine, int secon
 	ChangeStateIfDraw();
 }
 
+void Game::RemoveBridge(int firstLine, int firstColumn, int secondLine, int secondColumn)
+{
+	if (m_gameState != EGameState::Playing)
+		throw GameOverException("The game is over ! You can t remove bridges anymore !");
+
+	m_board->RemoveBridge(firstLine, firstColumn, secondLine, secondColumn); // This can Throw Exception //
+	if (m_board->GetTurn() == EPiece::RedPeg)
+		m_redBridgesRemaining++;
+	else
+		m_blackBridgesRemaining++;
+}
+
 void Game::ChangeStateIfDraw()
 {
 	if (m_redPegsRemaining == 0 && m_redBridgesRemaining == 0
