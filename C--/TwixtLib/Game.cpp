@@ -1,4 +1,5 @@
 #include "Game.h"
+#include "GameExceptions.h"
 
 IGamePtr IGame::CreateGame()
 {
@@ -6,12 +7,14 @@ IGamePtr IGame::CreateGame()
 }
 
 Game::Game(int boardSize, int nrPegs, int nrBridges)
-	:m_boardSize{ boardSize }
+	: m_boardSize{ boardSize }
+	, m_gameState{ EGameState::Playing }
 	, m_redPegsRemaining{ nrPegs }
-	, m_blackPegsRemaining{ nrPegs }
 	, m_redBridgesRemaining{ nrBridges }
+	, m_blackPegsRemaining{ nrPegs }
 	, m_blackBridgesRemaining{ nrBridges }
 {
+	m_board = IBoard::CreateBoard();
 }
 
 EPiece Game::GetTurn() const
