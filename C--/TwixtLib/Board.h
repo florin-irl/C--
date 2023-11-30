@@ -43,10 +43,11 @@ private:
 	EPiece m_turn;
 	std::vector<std::vector<EPiece>> m_board;
 	std::unordered_set<Bridge> m_bridges;
-	std::vector<Bridge> m_vBridgeGenerator1;
-	std::vector<Bridge> m_vBridgeGenerator2;
-	std::vector<Bridge> m_vBridgeGenerator3;
-	std::vector<Bridge> m_vBridgeGenerator4;
+	std::vector<Bridge> m_vBridgeGenerator1;	// (2, 1) = +2 linii, +1 coloana //
+	std::vector<Bridge> m_vBridgeGenerator2;	// (2,-1) //
+	std::vector<Bridge> m_vBridgeGenerator3;	// (1,-2) //
+	std::vector<Bridge> m_vBridgeGenerator4;	// (1, 2) //
+
 
 	void InitializeBoard(int boardSize);
 	void InitializeBridgeGenerators();
