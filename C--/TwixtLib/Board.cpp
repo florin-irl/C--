@@ -72,7 +72,63 @@ void Board::PlacePeg(int line, int column)
 
 void Board::PlaceBridge(int firstLine, int firstColumn, int secondLine, int secondColumn)
 {
-	//TO DO
+	// Verifica ca Bridge-ul sa fie de sus in jos //
+	if (firstLine > secondLine)
+	{
+		Swap(firstLine, secondLine);
+		Swap(firstColumn, secondColumn);
+	}
+
+	// Arunca exceptiile necesare //
+
+	if (firstLine < 0 || firstLine > m_boardSize - 1 || firstColumn < 0 || firstColumn > m_boardSize - 1)
+		throw OutOfBoundsException("Line or column is out of bounds !");
+
+	if (secondLine < 0 || secondLine > m_boardSize - 1 || secondColumn < 0 || secondColumn > m_boardSize - 1)
+		throw OutOfBoundsException("Line or column is out of bounds !");
+
+	if (m_board[firstLine][firstColumn] != m_turn || m_board[secondLine][secondColumn] != m_turn)
+		throw InvalidPegsForBridgeException("You can't make a bridge with a piece that is not yours !");
+
+	if (firstLine + 2 != secondLine && firstLine + 1 != secondLine)
+		throw CantFormBridgeException("The positions you provided don't form a bridge !");
+
+	if (firstLine + 2 == secondLine)
+	{
+		if (firstColumn - 1 != secondColumn && firstColumn + 1 != secondColumn)
+			throw CantFormBridgeException("The positions you provided don't form a bridge !");
+	}
+	if (firstLine + 1 == secondLine)
+	{
+		if (firstColumn - 2 != secondColumn && firstColumn + 2 != secondColumn)
+			throw CantFormBridgeException("The positions you provided don't form a bridge !");
+	}
+
+	std::vector<Bridge> vBridgeGenerator;
+
+	if (firstLine + 2 == secondLine && firstColumn + 1 == secondColumn)
+		vBridgeGenerator = m_vBridgeGenerator1;
+
+	if (firstLine + 2 == secondLine && firstColumn - 1 == secondColumn)
+		vBridgeGenerator = m_vBridgeGenerator2;
+
+	if (firstLine + 1 == secondLine && firstColumn - 2 == secondColumn)
+		vBridgeGenerator = m_vBridgeGenerator3;
+
+	if (firstLine + 1 == secondLine && firstColumn + 2 == secondColumn)
+		vBridgeGenerator = m_vBridgeGenerator4;
+
+	for (const auto& bridge : vBridgeGenerator)
+	{
+		Bridge bridgeToVerify = Bridge(
+			Position(firstLine + bridge.GetFirstPegPos().GetRow(), firstColumn + bridge.GetFirstPegPos().GetCol()),
+			Position(firstLine + bridge.GetSecondPegPos().GetRow(), firstColumn + bridge.GetSecondPegPos().GetCol())
+		);
+		if (m_bridges.find(bridgeToVerify) != m_bridges.end())
+			throw BridgeInTheWayException("Another bridge is blocking the bridge you want to place !");
+	}
+
+	m_bridges.emplace(Position(firstLine, firstColumn), Position(secondLine, secondColumn));
 }
 
 void Board::RemoveBridge(int firstLine, int firstColumn, int secondLine, int secondColumn)
