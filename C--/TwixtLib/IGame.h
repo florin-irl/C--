@@ -1,9 +1,8 @@
 #pragma once
 #include "EGameState.h"
-#include "EPiece.h"
-#include "Bridge.h"
-#include <unordered_set>
-#include <memory>
+#include "IBoard.h"
+#include <unordered_set>  // sterge daca da erori pt ca e si in iboard //
+#include <memory> // sterge daca da erori pt ca e si in iboard //
 
 using IGamePtr = std::shared_ptr<class IGame>;
 
