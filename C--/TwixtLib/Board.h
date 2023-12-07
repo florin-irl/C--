@@ -1,7 +1,5 @@
 #pragma once
 #include "IBoard.h"
-#include "EPiece.h"
-#include "Bridge.h"
 #include <vector>
 #include <unordered_set>
 
@@ -24,6 +22,8 @@ namespace std {
 	};
 }
 
+// Board Class //
+
 class Board : public IBoard
 {
 public:
@@ -33,11 +33,12 @@ public:
 	EPiece GetTurn() const override;
 	EPiece GetPiece(int line, int column) const override;
 	std::unordered_set<Bridge> GetBridges() const override;
-	void PlacePeg(int line, int column);
+	void PlacePeg(int line, int column) override;
 	void PlaceBridge(int firstLine, int firstColumn, int secondLine, int secondColumn) override;
 	void RemoveBridge(int firstLine, int firstColumn, int secondLine, int secondColumn) override;
 	bool CheckGameWon(int line, int column) override;
 	void SwitchTurn() override;
+
 private:
 	int m_boardSize;
 	EPiece m_turn;
@@ -48,13 +49,11 @@ private:
 	std::vector<Bridge> m_vBridgeGenerator3;	// (1,-2) //
 	std::vector<Bridge> m_vBridgeGenerator4;	// (1, 2) //
 
-
 	void InitializeBoard(int boardSize);
 	void InitializeBridgeGenerators();
 	void InitializeBridgeGenerator1();
 	void InitializeBridgeGenerator2();
 	void InitializeBridgeGenerator3();
 	void InitializeBridgeGenerator4();
-
 };
 
