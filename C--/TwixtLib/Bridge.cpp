@@ -1,5 +1,6 @@
 #include "Bridge.h"
 
+
 Bridge::Bridge(Position firstPegPos, Position secondPegPos)
 	:m_firstPegPos{ firstPegPos }
 	, m_secondPegPos{ secondPegPos }
@@ -23,4 +24,5 @@ bool Bridge::operator==(const Bridge& other) const
 	if (this->GetFirstPegPos() == other.GetSecondPegPos() && this->GetSecondPegPos() == other.GetFirstPegPos())
 		return true;
 	return false;
+
 }
