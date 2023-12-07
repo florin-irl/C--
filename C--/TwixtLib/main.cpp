@@ -36,6 +36,41 @@ void DispayBoard(const IGamePtr& game)
 	//TO UPDATE
 }
 
+void PlayOption(int option, IGamePtr& game)
+{
+	int firstLine, firstColumn, secondLine, secondColumn;
+	switch (option) {
+	case 1:
+		std::cout << "Line : ";
+		std::cin >> firstLine;
+		std::cout << "Column : ";
+		std::cin >> firstColumn;
+		try
+		{
+			game->PlacePeg(firstLine, firstColumn);
+		}
+		catch (const std::exception& ex)
+		{
+			std::cout << ex.what() << std::endl;
+		}
+		break;
+	case 2:
+		//TO DO 
+		break;
+
+	case 3:
+		//TO DO 
+		break;
+
+	case 4:
+		//TO DO
+		break;
+	default:
+		std::cout << "Your option is not valid !";
+		break;
+	}
+}
+
 int main()
 {
 	return 0;
