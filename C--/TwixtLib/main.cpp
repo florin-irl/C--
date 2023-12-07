@@ -103,7 +103,14 @@ void PlayOption(int option, IGamePtr& game)
 		break;
 
 	case 4:
-		//TO DO
+		try
+		{
+			game->SwitchTurn();
+		}
+		catch (const std::exception& ex)
+		{
+			std::cout << ex.what() << std::endl;
+		}
 		break;
 	default:
 		std::cout << "Your option is not valid !";
