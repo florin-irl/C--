@@ -31,9 +31,15 @@ void DispayBoard(const IGamePtr& game)
 					std::cout << "|";
 			}
 		}
-		
+		std::cout << std::endl;
+		if (i == 0 || i == 22)
+		{
+			std::cout << "                      ";
+			std::cout << "==============================================\n";
+		}
 	}
-	//TO UPDATE
+	std::unordered_set<Bridge> bridges = game->GetBridges();
+	DisplayBridges(bridges);
 }
 
 void PlayOption(int option, IGamePtr& game)
