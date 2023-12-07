@@ -145,5 +145,7 @@ void PlayGame(IGamePtr& game) // sterge const daca nu merge //
 
 int main()
 {
+	IGamePtr game = IGame::CreateGame();
+	PlayGame(game);
 	return 0;
 }
