@@ -153,7 +153,7 @@ void Board::RemoveBridge(int firstLine, int firstColumn, int secondLine, int sec
 
 bool Board::CheckGameWon(int line, int column)
 {
-	//TO DO
+	// TO DOO //
 	return false;
 }
 
@@ -217,7 +217,7 @@ void Board::InitializeBridgeGenerator3()
 	m_vBridgeGenerator3.emplace_back(Position(0, -2), Position(2, -1));
 	m_vBridgeGenerator3.emplace_back(Position(0, -1), Position(2, 0));
 	m_vBridgeGenerator3.emplace_back(Position(-1, -1), Position(1, 0));
-	m_vBridgeGenerator3.emplace_back(Position(0, -2), Position(2, 1));
+	m_vBridgeGenerator3.emplace_back(Position(-1, -2), Position(1, -1));
 	m_vBridgeGenerator3.emplace_back(Position(0, -1), Position(2, -2));
 	m_vBridgeGenerator3.emplace_back(Position(-1, 0), Position(1, -1));
 }
