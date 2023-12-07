@@ -31,7 +31,12 @@ EGameState Game::GetGameState() const
 	return m_gameState;
 }
 
-std::unordered_set<Bridge> Game::GetBridges()
+EPiece Game::GetPiece(int line, int column) const
+{
+	return m_board->GetPiece(line, column);
+}
+
+std::unordered_set<Bridge> Game::GetBridges() const
 {
 	return m_board->GetBridges();
 }
@@ -77,7 +82,8 @@ void Game::PlaceBridge(int firstLine, int firstColumn, int secondLine, int secon
 	if (lineToVerify != -1 && columnToVerify != -1)
 		ChangeStateIfGameWon(lineToVerify, columnToVerify);
 
-	ChangeStateIfDraw();
+	if (m_gameState == EGameState::Playing)
+		ChangeStateIfDraw();
 }
 
 void Game::RemoveBridge(int firstLine, int firstColumn, int secondLine, int secondColumn)
