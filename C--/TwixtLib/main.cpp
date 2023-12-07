@@ -118,6 +118,31 @@ void PlayOption(int option, IGamePtr& game)
 	}
 }
 
+void PlayGame(IGamePtr& game) // sterge const daca nu merge // 
+{
+	DispayBoard(game);
+	while (!game->IsGameOver())
+	{
+		std::cout << "\n======================================================================================\n\n";
+		if (game->GetTurn() == EPiece::RedPeg)
+			std::cout << "Turn : Red\n";
+		else
+			std::cout << "Turn : Black\n";
+		std::cout << "Press :\n";
+		std::cout << "1 : Place Peg\n";
+		std::cout << "2 : Place Bridge\n";
+		std::cout << "3 : Remove Bridge\n";
+		std::cout << "4 : End turn\n";
+		int option;
+		std::cout << "Option : ";
+		std::cin >> option;
+		std::cout << "\n======================================================================================\n";
+		PlayOption(option, game);
+		DispayBoard(game);
+	}
+	// Afiseaza castigator //
+}
+
 int main()
 {
 	return 0;
