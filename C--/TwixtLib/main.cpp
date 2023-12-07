@@ -61,7 +61,24 @@ void PlayOption(int option, IGamePtr& game)
 		}
 		break;
 	case 2:
-		//TO DO 
+		std::cout << "First line : ";
+		std::cin >> firstLine;
+		std::cout << "First column : ";
+		std::cin >> firstColumn;
+
+		std::cout << "Second line : ";
+		std::cin >> secondLine;
+		std::cout << "Second column : ";
+		std::cin >> secondColumn;
+
+		try
+		{
+			game->PlaceBridge(firstLine, firstColumn, secondLine, secondColumn);
+		}
+		catch (const std::exception& ex)
+		{
+			std::cout << ex.what() << std::endl;
+		}
 		break;
 
 	case 3:
