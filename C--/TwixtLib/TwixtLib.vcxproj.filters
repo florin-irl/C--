@@ -5,6 +5,7 @@
     <ClCompile Include="Bridge.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Position.cpp" />
+    <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Board.h" />

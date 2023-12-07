@@ -141,6 +141,7 @@
     <ClCompile Include="Board.cpp" />
     <ClCompile Include="Bridge.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="main.cpp" />
     <ClCompile Include="Position.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
