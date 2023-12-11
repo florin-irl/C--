@@ -114,7 +114,26 @@ void Game::SwitchTurn()
 
 void Game::SaveGame(std::ofstream& out) const
 {
-
+	//game state
+	out << static_cast<int>(m_gameState) << std::endl;
+	//board size
+	out << m_boardSize << std::endl;
+	//board
+	for (int i=0; i < m_boardSize; i++)
+	{
+		for (int j = 0; j < m_boardSize; j++)
+			out << static_cast<int>(m_board->GetPiece(i, j));
+		out << std::endl;
+	}
+	//red Pegs remaining
+	out << m_redPegsRemaining << std::endl;
+	//red Bridges remaining
+	out << m_redBridgesRemaining << std::endl;
+	//black Pegs remaining
+	out << m_blackPegsRemaining << std::endl;
+	//black Bridges remaining
+	out << m_blackBridgesRemaining << std::endl;
+	
 }
 
 void Game::ChangeStateIfDraw()

@@ -1,6 +1,7 @@
 #pragma once
 #include "EGameState.h"
 #include "IBoard.h"
+#include <fstream>
 #include <unordered_set>  // sterge daca da erori pt ca e si in iboard //
 #include <memory> // sterge daca da erori pt ca e si in iboard //
 
