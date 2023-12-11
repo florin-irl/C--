@@ -20,6 +20,7 @@ public:
 	//Fa o functie de reset Game //
 
 	void SaveGame(std::ofstream& out) const override;
+	void LoadGame(std::istream& in) override;
 
 private:
 	int m_boardSize;

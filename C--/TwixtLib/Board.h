@@ -32,6 +32,7 @@ public:
 
 	EPiece GetTurn() const override;
 	EPiece GetPiece(int line, int column) const override;
+	std::vector<std::vector<EPiece>> GetBoard() const override;
 	std::unordered_set<Bridge> GetBridges() const override;
 	void PlacePeg(int line, int column) override;
 	void PlaceBridge(int firstLine, int firstColumn, int secondLine, int secondColumn) override;
