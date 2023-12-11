@@ -114,8 +114,8 @@ void Game::SwitchTurn()
 
 void Game::SaveGame(std::ofstream& out) const
 {
-	//write game state
-	out << static_cast<int>(m_gameState) << std::endl;
+	//write game turn
+	out << static_cast<int>(m_board->GetTurn()) << std::endl;
 	//write board size
 	out << m_boardSize << std::endl;
 	//write board
@@ -139,10 +139,10 @@ void Game::SaveGame(std::ofstream& out) const
 void Game::LoadGame(std::istream& in)
 {
 	//read game state
-	int gameStateInt;
-	in >> gameStateInt;
-	EGameState gameState = static_cast<EGameState>(gameStateInt);
-	m_gameState = gameState;
+	int gameTurnInt;
+	in >> gameTurnInt;
+	EPiece gameTurn = static_cast<EPiece>(gameTurn);
+	if (m_board->GetTurn() != gameTurn)m_board->SwitchTurn();
 	//read board size;
 	int boardSize;
 	in >> boardSize;
@@ -173,6 +173,12 @@ void Game::LoadGame(std::istream& in)
 	in >> remainingBlackBridges;
 	m_blackBridgesRemaining = remainingBlackBridges;
 
+}
+
+void Game::RestartGame()
+{
+	//set game state
+	//m_gameState = EGame
 }
 
 void Game::ChangeStateIfDraw()

@@ -21,6 +21,7 @@ public:
 
 	void SaveGame(std::ofstream& out) const override;
 	void LoadGame(std::istream& in) override;
+	void RestartGame() override;
 
 private:
 	int m_boardSize;
