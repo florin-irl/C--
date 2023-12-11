@@ -23,5 +23,6 @@ public:
 	virtual ~IGame() = default;
 	virtual void SaveGame(std::ofstream& out) const = 0;
 	virtual void LoadGame(std::istream& in) = 0;
+	virtual void RestartGame() = 0;
 
 };
