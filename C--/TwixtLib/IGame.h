@@ -22,5 +22,6 @@ public:
 	virtual void SwitchTurn() = 0; // Can throw exceptions //
 	virtual ~IGame() = default;
 	virtual void SaveGame(std::ofstream& out) const = 0;
+	virtual void LoadGame(std::istream& in) = 0;
 
 };
