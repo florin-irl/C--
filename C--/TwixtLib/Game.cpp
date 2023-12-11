@@ -112,6 +112,11 @@ void Game::SwitchTurn()
 	m_board->SwitchTurn();
 }
 
+void Game::SaveGame(std::ofstream& out) const
+{
+
+}
+
 void Game::ChangeStateIfDraw()
 {
 	if (m_redPegsRemaining == 0 && m_redBridgesRemaining == 0
