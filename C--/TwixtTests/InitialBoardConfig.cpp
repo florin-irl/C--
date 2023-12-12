@@ -23,7 +23,7 @@ TEST(InitialBoard, FirstTurn)
 	EXPECT_EQ(b.GetTurn(), EPiece::RedPeg);
 }
 
-TEST(SwitchTurn, SwitchTurn)
+TEST(TurnManagement, SwitchTurn)
 {
 	Board b;
 
@@ -31,6 +31,14 @@ TEST(SwitchTurn, SwitchTurn)
 	b.SwitchTurn();
 	EXPECT_EQ(b.GetTurn(), EPiece::BlackPeg);
 
+}
+
+TEST(TurnManagement, PlaceOnlyPegPerTurn)
+{
+	Board b;
+
+	b.PlacePeg(5, 9);
+	EXPECT_THROW(b.PlacePeg(2, 17), TwixtException);
 }
 
 TEST(PlacePeg, PlaceRedPeg)
@@ -104,3 +112,4 @@ TEST(PlacePeg, PlacePegOnOccupiedPosition)
 	b.PlacePeg(10, 15);
 	EXPECT_THROW(b.PlacePeg(10, 15), OcuppiedPositionException);
 }
+
