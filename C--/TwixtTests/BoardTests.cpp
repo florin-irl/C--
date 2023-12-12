@@ -135,3 +135,11 @@ TEST(PlaceBridge, PlaceBlackBridge)
 	Bridge firstBridge({ 18,15 }, { 19,17 });
 	EXPECT_EQ(*(b.GetBridges().find(firstBridge)), firstBridge);
 }
+//?
+TEST(PlaceBridge, PlaceBridgeOutsideTable)
+{
+	Board b;
+	b.PlacePeg(8, 20);
+	b.PlacePeg(9, 18);
+	EXPECT_THROW(b.PlaceBridge(-3, 29, -14, 33),OutOfBoundsException);
+}
