@@ -31,3 +31,12 @@ TEST(SwitchTurn, SwitchTurn)
 	EXPECT_EQ(b.GetTurn(), EPiece::BlackPeg);
 
 }
+
+TEST(PlacePeg, PlaceRedPeg)
+{
+	Board b;
+	b.PlacePeg(1, 1);
+	EXPECT_EQ(b.GetPiece(1, 1), EPiece::RedPeg);
+	
+}
+
