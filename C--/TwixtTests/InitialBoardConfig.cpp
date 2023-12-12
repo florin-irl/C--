@@ -86,3 +86,11 @@ TEST(PlacePeg, PlaceBlackPegOnOppositeEdge)
 	EXPECT_THROW(b.PlacePeg(23, 16), EnemyBaseException);
 	EXPECT_EQ(b.GetPiece(23, 16), EPiece::None);
 }
+
+TEST(PlacePeg, PlacePegOutsideTable)
+{
+	Board b;
+	EXPECT_THROW(b.PlacePeg(-4, 27), OutOfBoundsException);
+	b.SwitchTurn();
+	EXPECT_THROW(b.PlacePeg(19, 30), OutOfBoundsException);
+}
