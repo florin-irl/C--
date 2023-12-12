@@ -126,7 +126,7 @@ void Board::PlaceBridge(int firstLine, int firstColumn, int secondLine, int seco
 		);
 		if (m_bridges.find(bridgeToVerify) != m_bridges.end())
 			throw BridgeInTheWayException("Another bridge is blocking the bridge you want to place !");
-	}
+	}	
 
 	m_bridges.emplace(Position(firstLine, firstColumn), Position(secondLine, secondColumn));
 }

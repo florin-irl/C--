@@ -160,3 +160,14 @@ TEST(PlaceBridge, PlaceBridgeUsingDifferentColorPegs)
 	b.PlacePeg(16, 7);
 	EXPECT_THROW(b.PlaceBridge(15, 9, 16, 7), InvalidPegsForBridgeException);
 }
+
+TEST(PlaceBridge, PlaceBridgeInABlockedPosition)
+{
+	Board b;
+	b.PlacePeg(21, 13);
+	b.PlacePeg(19, 14);
+	b.PlaceBridge(19, 14, 21, 13);
+	b.PlacePeg(21, 14);
+	b.PlacePeg(20, 12);
+	EXPECT_THROW(b.PlaceBridge(21, 14, 20, 12), BridgeInTheWayException);
+}
