@@ -122,6 +122,16 @@ TEST(PlaceBridge, PlaceRedBridge)
 	b.PlacePeg(8, 10);
 	b.PlaceBridge(7, 8, 8, 10);
 	Bridge firstBridge({ 7,8 }, { 8,10 });
+	EXPECT_EQ(*(b.GetBridges().find(firstBridge)), firstBridge);	
+}
+
+TEST(PlaceBridge, PlaceBlackBridge)
+{
+	Board b;
+	b.SwitchTurn();
+	b.PlacePeg(19, 17);
+	b.PlacePeg(18, 15);
+	b.PlaceBridge(19, 17, 18, 15);
+	Bridge firstBridge({ 18,15 }, { 19,17 });
 	EXPECT_EQ(*(b.GetBridges().find(firstBridge)), firstBridge);
-	
 }
