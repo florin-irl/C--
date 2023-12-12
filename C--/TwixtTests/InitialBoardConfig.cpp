@@ -95,3 +95,12 @@ TEST(PlacePeg, PlacePegOutsideTable)
 	EXPECT_THROW(b.PlacePeg(19, 30), OutOfBoundsException);
 }
 
+TEST(PlacePeg, PlacePegOnOccupiedPosition)
+{
+	Board b;
+	b.PlacePeg(5, 7);
+	EXPECT_THROW(b.PlacePeg(5, 7), OcuppiedPositionException);
+	b.SwitchTurn();
+	b.PlacePeg(10, 15);
+	EXPECT_THROW(b.PlacePeg(10, 15), OcuppiedPositionException);
+}
