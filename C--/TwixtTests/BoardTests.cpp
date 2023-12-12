@@ -143,3 +143,11 @@ TEST(PlaceBridge, PlaceBridgeOutsideTable)
 	b.PlacePeg(9, 18);
 	EXPECT_THROW(b.PlaceBridge(-3, 29, -14, 33),OutOfBoundsException);
 }
+
+TEST(PlaceBridge, PlaceBridgeInPositionsThatDontFormBridge)
+{
+	Board b;
+	b.PlacePeg(2, 7);
+	b.PlacePeg(9, 16);
+	EXPECT_THROW(b.PlaceBridge(2, 7, 9, 16), CantFormBridgeException);
+}
