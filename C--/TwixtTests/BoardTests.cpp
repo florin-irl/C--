@@ -151,3 +151,12 @@ TEST(PlaceBridge, PlaceBridgeInPositionsThatDontFormBridge)
 	b.PlacePeg(9, 16);
 	EXPECT_THROW(b.PlaceBridge(2, 7, 9, 16), CantFormBridgeException);
 }
+
+TEST(PlaceBridge, PlaceBridgeUsingDifferentColorPegs)
+{
+	Board b;
+	b.PlacePeg(15, 9);
+	b.SwitchTurn();
+	b.PlacePeg(16, 7);
+	EXPECT_THROW(b.PlaceBridge(15, 9, 16, 7), InvalidPegsForBridgeException);
+}
