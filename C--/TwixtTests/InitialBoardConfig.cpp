@@ -56,3 +56,13 @@ TEST(PlacePeg, PlacePegOnRedEdge)
 	EXPECT_EQ(b.GetPiece(0, 2), EPiece::RedPeg);
 	EXPECT_EQ(b.GetPiece(23, 4), EPiece::RedPeg);
 }
+
+TEST(PlacePeg, PlacePegOnBlackEdge)
+{
+	Board b;
+	b.SwitchTurn();
+	b.PlacePeg(13, 0);
+	b.PlacePeg(20, 23);
+	EXPECT_EQ(b.GetPiece(13, 0), EPiece::BlackPeg);
+	EXPECT_EQ(b.GetPiece(20, 23), EPiece::BlackPeg);
+}
