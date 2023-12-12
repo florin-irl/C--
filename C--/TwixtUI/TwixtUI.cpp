@@ -20,14 +20,25 @@ void TwixtUI::paintEvent(QPaintEvent * e)
     
     pen.setWidth(2);
 
+    p.setPen(pen);
+
     //draw lines
     //left line
-    p.setPen(pen);
-    p.drawLine(93, 82, 93, 23 * 25 + 82);
-    //right line
-    p.drawLine(69 + 23 * 25, 82, 69 + 23 * 25, 23 * 25 + 82);
     
+    p.drawLine(60, 47, 60, 23 * 27.5 + 47);
+    //right line
+    p.drawLine(23*27.5+32, 47, 23 * 27.5 + 32, 23 * 27.5 + 45);
 
+    p.setPen(QColor(Qt::red));
+    
+    //top line - facut bine
+    p.drawLine(45, 57, 23*27.5+45, 57);
+
+    //bottom line
+    p.drawLine(45, 27.5*23 +35, 27.5 * 23 + 50,27.5*23+35);
+
+    
+    p.setPen(QColor(Qt::black));
     for (int i = 0; i < 24; i++)
     {
         
@@ -49,7 +60,7 @@ void TwixtUI::paintEvent(QPaintEvent * e)
                 break;
             }
                
-            QRect r(i * 25 + 75, j * 25 + 75, 12, 12);
+            QRect r(i * 27.5 + 40, j * 27.5 + 40, 12, 12);
             p.drawEllipse(r);
         }
     }
