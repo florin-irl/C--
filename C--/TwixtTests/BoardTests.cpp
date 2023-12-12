@@ -113,3 +113,15 @@ TEST(PlacePeg, PlacePegOnOccupiedPosition)
 	EXPECT_THROW(b.PlacePeg(10, 15), OcuppiedPositionException);
 }
 
+//Bridge Tests
+
+TEST(PlaceBridge, PlaceRedBridge)
+{
+	Board b;
+	b.PlacePeg(7,8);
+	b.PlacePeg(8, 10);
+	b.PlaceBridge(7, 8, 8, 10);
+	Bridge firstBridge({ 7,8 }, { 8,10 });
+	EXPECT_EQ(*(b.GetBridges().find(firstBridge)), firstBridge);
+	
+}
