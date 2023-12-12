@@ -94,3 +94,4 @@ TEST(PlacePeg, PlacePegOutsideTable)
 	b.SwitchTurn();
 	EXPECT_THROW(b.PlacePeg(19, 30), OutOfBoundsException);
 }
+
