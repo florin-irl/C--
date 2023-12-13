@@ -13,6 +13,10 @@
   <property name="windowTitle">
    <string>TwixtUI</string>
   </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>twixtWindowIcon.png</normaloff>twixtWindowIcon.png</iconset>
+  </property>
   <widget class="QWidget" name="centralWidget">
    <widget class="QPushButton" name="pushButton">
     <property name="geometry">

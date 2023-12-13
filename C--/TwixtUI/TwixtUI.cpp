@@ -5,7 +5,7 @@ TwixtUI::TwixtUI(QWidget *parent)
     : QMainWindow(parent)
 {
     ui.setupUi(this);
-    setWindowTitle("Twixt With a Twist! - C--");
+    setWindowTitle("Twixt With a Twist! by Team C--");
     m_game = IGame::CreateGame();
     initializeCoordinateMatrix();
     m_selected.setX(-1);
