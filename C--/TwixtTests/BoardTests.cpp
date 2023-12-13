@@ -133,7 +133,10 @@ TEST(PlaceBridge, PlaceBlackBridge)
 	b.PlacePeg(18, 15);
 	b.PlaceBridge(19, 17, 18, 15);
 	Bridge firstBridge({ 18,15 }, { 19,17 });
+	Bridge sameBridge({ 19,17 }, { 18, 15 });
+	EXPECT_EQ(firstBridge, sameBridge);
 	EXPECT_EQ(*(b.GetBridges().find(firstBridge)), firstBridge);
+	
 }
 //?
 TEST(PlaceBridge, PlaceBridgeOutsideTable)
