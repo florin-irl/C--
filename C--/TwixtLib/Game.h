@@ -24,8 +24,6 @@ public:
 
 	bool IsGameOver() const override;
 	void SwitchTurn() override;
-	//Verifica pe viitor sa ai voie sa aplici PlacePeg o singura data pe tura //
-	//Fa o functie de reset Game //
 
 	void SaveGame(const std::string& fileName) const override;
 	void LoadGame(const std::string& fileName) override;
@@ -39,6 +37,8 @@ private:
 	int m_redBridgesRemaining;
 	int m_blackPegsRemaining;
 	int m_blackBridgesRemaining;
+
+	bool m_pegPlaced;
 
 	void ChangeStateIfDraw();
 	void ChangeStateIfGameWon(int line, int column);

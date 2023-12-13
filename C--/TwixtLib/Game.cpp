@@ -18,6 +18,7 @@ Game::Game(int boardSize, int nrPegs, int nrBridges)
 	, m_redBridgesRemaining{ nrBridges }
 	, m_blackPegsRemaining{ nrPegs }
 	, m_blackBridgesRemaining{ nrBridges }
+	, m_pegPlaced{ false }
 {
 	m_board = IBoard::CreateBoard();
 }
@@ -64,10 +65,16 @@ int Game::GetNrBlackBridgesRemaining() const
 
 void Game::PlacePeg(int line, int column)
 {
+	if (m_pegPlaced)
+		throw CantPlaceMoreThanOnePegException("You can't place more than 1 peg in a turn !");
+
 	if (m_gameState != EGameState::Playing)
 		throw GameOverException("The game is over ! You can t place pegs anymore !");
 
 	m_board->PlacePeg(line, column); // This can Throw Exception //
+
+	m_pegPlaced = true;
+
 	if (m_board->GetTurn() == EPiece::RedPeg)
 		m_redPegsRemaining--;
 	else
@@ -128,6 +135,9 @@ bool Game::IsGameOver() const
 
 void Game::SwitchTurn()
 {
+	if (!m_pegPlaced)
+		throw MustPlacePegBeforeSwitchingTurnException("You must place a peg before switching turn !");
+
 	if (m_gameState != EGameState::Playing)
 		throw GameOverException("The game is over ! You can t switch turn anymore !");
 	m_board->SwitchTurn();
