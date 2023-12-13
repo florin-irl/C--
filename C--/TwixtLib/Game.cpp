@@ -139,7 +139,7 @@ void Game::SaveGame(const std::string& fileName) const
 	if (!fout.is_open())
 	{
 		return;
-		// throw exception //
+		// Throw Exception //
 	}
 
 	// Write Turn //
@@ -171,10 +171,19 @@ void Game::SaveGame(const std::string& fileName) const
 
 void Game::LoadGame(const std::string& fileName)
 {
-	////read game state
-	//int gameTurnInt;
-	//in >> gameTurnInt;
-	//EPiece gameTurn = static_cast<EPiece>(gameTurnInt);
+	//std::ifstream fin(fileName);
+	//if (!fin.is_open())
+	//{
+	//	return;
+	//	// Throw Exception //
+	//}
+
+	//// Read Turn //
+	//int turn;
+	//fin >> turn;
+	//EPiece gameTurn = static_cast<EPiece>(turn);
+
+
 	//if (m_board->GetTurn() != gameTurn)m_board->SwitchTurn();
 	////read board size;
 	//int boardSize;
