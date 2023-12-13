@@ -12,6 +12,8 @@
 #include "IGame.h"
 #include <vector>
 #include <qpushbutton.h>
+#include <fstream>
+#include <math.h>
 class TwixtUI : public QMainWindow
 {
     Q_OBJECT
