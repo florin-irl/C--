@@ -1,6 +1,7 @@
 #include "gtest/gtest.h"
 
 #include "Game.h"
+#include "Board.h"
 #include "GameExceptions.h"
 TEST(GameTurnManagement, FirstGameTurn)
 {
@@ -59,7 +60,7 @@ TEST(GameFunctions, TestFuncitonAfterGameOver)
 
 TEST(GamePlaceBridge, PlaceRedBridge) //xhash file error
 {
-	/*Game g;
+	Game g;
 	g.PlacePeg(16, 19);
 	g.SwitchTurn();
 	g.PlacePeg(4, 5);
@@ -67,13 +68,26 @@ TEST(GamePlaceBridge, PlaceRedBridge) //xhash file error
 	g.PlacePeg(18, 18);
 	g.PlaceBridge(16, 19, 18, 18);
 	
-	Bridge RedBridge({ 16, 19 }, { 18, 18 });
-	auto Bridges = g.GetBridges();
-	auto it = Bridges.find(RedBridge);
-	EXPECT_EQ(*it, RedBridge);*/
+	const Bridge redBridge({ 18, 18 } , { 16, 19 } );
+	const auto bridges = g.GetBridges();
+	const auto it = bridges.find(redBridge);
+	EXPECT_EQ(*it, redBridge);
 }
 
 TEST(GamePlaceBridge, PlaceBlackBridge)
 {
-	//TO DO
+	Game g;
+	g.PlacePeg(16, 19);
+	g.SwitchTurn();
+	g.PlacePeg(4, 5);
+	g.SwitchTurn();
+	g.PlacePeg(18, 18);
+	g.SwitchTurn();
+	g.PlacePeg(5, 3);
+
+	g.PlaceBridge(4, 5, 5, 3);
+	const Bridge blackBridge({ 4,5 }, { 5,3 });
+	const auto bridges = g.GetBridges();
+	const auto it = bridges.find(blackBridge);
+	EXPECT_EQ(*it, blackBridge);
 }
