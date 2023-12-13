@@ -108,7 +108,10 @@ void TwixtUI::paintEvent(QPaintEvent * e)
         p.drawLine(x1+6, y1+6, x2+6, y2+6);
         
     }   
-   /* ui.label_5->setText(m_game->)*/
+    ui.label_5->setText(QString::number(m_game->GetNrRedPegsRemaining()));
+    ui.label_6->setText(QString::number(m_game->GetNrRedBridgesRemaining()));
+    ui.label_7->setText(QString::number(m_game->GetNrBlackPegsRemaining()));
+    ui.label_8->setText(QString::number(m_game->GetNrBlackBridgesRemaining()));
 }
 
 void TwixtUI::mouseReleaseEvent(QMouseEvent* e)
