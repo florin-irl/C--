@@ -141,7 +141,7 @@ void Game::LoadGame(std::istream& in)
 	//read game state
 	int gameTurnInt;
 	in >> gameTurnInt;
-	EPiece gameTurn = static_cast<EPiece>(gameTurn);
+	EPiece gameTurn = static_cast<EPiece>(gameTurnInt);
 	if (m_board->GetTurn() != gameTurn)m_board->SwitchTurn();
 	//read board size;
 	int boardSize;
