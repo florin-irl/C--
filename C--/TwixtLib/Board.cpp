@@ -45,6 +45,11 @@ EPiece Board::GetPiece(int line, int column) const
 	return m_board[line][column];
 }
 
+std::vector<std::vector<EPiece>> Board::GetBoard() const
+{
+	return m_board;
+}
+
 std::unordered_set<Bridge> Board::GetBridges() const
 {
 	return m_bridges;

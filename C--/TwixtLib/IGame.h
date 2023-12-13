@@ -1,6 +1,7 @@
 #pragma once
 #include "EGameState.h"
 #include "IBoard.h"
+#include <fstream>
 #include <unordered_set>  // sterge daca da erori pt ca e si in iboard //
 #include <memory> // sterge daca da erori pt ca e si in iboard //
 
@@ -20,5 +21,8 @@ public:
 	virtual bool IsGameOver() const = 0;
 	virtual void SwitchTurn() = 0; // Can throw exceptions //
 	virtual ~IGame() = default;
+	virtual void SaveGame(std::ofstream& out) const = 0;
+	virtual void LoadGame(std::istream& in) = 0;
+	virtual void RestartGame() = 0;
 
 };
