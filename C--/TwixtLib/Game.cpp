@@ -157,31 +157,44 @@ void Game::SaveGame(const std::string& fileName) const
 		// Throw Exception //
 	}
 
+	// Write Game State //
+	fout<< static_cast<int>(m_gameState) << std::endl;
+
 	// Write Turn //
 	fout << static_cast<int>(m_board->GetTurn()) << std::endl;
 
 	// Write BoardSize //
 	fout << m_boardSize << std::endl;
 
-	// Write Board //
-	for (int i=0; i < m_boardSize; i++)
-	{
-		for (int j = 0; j < m_boardSize; j++)
-			fout << static_cast<int>(m_board->GetPiece(i, j));
-		fout << std::endl;
-	}
-
 	// Write Red Pegs Remaining //
-	fout << m_redPegsRemaining << std::endl;
+	fout << m_redPegsRemaining << " ";
 
 	// Write Red Bridges Remaining //
 	fout << m_redBridgesRemaining << std::endl;
 
 	// Write Black Pegs Remaining //
-	fout << m_blackPegsRemaining << std::endl;
+	fout << m_blackPegsRemaining << " ";
 
 	// Write Black Bridges Remaining //
 	fout << m_blackBridgesRemaining << std::endl;
+
+	// Write PegPlaced value //
+	fout << m_pegPlaced << std::endl;
+
+	// Write Board //
+	for (int i=0; i < m_boardSize; i++)
+	{
+		for (int j = 0; j < m_boardSize; j++)
+			fout << static_cast<int>(m_board->GetPiece(i, j)) << " ";
+		fout << std::endl;
+	}
+
+	// Write Bridges //
+	for (const auto& bridge : m_board->GetBridges())
+	{
+		fout << bridge.GetFirstPegPos().GetRow() << " " << bridge.GetFirstPegPos().GetCol() << " " 
+			<< bridge.GetSecondPegPos().GetRow() << " " << bridge.GetSecondPegPos().GetCol();
+	}
 }
 
 void Game::LoadGame(const std::string& fileName)
