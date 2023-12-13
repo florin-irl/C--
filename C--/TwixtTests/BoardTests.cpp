@@ -172,6 +172,18 @@ TEST(PlaceBridge, PlaceBridgeInABlockedPosition)
 	EXPECT_THROW(b.PlaceBridge(21, 14, 20, 12), BridgeInTheWayException);
 }
 
+TEST(RemoveBridge, RemoveBridge)
+{
+	Board b;
+	b.PlacePeg(7, 5);
+	b.PlacePeg(9, 4);
+	b.PlaceBridge(7, 5, 9, 4);
+	Bridge firstBridge({ 7,5 }, { 9, 4 });
+	b.RemoveBridge(7, 5, 9, 4);
+	auto Bridges = b.GetBridges();
+	EXPECT_EQ(Bridges.find(firstBridge), Bridges.end());
+}
+
 TEST(RemoveBridge, RemoveABridgeThatIsNotYours)
 {
 	Board b;
