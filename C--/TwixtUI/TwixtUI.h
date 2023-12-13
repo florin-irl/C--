@@ -27,6 +27,7 @@ public:
 
 private slots:
     void on_pushButton_clicked();
+    void on_pushButton3_clicked();
 
 private:
     Ui::TwixtUIClass ui;
