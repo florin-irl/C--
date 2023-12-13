@@ -23,6 +23,11 @@ Game::Game(int boardSize, int nrPegs, int nrBridges)
 	m_board = IBoard::CreateBoard();
 }
 
+int Game::GetBoardSize() const
+{
+	return m_boardSize;
+}
+
 EPiece Game::GetTurn() const
 {
 	return m_board->GetTurn();

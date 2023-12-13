@@ -7,8 +7,11 @@ public:
 	Game();
 	Game(int boardSize, int nrPegs, int nrBridges);
 
+	int GetBoardSize() const;
+
 	EPiece GetTurn() const override;
 	EGameState GetGameState() const override;
+
 	EPiece GetPiece(int line, int column) const override;
 	std::unordered_set<Bridge> GetBridges() const override;
 
