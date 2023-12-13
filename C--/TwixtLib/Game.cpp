@@ -41,6 +41,26 @@ std::unordered_set<Bridge> Game::GetBridges() const
 	return m_board->GetBridges();
 }
 
+int Game::GetNrRedPegsRemaining() const
+{
+	return m_redPegsRemaining;
+}
+
+int Game::GetNrRedBridgesRemaining() const
+{
+	return m_redBridgesRemaining;
+}
+
+int Game::GetNrBlackPegsRemaining() const
+{
+	return m_blackPegsRemaining;
+}
+
+int Game::GetNrBlackBridgesRemaining() const
+{
+	return m_blackBridgesRemaining;
+}
+
 void Game::PlacePeg(int line, int column)
 {
 	if (m_gameState != EGameState::Playing)
