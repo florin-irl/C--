@@ -45,6 +45,11 @@ EPiece Board::GetPiece(int line, int column) const
 	return m_board[line][column];
 }
 
+std::vector<std::vector<EPiece>> Board::GetBoard() const
+{
+	return m_board;
+}
+
 std::unordered_set<Bridge> Board::GetBridges() const
 {
 	return m_bridges;
@@ -126,7 +131,7 @@ void Board::PlaceBridge(int firstLine, int firstColumn, int secondLine, int seco
 		);
 		if (m_bridges.find(bridgeToVerify) != m_bridges.end())
 			throw BridgeInTheWayException("Another bridge is blocking the bridge you want to place !");
-	}
+	}	
 
 	m_bridges.emplace(Position(firstLine, firstColumn), Position(secondLine, secondColumn));
 }
@@ -160,6 +165,20 @@ bool Board::CheckGameWon(int line, int column)
 void Board::SwitchTurn()
 {
 	m_turn = (m_turn == EPiece::RedPeg) ? EPiece::BlackPeg : EPiece::RedPeg;
+}
+
+void Board::ResetBoard()
+{
+	// Reset Turn //
+	m_turn = EPiece::RedPeg;
+
+	// Reset Board //
+	for (int row = 0; row < m_boardSize; row++)
+		for (int col = 0; col < m_boardSize; col++)
+			m_board[row][col] = EPiece::None;
+
+	// Reset Bridges //
+	m_bridges.clear();
 }
 
 // Private Methods //

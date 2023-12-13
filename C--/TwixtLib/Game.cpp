@@ -1,5 +1,6 @@
 #include "Game.h"
 #include "GameExceptions.h"
+#include <fstream>
 
 IGamePtr IGame::CreateGame()
 {
@@ -17,8 +18,14 @@ Game::Game(int boardSize, int nrPegs, int nrBridges)
 	, m_redBridgesRemaining{ nrBridges }
 	, m_blackPegsRemaining{ nrPegs }
 	, m_blackBridgesRemaining{ nrBridges }
+	, m_pegPlaced{ false }
 {
 	m_board = IBoard::CreateBoard();
+}
+
+int Game::GetBoardSize() const
+{
+	return m_boardSize;
 }
 
 EPiece Game::GetTurn() const
@@ -41,12 +48,38 @@ std::unordered_set<Bridge> Game::GetBridges() const
 	return m_board->GetBridges();
 }
 
+int Game::GetNrRedPegsRemaining() const
+{
+	return m_redPegsRemaining;
+}
+
+int Game::GetNrRedBridgesRemaining() const
+{
+	return m_redBridgesRemaining;
+}
+
+int Game::GetNrBlackPegsRemaining() const
+{
+	return m_blackPegsRemaining;
+}
+
+int Game::GetNrBlackBridgesRemaining() const
+{
+	return m_blackBridgesRemaining;
+}
+
 void Game::PlacePeg(int line, int column)
 {
+	if (m_pegPlaced)
+		throw CantPlaceMoreThanOnePegException("You can't place more than 1 peg in a turn !");
+
 	if (m_gameState != EGameState::Playing)
 		throw GameOverException("The game is over ! You can t place pegs anymore !");
 
 	m_board->PlacePeg(line, column); // This can Throw Exception //
+
+	m_pegPlaced = true;
+
 	if (m_board->GetTurn() == EPiece::RedPeg)
 		m_redPegsRemaining--;
 	else
@@ -107,9 +140,135 @@ bool Game::IsGameOver() const
 
 void Game::SwitchTurn()
 {
+	if (!m_pegPlaced)
+		throw MustPlacePegBeforeSwitchingTurnException("You must place a peg before switching turn !");
+
 	if (m_gameState != EGameState::Playing)
 		throw GameOverException("The game is over ! You can t switch turn anymore !");
+
 	m_board->SwitchTurn();
+	m_pegPlaced = false;
+}
+
+void Game::SaveGame(const std::string& fileName) const
+{
+	std::ofstream fout(fileName);
+	if (!fout.is_open())
+	{
+		return;
+		// Throw Exception //
+	}
+
+	// Write Game State //
+	fout<< static_cast<int>(m_gameState) << std::endl;
+
+	// Write Turn //
+	fout << static_cast<int>(m_board->GetTurn()) << std::endl;
+
+	// Write BoardSize //
+	fout << m_boardSize << std::endl;
+
+	// Write Red Pegs Remaining //
+	fout << m_redPegsRemaining << " ";
+
+	// Write Red Bridges Remaining //
+	fout << m_redBridgesRemaining << std::endl;
+
+	// Write Black Pegs Remaining //
+	fout << m_blackPegsRemaining << " ";
+
+	// Write Black Bridges Remaining //
+	fout << m_blackBridgesRemaining << std::endl;
+
+	// Write PegPlaced value //
+	fout << m_pegPlaced << std::endl;
+
+	// Write Board //
+	for (int i=0; i < m_boardSize; i++)
+	{
+		for (int j = 0; j < m_boardSize; j++)
+			fout << static_cast<int>(m_board->GetPiece(i, j)) << " ";
+		fout << std::endl;
+	}
+
+	// Write Bridges //
+	for (const auto& bridge : m_board->GetBridges())
+	{
+		fout << bridge.GetFirstPegPos().GetRow() << " " << bridge.GetFirstPegPos().GetCol() << " "
+			<< bridge.GetSecondPegPos().GetRow() << " " << bridge.GetSecondPegPos().GetCol() << std::endl;
+	}
+}
+
+void Game::LoadGame(const std::string& fileName)
+{
+	//std::ifstream fin(fileName);
+	//if (!fin.is_open())
+	//{
+	//	return;
+	//	// Throw Exception //
+	//}
+
+	//// Read Turn //
+	//int turn;
+	//fin >> turn;
+	//EPiece gameTurn = static_cast<EPiece>(turn);
+
+
+	//if (m_board->GetTurn() != gameTurn)m_board->SwitchTurn();
+	////read board size;
+	//int boardSize;
+	//in >> boardSize;
+	//m_boardSize = boardSize;
+	////read board
+	//int pieceInt;
+	//for(int i=0;i<m_boardSize;i++)
+	//	for (int j = 0; j < m_boardSize; j++)
+	//	{
+	//		in >> pieceInt;
+	//		EPiece piece = static_cast<EPiece>(pieceInt);
+	//		m_board->GetBoard()[i][j] = piece;
+	//	}
+	////read remaining red pegs
+	//int remainingRedPegs;
+	//in >> remainingRedPegs;
+	//m_redPegsRemaining = remainingRedPegs;
+	////read remaining red bridges
+	//int remainingRedBridges;
+	//in >> remainingRedBridges;
+	//m_redBridgesRemaining = remainingRedBridges;
+	////read remaining black pegs;
+	//int remainingBlackPegs;
+	//in >> remainingBlackPegs;
+	//m_blackPegsRemaining = remainingBlackPegs;
+	////read remaining black bridges;
+	//int remainingBlackBridges;
+	//in >> remainingBlackBridges;
+	//m_blackBridgesRemaining = remainingBlackBridges;
+
+}
+
+void Game::RestartGame()
+{
+	// Reset Game State //
+	m_gameState = EGameState::Playing;
+
+	// Reset Board //
+	m_board->ResetBoard();
+
+	// Reset Number of Red Pegs Remaining //
+	m_redPegsRemaining = 50;
+
+	// Reset Number of Red Bridges Remaining //
+	int m_redBridgesRemaining = 50;
+
+	// Reset Number of Black Pegs Remaining //
+	m_blackPegsRemaining = 50;
+
+	// Reset Number of Black Bridges Remaining //
+	m_blackBridgesRemaining = 50;
+
+	// Reset Peg Placed property //
+	m_pegPlaced = false;
 }
 
 void Game::ChangeStateIfDraw()
