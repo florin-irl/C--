@@ -27,3 +27,9 @@ TEST(InitialGameBoard, AllGameHolesEmpty)
 		}
 	}
 }
+
+TEST(GameState, StartingGameState)
+{
+	Game g;
+	EXPECT_EQ(g.GetGameState(), EGameState::Playing);
+}
