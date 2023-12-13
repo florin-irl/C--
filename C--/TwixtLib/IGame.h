@@ -1,7 +1,7 @@
 #pragma once
 #include "EGameState.h"
 #include "IBoard.h"
-#include <fstream>
+#include <string>
 
 using IGamePtr = std::shared_ptr<class IGame>;
 
@@ -28,10 +28,10 @@ public:
 	virtual bool IsGameOver() const = 0;
 	virtual void SwitchTurn() = 0; // Can throw exceptions //
 
-	virtual ~IGame() = default;
-
-	virtual void SaveGame(std::ofstream& out) const = 0;
-	virtual void LoadGame(std::istream& in) = 0;
+	virtual void SaveGame(const std::string& fileName) const = 0;
+	virtual void LoadGame(const std::string& fileName) = 0;
 	virtual void RestartGame() = 0;
+
+	virtual ~IGame() = default;
 
 };

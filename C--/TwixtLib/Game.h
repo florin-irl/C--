@@ -27,8 +27,8 @@ public:
 	//Verifica pe viitor sa ai voie sa aplici PlacePeg o singura data pe tura //
 	//Fa o functie de reset Game //
 
-	void SaveGame(std::ofstream& out) const override;
-	void LoadGame(std::istream& in) override;
+	void SaveGame(const std::string& fileName) const override;
+	void LoadGame(const std::string& fileName) override;
 	void RestartGame() override;
 
 private:

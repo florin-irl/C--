@@ -1,5 +1,6 @@
 #include "Game.h"
 #include "GameExceptions.h"
+#include <fstream>
 
 IGamePtr IGame::CreateGame()
 {
@@ -132,66 +133,78 @@ void Game::SwitchTurn()
 	m_board->SwitchTurn();
 }
 
-void Game::SaveGame(std::ofstream& out) const
+void Game::SaveGame(const std::string& fileName) const
 {
-	//write game turn
-	out << static_cast<int>(m_board->GetTurn()) << std::endl;
-	//write board size
-	out << m_boardSize << std::endl;
-	//write board
+	std::ofstream fout(fileName);
+	if (!fout.is_open())
+	{
+		return;
+		// throw exception //
+	}
+
+	// Write Turn //
+	fout << static_cast<int>(m_board->GetTurn()) << std::endl;
+
+	// Write BoardSize //
+	fout << m_boardSize << std::endl;
+
+	// Write Board //
 	for (int i=0; i < m_boardSize; i++)
 	{
 		for (int j = 0; j < m_boardSize; j++)
-			out << static_cast<int>(m_board->GetPiece(i, j));
-		out << std::endl;
+			fout << static_cast<int>(m_board->GetPiece(i, j));
+		fout << std::endl;
 	}
-	//write red Pegs remaining
-	out << m_redPegsRemaining << std::endl;
-	//write red Bridges remaining
-	out << m_redBridgesRemaining << std::endl;
-	//write black Pegs remaining
-	out << m_blackPegsRemaining << std::endl;
-	//write black Bridges remaining
-	out << m_blackBridgesRemaining << std::endl;
-	
+
+	// Write Red Pegs Remaining //
+	fout << m_redPegsRemaining << std::endl;
+
+	// Write Red Bridges Remaining //
+	fout << m_redBridgesRemaining << std::endl;
+
+	// Write Black Pegs Remaining //
+	fout << m_blackPegsRemaining << std::endl;
+
+	// Write Black Bridges Remaining //
+	fout << m_blackBridgesRemaining << std::endl;
 }
 
-void Game::LoadGame(std::istream& in)
+void Game::LoadGame(const std::string& fileName)
 {
-	//read game state
-	int gameTurnInt;
-	in >> gameTurnInt;
-	EPiece gameTurn = static_cast<EPiece>(gameTurnInt);
-	if (m_board->GetTurn() != gameTurn)m_board->SwitchTurn();
-	//read board size;
-	int boardSize;
-	in >> boardSize;
-	m_boardSize = boardSize;
-	//read board
-	int pieceInt;
-	for(int i=0;i<m_boardSize;i++)
-		for (int j = 0; j < m_boardSize; j++)
-		{
-			in >> pieceInt;
-			EPiece piece = static_cast<EPiece>(pieceInt);
-			m_board->GetBoard()[i][j] = piece;
-		}
-	//read remaining red pegs
-	int remainingRedPegs;
-	in >> remainingRedPegs;
-	m_redPegsRemaining = remainingRedPegs;
-	//read remaining red bridges
-	int remainingRedBridges;
-	in >> remainingRedBridges;
-	m_redBridgesRemaining = remainingRedBridges;
-	//read remaining black pegs;
-	int remainingBlackPegs;
-	in >> remainingBlackPegs;
-	m_blackPegsRemaining = remainingBlackPegs;
-	//read remaining black bridges;
-	int remainingBlackBridges;
-	in >> remainingBlackBridges;
-	m_blackBridgesRemaining = remainingBlackBridges;
+	////read game state
+	//int gameTurnInt;
+	//in >> gameTurnInt;
+	//EPiece gameTurn = static_cast<EPiece>(gameTurnInt);
+	//if (m_board->GetTurn() != gameTurn)m_board->SwitchTurn();
+	////read board size;
+	//int boardSize;
+	//in >> boardSize;
+	//m_boardSize = boardSize;
+	////read board
+	//int pieceInt;
+	//for(int i=0;i<m_boardSize;i++)
+	//	for (int j = 0; j < m_boardSize; j++)
+	//	{
+	//		in >> pieceInt;
+	//		EPiece piece = static_cast<EPiece>(pieceInt);
+	//		m_board->GetBoard()[i][j] = piece;
+	//	}
+	////read remaining red pegs
+	//int remainingRedPegs;
+	//in >> remainingRedPegs;
+	//m_redPegsRemaining = remainingRedPegs;
+	////read remaining red bridges
+	//int remainingRedBridges;
+	//in >> remainingRedBridges;
+	//m_redBridgesRemaining = remainingRedBridges;
+	////read remaining black pegs;
+	//int remainingBlackPegs;
+	//in >> remainingBlackPegs;
+	//m_blackPegsRemaining = remainingBlackPegs;
+	////read remaining black bridges;
+	//int remainingBlackBridges;
+	//in >> remainingBlackBridges;
+	//m_blackBridgesRemaining = remainingBlackBridges;
 
 }
 
