@@ -185,10 +185,7 @@ void TwixtUI::mouseReleaseEvent(QMouseEvent* e)
                             int ceilingx = static_cast<int>(std::ceil(x));
                             int ceilingy = static_cast<int>(std::ceil(y));
 
-                            std::ofstream fout("data.out");
-                            fout << ceilingxselected << ' ' << ceilingyselected;
-                            fout << std::endl;
-                            fout << x << ' ' << y;
+                            
                             m_selected.setX(-1);
                             m_selected.setY(-1);
                             m_game->PlaceBridge(ceilingyselected, ceilingxselected, ceilingy, ceilingx);
