@@ -226,7 +226,7 @@
      </font>
     </property>
     <property name="text">
-     <string>NEW GAME</string>
+     <string>RESTART</string>
     </property>
    </widget>
    <widget class="QPushButton" name="pushButton_3">

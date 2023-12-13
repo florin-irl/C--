@@ -261,7 +261,7 @@ void Game::RestartGame()
 	m_redPegsRemaining = 50;
 
 	// Reset Number of Red Bridges Remaining //
-	int m_redBridgesRemaining = 50;
+	m_redBridgesRemaining = 50;
 
 	// Reset Number of Black Pegs Remaining //
 	m_blackPegsRemaining = 50;

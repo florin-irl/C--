@@ -234,17 +234,26 @@ void TwixtUI::mouseReleaseEvent(QMouseEvent* e)
     }
 }
 
-void TwixtUI::on_pushButton3_clicked()
+void TwixtUI::on_pushButton_2_clicked()
+{
+    m_game->RestartGame();
+    update();
+}
+
+void TwixtUI::on_pushButton_3_clicked()
 {
     try
     {
         m_game->SaveGame("data.out");
+        
     }
     catch (std::exception)
     {
-        
+
     }
 }
+
+
 
 void TwixtUI::initializeCoordinateMatrix()
 {
