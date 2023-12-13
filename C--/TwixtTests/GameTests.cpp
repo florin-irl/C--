@@ -14,3 +14,16 @@ TEST(GameTurnManagement, SwitchGameTurn)
 	g.SwitchTurn();
 	EXPECT_EQ(g.GetTurn(), EPiece::BlackPeg);
 }
+
+//?
+TEST(InitialGameBoard, AllGameHolesEmpty)
+{
+	Game g;
+	for (size_t i = 0; i < 24; i++)
+	{
+		for (size_t j = 0; j < 24; j++)
+		{
+			EXPECT_EQ(g.GetPiece(i, j), EPiece::None);
+		}
+	}
+}
