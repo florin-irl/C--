@@ -1,7 +1,7 @@
 #include "gtest/gtest.h"
 
 #include "Game.h"
-
+#include "GameExceptions.h"
 TEST(GameTurnManagement, FirstGameTurn)
 {
 	Game g;
@@ -48,4 +48,19 @@ TEST(GamePlacePeg, PlaceBlackPeg)
 	g.SwitchTurn();
 	g.PlacePeg(4, 7);
 	EXPECT_EQ(g.GetPiece(4, 7), EPiece::BlackPeg);
+}
+
+//??
+TEST(GamePlacePeg, PlacePegWhenGameOver)
+{
+	Game g;
+	if (g.GetGameState() != EGameState::Playing)
+	{
+		EXPECT_THROW(g.PlacePeg(2, 9), GameOverException);
+	}
+	g.SwitchTurn();
+	if (g.GetGameState() != EGameState::Playing)
+	{
+		EXPECT_THROW(g.PlacePeg(7, 15), GameOverException);
+	}
 }
