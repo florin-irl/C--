@@ -194,8 +194,8 @@ void Game::SaveGame(const std::string& fileName) const
 	// Write Bridges //
 	for (const auto& bridge : m_board->GetBridges())
 	{
-		fout << bridge.GetFirstPegPos().GetRow() << " " << bridge.GetFirstPegPos().GetCol() << " " 
-			<< bridge.GetSecondPegPos().GetRow() << " " << bridge.GetSecondPegPos().GetCol();
+		fout << bridge.GetFirstPegPos().GetRow() << " " << bridge.GetFirstPegPos().GetCol() << " "
+			<< bridge.GetSecondPegPos().GetRow() << " " << bridge.GetSecondPegPos().GetCol() << std::endl;
 	}
 }
 
