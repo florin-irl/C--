@@ -93,6 +93,17 @@ void TwixtUI::paintEvent(QPaintEvent * e)
         y1 = bridge.GetFirstPegPos().GetRow()*27.5+40;
         x2 = bridge.GetSecondPegPos().GetCol() * 27.5 + 40;
         y2 = bridge.GetSecondPegPos().GetRow() * 27.5 + 40;
+        switch (m_game->GetPiece(bridge.GetFirstPegPos().GetRow(), bridge.GetFirstPegPos().GetCol()))
+        {
+        case EPiece::BlackPeg:
+            pen.setColor(Qt::black);
+            p.setPen(pen);
+            break;
+        case EPiece::RedPeg:
+            pen.setColor(Qt::red);
+            p.setPen(pen);
+            break;
+        }
         p.drawLine(x1+6, y1+6, x2+6, y2+6);
         
     }
