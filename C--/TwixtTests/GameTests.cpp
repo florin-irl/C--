@@ -73,3 +73,7 @@ TEST(GamePlaceBridge, PlaceRedBridge) //xhash file error
 	EXPECT_EQ(*it, RedBridge);*/
 }
 
+TEST(GamePlaceBridge, PlaceBlackBridge)
+{
+	//TO DO
+}
