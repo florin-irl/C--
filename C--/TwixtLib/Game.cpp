@@ -197,6 +197,8 @@ void Game::SaveGame(const std::string& fileName) const
 		fout << bridge.GetFirstPegPos().GetRow() << " " << bridge.GetFirstPegPos().GetCol() << " "
 			<< bridge.GetSecondPegPos().GetRow() << " " << bridge.GetSecondPegPos().GetCol() << std::endl;
 	}
+
+	fout.close();
 }
 
 void Game::LoadGame(const std::string& fileName)
