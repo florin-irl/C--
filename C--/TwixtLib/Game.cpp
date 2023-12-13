@@ -145,7 +145,9 @@ void Game::SwitchTurn()
 
 	if (m_gameState != EGameState::Playing)
 		throw GameOverException("The game is over ! You can t switch turn anymore !");
+
 	m_board->SwitchTurn();
+	m_pegPlaced = false;
 }
 
 void Game::SaveGame(const std::string& fileName) const
