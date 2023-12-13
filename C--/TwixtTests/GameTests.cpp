@@ -33,3 +33,10 @@ TEST(GameState, StartingGameState)
 	Game g;
 	EXPECT_EQ(g.GetGameState(), EGameState::Playing);
 }
+
+TEST(GamePlacePeg, PlaceRedPeg)
+{
+	Game g;
+	g.PlacePeg(5, 19);
+	EXPECT_EQ(g.GetPiece(5, 19), EPiece::RedPeg);
+}
