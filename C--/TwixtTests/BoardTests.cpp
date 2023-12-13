@@ -171,3 +171,13 @@ TEST(PlaceBridge, PlaceBridgeInABlockedPosition)
 	b.PlacePeg(20, 12);
 	EXPECT_THROW(b.PlaceBridge(21, 14, 20, 12), BridgeInTheWayException);
 }
+
+TEST(RemoveBridge, RemoveABridgeThatIsNotYours)
+{
+	Board b;
+	b.PlacePeg(18, 7);
+	b.PlacePeg(19, 5);
+	b.PlaceBridge(18, 7, 19, 5);
+	b.SwitchTurn();
+	EXPECT_THROW(b.RemoveBridge(18, 7, 19, 5), InvalidPegsForBridgeException);
+}
