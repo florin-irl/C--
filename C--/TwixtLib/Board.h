@@ -39,6 +39,7 @@ public:
 	void RemoveBridge(int firstLine, int firstColumn, int secondLine, int secondColumn) override;
 	bool CheckGameWon(int line, int column) override;
 	void SwitchTurn() override;
+	void ResetBoard() override;
 
 private:
 	int m_boardSize;

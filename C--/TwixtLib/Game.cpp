@@ -249,8 +249,26 @@ void Game::LoadGame(const std::string& fileName)
 
 void Game::RestartGame()
 {
-	//set game state
-	//m_gameState = EGame
+	// Reset Game State //
+	m_gameState = EGameState::Playing;
+
+	// Reset Board //
+	m_board->ResetBoard();
+
+	// Reset Number of Red Pegs Remaining //
+	m_redPegsRemaining = 50;
+
+	// Reset Number of Red Bridges Remaining //
+	int m_redBridgesRemaining = 50;
+
+	// Reset Number of Black Pegs Remaining //
+	m_blackPegsRemaining = 50;
+
+	// Reset Number of Black Bridges Remaining //
+	m_blackBridgesRemaining = 50;
+
+	// Reset Peg Placed property //
+	m_pegPlaced = false;
 }
 
 void Game::ChangeStateIfDraw()

@@ -20,6 +20,7 @@ public:
 	virtual void RemoveBridge(int firstLine, int firstColumn, int secondLine, int secondColumn) = 0;
 	virtual bool CheckGameWon(int line, int column) = 0;
 	virtual void SwitchTurn() = 0;
+	virtual void ResetBoard() = 0;
 	virtual ~IBoard() = default;
 };
 
