@@ -20,6 +20,7 @@ TwixtUI::~TwixtUI()
 
 void TwixtUI::paintEvent(QPaintEvent * e)
 {
+    
     QPainter p(this);
     QPen pen;
     QBrush brush;
@@ -106,7 +107,8 @@ void TwixtUI::paintEvent(QPaintEvent * e)
         }
         p.drawLine(x1+6, y1+6, x2+6, y2+6);
         
-    }
+    }   
+   /* ui.label_5->setText(m_game->)*/
 }
 
 void TwixtUI::mouseReleaseEvent(QMouseEvent* e)
@@ -237,3 +239,5 @@ void TwixtUI::on_pushButton_clicked()
     m_selected.setY(-1);
     update();
 }
+
+
