@@ -1,5 +1,6 @@
 #include "TwixtUI.h"
 #include <QtWidgets/QApplication>
+#include "IGame.h"
 
 int main(int argc, char *argv[])
 {
