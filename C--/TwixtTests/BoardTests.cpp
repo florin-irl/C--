@@ -16,3 +16,10 @@ TEST(InitialBoard, AllHolesEmpty)
 		}
 	}
 }
+
+TEST(InitialBoard, FirstTurn)
+{
+	Board b;
+
+	EXPECT_EQ(b.GetTurn(), EPiece::RedPeg);
+}
