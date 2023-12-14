@@ -108,10 +108,25 @@ void TwixtUI::paintEvent(QPaintEvent * e)
         p.drawLine(x1+6, y1+6, x2+6, y2+6);
         
     }   
+
+    //update piece counters
     ui.label_5->setText(QString::number(m_game->GetNrRedPegsRemaining()));
     ui.label_6->setText(QString::number(m_game->GetNrRedBridgesRemaining()));
     ui.label_7->setText(QString::number(m_game->GetNrBlackPegsRemaining()));
     ui.label_8->setText(QString::number(m_game->GetNrBlackBridgesRemaining()));
+
+    //update who is playing display
+    switch (m_game->GetTurn())
+    {
+    case EPiece::RedPeg:
+        ui.label_11->setText("RED");
+        ui.label_11->setStyleSheet("color: red; font-family: Bahnschrift;");
+        break;
+    case EPiece::BlackPeg:
+        ui.label_11->setText("BLACK");
+        ui.label_11->setStyleSheet("color: black; font-family: Bahnschrift;");
+        break;
+    }
 }
 
 void TwixtUI::mouseReleaseEvent(QMouseEvent* e)
