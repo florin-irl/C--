@@ -23,3 +23,13 @@ TEST(InitialBoard, FirstTurn)
 
 	EXPECT_EQ(b.GetTurn(), EPiece::RedPeg);
 }
+
+TEST(TurnManagement, SwitchTurn)
+{
+	Board b;
+
+	EXPECT_EQ(b.GetTurn(), EPiece::RedPeg);
+	b.SwitchTurn();
+	EXPECT_EQ(b.GetTurn(), EPiece::BlackPeg);
+
+}
