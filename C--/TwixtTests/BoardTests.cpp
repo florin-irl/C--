@@ -33,3 +33,11 @@ TEST(TurnManagement, SwitchTurn)
 	EXPECT_EQ(b.GetTurn(), EPiece::BlackPeg);
 
 }
+
+TEST(TurnManagement, PlaceOnlyPegPerTurn)
+{
+	Board b;
+
+	b.PlacePeg(5, 9);
+	EXPECT_THROW(b.PlacePeg(2, 17), TwixtException);
+}
