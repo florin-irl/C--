@@ -41,3 +41,11 @@ TEST(TurnManagement, PlaceOnlyPegPerTurn)
 	b.PlacePeg(5, 9);
 	EXPECT_THROW(b.PlacePeg(2, 17), TwixtException);
 }
+
+TEST(PlacePeg, PlaceRedPeg)
+{
+	Board b;
+	b.PlacePeg(1, 1);
+	EXPECT_EQ(b.GetPiece(1, 1), EPiece::RedPeg);
+
+}
