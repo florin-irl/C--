@@ -18,6 +18,18 @@ inline TwixtException::TwixtException(const std::string& message)
 	: std::logic_error(message)
 {}
 
+// NoMorePegsException class //
+
+class NoMorePegsException : public TwixtException
+{
+public:
+	NoMorePegsException(const std::string& message);
+};
+
+inline NoMorePegsException::NoMorePegsException(const std::string& message)
+	: TwixtException(message)
+{}
+
 // OcuppiedPositionException class //
 
 class OcuppiedPositionException : public TwixtException
