@@ -42,6 +42,30 @@ inline MustPlacePegBeforeSwitchingTurnException::MustPlacePegBeforeSwitchingTurn
 	: TwixtException(message)
 {}
 
+// NoMorePegsException class //
+
+class NoMorePegsException : public TwixtException
+{
+public:
+	NoMorePegsException(const std::string& message);
+};
+
+inline NoMorePegsException::NoMorePegsException(const std::string& message)
+	: TwixtException(message)
+{}
+
+// NoMoreBridgesException class //
+
+class NoMoreBridgesException : public TwixtException
+{
+public:
+	NoMoreBridgesException(const std::string& message);
+};
+
+inline NoMoreBridgesException::NoMoreBridgesException(const std::string& message)
+	: TwixtException(message)
+{}
+
 // OcuppiedPositionException class //
 
 class OcuppiedPositionException : public TwixtException
