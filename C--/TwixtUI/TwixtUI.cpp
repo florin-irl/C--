@@ -268,6 +268,19 @@ void TwixtUI::on_pushButton_3_clicked()
     }
 }
 
+void TwixtUI::on_pushButton_4_clicked()
+{
+    try
+    {
+        m_game->LoadGame("data.out");
+        update();
+    }
+    catch (std::exception)
+    {
+
+    }
+}
+
 
 
 void TwixtUI::initializeCoordinateMatrix()

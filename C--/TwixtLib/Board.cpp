@@ -22,7 +22,8 @@ Board::Board()
 	, m_turn{ EPiece::RedPeg }
 {
 	InitializeBridgeGenerators();
-	InitializeBoard(m_boardSize);
+	ResizeBoard(m_boardSize);
+	InitializeBoard();
 }
 
 Board::Board(int boardSize)
@@ -30,7 +31,13 @@ Board::Board(int boardSize)
 	, m_turn{ EPiece::RedPeg }
 {
 	InitializeBridgeGenerators();
-	InitializeBoard(m_boardSize);
+	ResizeBoard(m_boardSize);
+	InitializeBoard();
+}
+
+int Board::GetBoardSize() const
+{
+	return m_boardSize;
 }
 
 EPiece Board::GetTurn() const
@@ -167,15 +174,45 @@ void Board::SwitchTurn()
 	m_turn = (m_turn == EPiece::RedPeg) ? EPiece::BlackPeg : EPiece::RedPeg;
 }
 
+void Board::LoadBoard(const std::ostringstream& stringBoard)
+{
+	std::string result = stringBoard.str();
+	std::istringstream inputStream(result);
+
+	// Read Turn // 
+	int turn;
+	inputStream >> turn;
+	m_turn = static_cast<EPiece>(turn);
+
+	// Read Board Size //
+	inputStream >> m_boardSize;
+	ResizeBoard(m_boardSize);
+
+	// Read Board //
+	int piece;
+	for (int i = 0; i < m_boardSize; i++)
+	{
+		for (int j = 0; j < m_boardSize; j++)
+		{
+			inputStream >> piece;
+			m_board[i][j] = static_cast<EPiece>(piece);
+		}
+	}
+
+	// Read Bridges //
+	int firstRow, firstCol, secondRow, secondCol;
+	while (inputStream >> firstRow >> firstCol >> secondRow >> secondCol) {
+		m_bridges.emplace(Position(firstRow, firstCol), Position(secondRow, secondCol));
+	}
+}
+
 void Board::ResetBoard()
 {
 	// Reset Turn //
 	m_turn = EPiece::RedPeg;
 
 	// Reset Board //
-	for (int row = 0; row < m_boardSize; row++)
-		for (int col = 0; col < m_boardSize; col++)
-			m_board[row][col] = EPiece::None;
+	InitializeBoard();
 
 	// Reset Bridges //
 	m_bridges.clear();
@@ -183,12 +220,15 @@ void Board::ResetBoard()
 
 // Private Methods //
 
-void Board::InitializeBoard(int boardSize)
+void Board::ResizeBoard(int boardSize)
 {
 	m_board.resize(boardSize);
 	for (int i = 0; i < boardSize; i++)
 		m_board[i].resize(boardSize);
+}
 
+void Board::InitializeBoard()
+{
 	for (int row = 0; row < m_boardSize; row++)
 		for (int col = 0; col < m_boardSize; col++)
 			m_board[row][col] = EPiece::None;

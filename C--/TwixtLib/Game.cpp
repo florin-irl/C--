@@ -1,6 +1,7 @@
 #include "Game.h"
 #include "GameExceptions.h"
 #include <fstream>
+#include <sstream>
 
 IGamePtr IGame::CreateGame()
 {
@@ -12,8 +13,7 @@ Game::Game()
 {}
 
 Game::Game(int boardSize, int nrPegs, int nrBridges)
-	: m_boardSize{ boardSize }
-	, m_gameState{ EGameState::Playing }
+	: m_gameState{ EGameState::Playing }
 	, m_redPegsRemaining{ nrPegs }
 	, m_redBridgesRemaining{ nrBridges }
 	, m_blackPegsRemaining{ nrPegs }
@@ -25,7 +25,7 @@ Game::Game(int boardSize, int nrPegs, int nrBridges)
 
 int Game::GetBoardSize() const
 {
-	return m_boardSize;
+	return m_board->GetBoardSize();
 }
 
 EPiece Game::GetTurn() const
@@ -113,12 +113,12 @@ void Game::PlaceBridge(int firstLine, int firstColumn, int secondLine, int secon
 	int lineToVerify = -1;
 	int columnToVerify = -1;
 
-	if (firstLine == 0 || firstLine == m_boardSize - 1 || firstColumn == 0 || firstColumn == m_boardSize - 1)
+	if (firstLine == 0 || firstLine == m_board->GetBoardSize() - 1 || firstColumn == 0 || firstColumn == m_board->GetBoardSize() - 1)
 	{
 		lineToVerify = firstLine;
 		columnToVerify = firstColumn;
 	}
-	else if (secondLine == 0 || secondLine == m_boardSize - 1 || secondColumn == 0 || secondColumn == m_boardSize - 1)
+	else if (secondLine == 0 || secondLine == m_board->GetBoardSize() - 1 || secondColumn == 0 || secondColumn == m_board->GetBoardSize() - 1)
 	{
 		lineToVerify = secondLine;
 		columnToVerify = secondColumn;
@@ -178,7 +178,7 @@ void Game::SaveGame(const std::string& fileName) const
 	fout << static_cast<int>(m_board->GetTurn()) << std::endl;
 
 	// Write BoardSize //
-	fout << m_boardSize << std::endl;
+	fout << m_board->GetBoardSize() << std::endl;
 
 	// Write Red Pegs Remaining //
 	fout << m_redPegsRemaining << " ";
@@ -196,9 +196,9 @@ void Game::SaveGame(const std::string& fileName) const
 	fout << m_pegPlaced << std::endl;
 
 	// Write Board //
-	for (int i=0; i < m_boardSize; i++)
+	for (int i=0; i < m_board->GetBoardSize(); i++)
 	{
-		for (int j = 0; j < m_boardSize; j++)
+		for (int j = 0; j < m_board->GetBoardSize(); j++)
 			fout << static_cast<int>(m_board->GetPiece(i, j)) << " ";
 		fout << std::endl;
 	}
@@ -215,50 +215,68 @@ void Game::SaveGame(const std::string& fileName) const
 
 void Game::LoadGame(const std::string& fileName)
 {
-	//std::ifstream fin(fileName);
-	//if (!fin.is_open())
-	//{
-	//	return;
-	//	// Throw Exception //
-	//}
+	std::ifstream fin(fileName);
+	if (!fin.is_open())
+	{
+		return;
+		// Throw Exception //
+	}
 
-	//// Read Turn //
-	//int turn;
-	//fin >> turn;
-	//EPiece gameTurn = static_cast<EPiece>(turn);
+	std::ostringstream boardString;
 
+	// Read Game State //
+	int state;
+	fin >> state;
+	m_gameState = static_cast<EGameState>(state);
 
-	//if (m_board->GetTurn() != gameTurn)m_board->SwitchTurn();
-	////read board size;
-	//int boardSize;
-	//in >> boardSize;
-	//m_boardSize = boardSize;
-	////read board
-	//int pieceInt;
-	//for(int i=0;i<m_boardSize;i++)
-	//	for (int j = 0; j < m_boardSize; j++)
-	//	{
-	//		in >> pieceInt;
-	//		EPiece piece = static_cast<EPiece>(pieceInt);
-	//		m_board->GetBoard()[i][j] = piece;
-	//	}
-	////read remaining red pegs
-	//int remainingRedPegs;
-	//in >> remainingRedPegs;
-	//m_redPegsRemaining = remainingRedPegs;
-	////read remaining red bridges
-	//int remainingRedBridges;
-	//in >> remainingRedBridges;
-	//m_redBridgesRemaining = remainingRedBridges;
-	////read remaining black pegs;
-	//int remainingBlackPegs;
-	//in >> remainingBlackPegs;
-	//m_blackPegsRemaining = remainingBlackPegs;
-	////read remaining black bridges;
-	//int remainingBlackBridges;
-	//in >> remainingBlackBridges;
-	//m_blackBridgesRemaining = remainingBlackBridges;
+	// Read Turn //
+	int turn;
+	fin >> turn;
+	boardString << turn << std::endl;
 
+	// Read Board Size //
+	int boardSize;
+	fin >> boardSize;
+	boardString << boardSize << std::endl;
+
+	// Read Red Pegs Remaining //
+	fin >> m_redPegsRemaining;
+
+	// Read Red Bridges Remaining //
+	fin >> m_redBridgesRemaining;
+
+	// Read Black Pegs Remaining //
+	fin >> m_blackPegsRemaining;
+
+	// Read Black Bridges Remaining //
+	fin >> m_blackBridgesRemaining;
+
+	// Read PegPlaced value //
+	fin >> m_pegPlaced;
+
+	// Read Board //
+	int piece;
+	for (int i = 0; i < boardSize; i++)
+	{
+		for (int j = 0; j < boardSize; j++)
+		{
+			fin >> piece;
+			boardString << piece << " ";
+		}			
+		boardString << std::endl;
+	}
+
+	// Read Bridges //
+	int firstRow, firstCol, secondRow, secondCol;
+	while (fin >> firstRow >> firstCol >> secondRow >> secondCol)
+	{
+		boardString << firstRow << " " << firstCol << " " << secondRow << " " << secondCol << std::endl;
+	}
+
+	// Load Board Using boardString //
+	m_board->LoadBoard(boardString);
+
+	fin.close();
 }
 
 void Game::RestartGame()

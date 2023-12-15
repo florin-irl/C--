@@ -30,6 +30,7 @@ public:
 	Board();
 	Board(int boardSize);
 
+	int GetBoardSize() const override;
 	EPiece GetTurn() const override;
 	EPiece GetPiece(int line, int column) const override;
 	std::vector<std::vector<EPiece>> GetBoard() const override;
@@ -39,6 +40,7 @@ public:
 	void RemoveBridge(int firstLine, int firstColumn, int secondLine, int secondColumn) override;
 	bool CheckGameWon(int line, int column) override;
 	void SwitchTurn() override;
+	void LoadBoard(const std::ostringstream& stringBoard) override;
 	void ResetBoard() override;
 
 private:
@@ -51,7 +53,8 @@ private:
 	std::vector<Bridge> m_vBridgeGenerator3;	// (1,-2) //
 	std::vector<Bridge> m_vBridgeGenerator4;	// (1, 2) //
 
-	void InitializeBoard(int boardSize);
+	void ResizeBoard(int boardSize);
+	void InitializeBoard();
 	void InitializeBridgeGenerators();
 	void InitializeBridgeGenerator1();
 	void InitializeBridgeGenerator2();

@@ -33,7 +33,6 @@ public:
 	void RestartGame() override;
 
 private:
-	int m_boardSize;
 	EGameState m_gameState;
 	IBoardPtr m_board;
 	int m_redPegsRemaining;
