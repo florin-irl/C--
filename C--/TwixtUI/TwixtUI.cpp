@@ -5,7 +5,7 @@ TwixtUI::TwixtUI(QWidget *parent)
     : QMainWindow(parent)
 {
     ui.setupUi(this);
-    setWindowTitle("Twixt With a Twist! - C--");
+    setWindowTitle("Twixt With a Twist! by Team C--");
     m_game = IGame::CreateGame();
     initializeCoordinateMatrix();
     m_selected.setX(-1);
@@ -20,6 +20,7 @@ TwixtUI::~TwixtUI()
 
 void TwixtUI::paintEvent(QPaintEvent * e)
 {
+    
     QPainter p(this);
     QPen pen;
     QBrush brush;
@@ -106,6 +107,25 @@ void TwixtUI::paintEvent(QPaintEvent * e)
         }
         p.drawLine(x1+6, y1+6, x2+6, y2+6);
         
+    }   
+
+    //update piece counters
+    ui.label_5->setText(QString::number(m_game->GetNrRedPegsRemaining()));
+    ui.label_6->setText(QString::number(m_game->GetNrRedBridgesRemaining()));
+    ui.label_7->setText(QString::number(m_game->GetNrBlackPegsRemaining()));
+    ui.label_8->setText(QString::number(m_game->GetNrBlackBridgesRemaining()));
+
+    //update who is playing display
+    switch (m_game->GetTurn())
+    {
+    case EPiece::RedPeg:
+        ui.label_11->setText("RED");
+        ui.label_11->setStyleSheet("color: red; font-family: Bahnschrift;");
+        break;
+    case EPiece::BlackPeg:
+        ui.label_11->setText("BLACK");
+        ui.label_11->setStyleSheet("color: black; font-family: Bahnschrift;");
+        break;
     }
 }
 
@@ -169,6 +189,31 @@ void TwixtUI::mouseReleaseEvent(QMouseEvent* e)
                     }
                     else
                     {
+                        //daca deja exista bridge-ul cu nodurile selectate, il sterg
+                        try
+                        {
+                            float xselected = (m_selected.x() - 40) / 27.5;
+                            float yselected = (m_selected.y() - 40) / 27.5;
+
+                            int ceilingxselected = static_cast<int>(std::ceil(xselected));
+                            int ceilingyselected = static_cast<int>(std::ceil(yselected));
+
+                            float x = (m_coordinateMatrix[i][j].x() - 40) / 27.5;
+                            float y = (m_coordinateMatrix[i][j].y() - 40) / 27.5;
+
+                            int ceilingx = static_cast<int>(std::ceil(x));
+                            int ceilingy = static_cast<int>(std::ceil(y));
+                           /* if(m_game->)*/
+                            m_game->RemoveBridge(ceilingyselected, ceilingxselected, ceilingy, ceilingx);
+                            m_selected.setX(-1);
+                            m_selected.setY(-1);
+                        }
+                        catch (std::exception)
+                        {
+
+                        }
+
+
                         try {
                             //creez un bridge de la nodul selectat pana in punctul nou determinat;
                             float xselected = (m_selected.x() - 40) / 27.5;
@@ -183,10 +228,7 @@ void TwixtUI::mouseReleaseEvent(QMouseEvent* e)
                             int ceilingx = static_cast<int>(std::ceil(x));
                             int ceilingy = static_cast<int>(std::ceil(y));
 
-                            std::ofstream fout("data.out");
-                            fout << ceilingxselected << ' ' << ceilingyselected;
-                            fout << std::endl;
-                            fout << x << ' ' << y;
+                            
                             m_selected.setX(-1);
                             m_selected.setY(-1);
                             m_game->PlaceBridge(ceilingyselected, ceilingxselected, ceilingy, ceilingx);
@@ -206,6 +248,27 @@ void TwixtUI::mouseReleaseEvent(QMouseEvent* e)
             }
     }
 }
+
+void TwixtUI::on_pushButton_2_clicked()
+{
+    m_game->RestartGame();
+    update();
+}
+
+void TwixtUI::on_pushButton_3_clicked()
+{
+    try
+    {
+        m_game->SaveGame("data.out");
+        
+    }
+    catch (std::exception)
+    {
+
+    }
+}
+
+
 
 void TwixtUI::initializeCoordinateMatrix()
 {
@@ -232,8 +295,16 @@ void TwixtUI::initializeCoordinateMatrix()
 
 void TwixtUI::on_pushButton_clicked()
 {
-    m_game->SwitchTurn();
-    m_selected.setX(-1);
-    m_selected.setY(-1);
-    update();
+    try {
+        m_game->SwitchTurn();
+        m_selected.setX(-1);
+        m_selected.setY(-1);
+        update();
+    }
+    catch (std::exception)
+    {
+
+    }
 }
+
+
