@@ -57,3 +57,12 @@ TEST(PlacePeg, PlaceBlackPeg)
 	b.PlacePeg(3, 4);
 	EXPECT_EQ(b.GetPiece(3, 4), EPiece::BlackPeg);
 }
+
+TEST(PlacePeg, PlacePegOnRedEdge)
+{
+	Board b;
+	b.PlacePeg(0, 2);
+	b.PlacePeg(23, 4);
+	EXPECT_EQ(b.GetPiece(0, 2), EPiece::RedPeg);
+	EXPECT_EQ(b.GetPiece(23, 4), EPiece::RedPeg);
+}
