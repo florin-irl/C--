@@ -200,6 +200,7 @@ void Board::LoadBoard(const std::ostringstream& stringBoard)
 	}
 
 	// Read Bridges //
+	m_bridges.clear();
 	int firstRow, firstCol, secondRow, secondCol;
 	while (inputStream >> firstRow >> firstCol >> secondRow >> secondCol) {
 		m_bridges.emplace(Position(firstRow, firstCol), Position(secondRow, secondCol));
