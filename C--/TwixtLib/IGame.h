@@ -35,6 +35,8 @@ public:
 	virtual void LoadGame(const std::string& fileName) = 0;
 	virtual void RestartGame() = 0;
 
+	virtual void SetUpGame(int boardSize, int nrPegs, int nrBridges) = 0;
+
 	virtual ~IGame() = default;
 
 };

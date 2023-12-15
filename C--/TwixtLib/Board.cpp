@@ -35,6 +35,11 @@ Board::Board(int boardSize)
 	InitializeBoard();
 }
 
+void Board::SetBoardSize(int boardSize)
+{
+	m_boardSize = boardSize;
+}
+
 int Board::GetBoardSize() const
 {
 	return m_boardSize;

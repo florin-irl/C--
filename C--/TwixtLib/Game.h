@@ -32,9 +32,15 @@ public:
 	void LoadGame(const std::string& fileName) override;
 	void RestartGame() override;
 
+	void SetUpGame(int boardSize, int nrPegs, int nrBridges) override;
+
 private:
 	EGameState m_gameState;
 	IBoardPtr m_board;
+
+	int m_nrPegs;
+	int m_nrBridges;
+
 	int m_redPegsRemaining;
 	int m_redBridgesRemaining;
 	int m_blackPegsRemaining;

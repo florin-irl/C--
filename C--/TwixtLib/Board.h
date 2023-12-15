@@ -30,6 +30,7 @@ public:
 	Board();
 	Board(int boardSize);
 
+	void SetBoardSize(int boardSize) override;
 	int GetBoardSize() const override;
 	EPiece GetTurn() const override;
 	EPiece GetPiece(int line, int column) const override;

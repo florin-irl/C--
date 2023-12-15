@@ -14,6 +14,8 @@ Game::Game()
 
 Game::Game(int boardSize, int nrPegs, int nrBridges)
 	: m_gameState{ EGameState::Playing }
+	, m_nrPegs{ nrPegs }
+	, m_nrBridges{ nrBridges }
 	, m_redPegsRemaining{ nrPegs }
 	, m_redBridgesRemaining{ nrBridges }
 	, m_blackPegsRemaining{ nrPegs }
@@ -21,6 +23,7 @@ Game::Game(int boardSize, int nrPegs, int nrBridges)
 	, m_pegPlaced{ false }
 {
 	m_board = IBoard::CreateBoard();
+	m_board->SetBoardSize(boardSize);
 }
 
 int Game::GetBoardSize() const
@@ -288,19 +291,27 @@ void Game::RestartGame()
 	m_board->ResetBoard();
 
 	// Reset Number of Red Pegs Remaining //
-	m_redPegsRemaining = 50;
+	m_redPegsRemaining = m_nrPegs;
 
 	// Reset Number of Red Bridges Remaining //
-	m_redBridgesRemaining = 50;
+	m_redBridgesRemaining = m_nrBridges;
 
 	// Reset Number of Black Pegs Remaining //
-	m_blackPegsRemaining = 50;
+	m_blackPegsRemaining = m_nrPegs;
 
 	// Reset Number of Black Bridges Remaining //
-	m_blackBridgesRemaining = 50;
+	m_blackBridgesRemaining = m_nrBridges;
 
 	// Reset Peg Placed property //
 	m_pegPlaced = false;
+}
+
+void Game::SetUpGame(int boardSize, int nrPegs, int nrBridges)
+{
+	m_board->SetBoardSize(boardSize);
+	m_nrPegs = nrPegs;
+	m_nrBridges = nrBridges;
+	RestartGame();
 }
 
 void Game::ChangeStateIfDraw()

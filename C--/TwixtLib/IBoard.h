@@ -12,6 +12,7 @@ class IBoard
 {
 public:
 	static IBoardPtr CreateBoard();
+	virtual void SetBoardSize(int boardSize) = 0;
 	virtual int GetBoardSize() const = 0;
 	virtual EPiece GetTurn() const = 0;
 	virtual EPiece GetPiece(int line, int column) const = 0;
