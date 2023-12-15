@@ -76,3 +76,12 @@ TEST(PlacePeg, PlacePegOnBlackEdge)
 	EXPECT_EQ(b.GetPiece(13, 0), EPiece::BlackPeg);
 	EXPECT_EQ(b.GetPiece(20, 23), EPiece::BlackPeg);
 }
+
+TEST(PlacePeg, PlaceRedPegOnOppositeEdge)
+{
+	Board b;
+	EXPECT_THROW(b.PlacePeg(17, 0), EnemyBaseException);
+	EXPECT_EQ(b.GetPiece(17, 0), EPiece::None);
+	EXPECT_THROW(b.PlacePeg(9, 23), EnemyBaseException);
+	EXPECT_EQ(b.GetPiece(9, 23), EPiece::None);
+}
