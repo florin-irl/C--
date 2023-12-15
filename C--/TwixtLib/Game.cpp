@@ -43,6 +43,12 @@ std::unordered_set<Bridge> Game::GetBridges() const
 
 void Game::PlacePeg(int line, int column)
 {
+	if (
+		(m_board->GetTurn() == EPiece::RedPeg && m_redPegsRemaining == 0)
+		|| (m_board->GetTurn() == EPiece::BlackPeg && m_blackPegsRemaining == 0)
+		)
+		throw NoMorePegsException("You have no pegs left !");
+
 	if (m_gameState != EGameState::Playing)
 		throw GameOverException("The game is over ! You can t place pegs anymore !");
 
