@@ -50,12 +50,14 @@ void TwixtUI::paintEvent(QPaintEvent * e)
     pen.setColor(Qt::black);
     p.setPen(pen);
   
-    for (int i = 0; i < 24; i++)
+    for (int i = 0; i < m_game->GetBoardSize(); i++)
     {
         
-        for (int j = 0; j < 24; j++)
+        for (int j = 0; j < m_game->GetBoardSize(); j++)
         {
-            if ((i == 0 && j == 0) || (i == 0 && j == 23) || (i == 23 && j == 0) || (i == 23 && j == 23))
+            if ((i == 0 && j == 0) || (i == 0 && j == m_game->GetBoardSize() - 1)
+                || (i == m_game->GetBoardSize() - 1 && j == 0) 
+                || (i == m_game->GetBoardSize() - 1 && j == m_game->GetBoardSize() - 1))
                 continue;
             switch (m_game->GetPiece(i,j)) {
             case EPiece::RedPeg:
@@ -136,8 +138,8 @@ void TwixtUI::mouseReleaseEvent(QMouseEvent* e)
 {
     if (e->button() == Qt::LeftButton)
     {
-       for(int i=0;i<24;i++)
-           for(int j=0;j<24;j++)
+       for(int i=0;i< m_game->GetBoardSize();i++)
+           for(int j=0;j< m_game->GetBoardSize();j++)
         {
             if (sqrt(pow(m_coordinateMatrix[i][j].x() - e->pos().x(), 2) +
                 pow(m_coordinateMatrix[i][j].y() - e->pos().y(), 2)) < 12)
@@ -164,8 +166,8 @@ void TwixtUI::mouseReleaseEvent(QMouseEvent* e)
     }
     if (e->button() == Qt::RightButton)
     {
-        for (int i = 0; i < 24; i++)
-            for (int j = 0; j < 24; j++)
+        for (int i = 0; i < m_game->GetBoardSize(); i++)
+            for (int j = 0; j < m_game->GetBoardSize(); j++)
             {
                 
                 if (sqrt(pow(m_coordinateMatrix[i][j].x() - e->pos().x(), 2) +
@@ -345,11 +347,11 @@ void TwixtUI::initializeCoordinateMatrix()
     QPainter p(this);
     QPen pen;
     p.setPen(pen);
-    m_coordinateMatrix.resize(24);
-    for (int i = 0; i < 24; i++)
+    m_coordinateMatrix.resize(m_game->GetBoardSize());
+    for (int i = 0; i < m_game->GetBoardSize(); i++)
     {
-        m_coordinateMatrix[i].resize(24);
-        for (int j = 0; j < 24; j++)
+        m_coordinateMatrix[i].resize(m_game->GetBoardSize());
+        for (int j = 0; j < m_game->GetBoardSize(); j++)
         {
             double x= i * 27.5 + 40;
             double y= j * 27.5 + 40;
