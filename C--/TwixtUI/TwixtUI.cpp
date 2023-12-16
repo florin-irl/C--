@@ -127,6 +127,9 @@ void TwixtUI::paintEvent(QPaintEvent * e)
         ui.label_11->setStyleSheet("color: black; font-family: Bahnschrift;");
         break;
     }
+
+    //update game status
+    updateGameStatus();
 }
 
 void TwixtUI::mouseReleaseEvent(QMouseEvent* e)
@@ -247,6 +250,30 @@ void TwixtUI::mouseReleaseEvent(QMouseEvent* e)
                
             }
     }
+}
+
+void TwixtUI::updateGameStatus()
+{
+    switch (m_game->GetGameState())
+    {
+    case EGameState::Draw:
+        ui.label_17->setText("DRAW!");
+        ui.label_17->setStyleSheet("color: green; font-family: Bahnschrift;");
+        break;
+    case EGameState::Playing:
+        ui.label_17->setText("PLAYING");
+        ui.label_17->setStyleSheet("color: gray; font-family: Bahnschrift;");
+        break;
+    case EGameState::WonByBlack:
+        ui.label_17->setText("WON BY BLACK!");
+        ui.label_17->setStyleSheet("color: black; font-family: Bahnschrift;");
+        break;
+    case EGameState::WonByRed:
+        ui.label_17->setText("WON BY RED!");
+        ui.label_17->setStyleSheet("color: red; font-family: Bahnschrift;");
+        break;
+    }
+   
 }
 
 void TwixtUI::on_pushButton_2_clicked()

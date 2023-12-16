@@ -25,6 +25,8 @@ public:
     virtual void paintEvent(QPaintEvent* e);
     virtual void mouseReleaseEvent(QMouseEvent* e);
 
+    virtual void updateGameStatus();
+
 private slots:
     void on_pushButton_clicked();
     void on_pushButton_2_clicked();
