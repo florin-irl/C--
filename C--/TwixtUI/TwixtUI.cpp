@@ -281,6 +281,36 @@ void TwixtUI::on_pushButton_4_clicked()
     }
 }
 
+void TwixtUI::on_pushButton_5_clicked()
+{
+    QString text = ui.lineEdit->text();
+    bool conversionOk;
+    int boardSize = text.toInt(&conversionOk);
+    if (!conversionOk)
+    {
+        qDebug() << "Conversion to int failed.";
+    }
+    
+    text = ui.lineEdit_2->text();
+    int nrPegs = text.toInt(&conversionOk);
+    if (!conversionOk)
+    {
+        qDebug() << "Conversion to int failed.";
+    }
+
+    text = ui.lineEdit_3->text();
+    int nrBridges = text.toInt(&conversionOk);
+    if (!conversionOk)
+    {
+        qDebug() << "Conversion to int failed.";
+    }
+    
+
+    m_game->SetUpGame(boardSize, nrPegs, nrBridges);
+    update();
+
+}
+
 
 
 void TwixtUI::initializeCoordinateMatrix()
