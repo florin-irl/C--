@@ -1,5 +1,6 @@
 #include "Board.h"
 #include "GameExceptions.h"
+#include <queue>
 
 // Utility functions //
 
@@ -170,7 +171,43 @@ void Board::RemoveBridge(int firstLine, int firstColumn, int secondLine, int sec
 
 bool Board::CheckGameWon(int line, int column)
 {
-	// TO DOO //
+	std::vector<std::vector<bool>> visitedMatrix(m_boardSize, std::vector<bool>(m_boardSize, false));
+	std::queue<Position> unvisitedPegQ;
+
+	bool conectedBase1 = false;
+	bool conectedBase2 = false;
+
+	if (line == 0 || column == 0)
+		conectedBase1 = true;
+
+	if (line == m_boardSize - 1 || column == m_boardSize - 1)
+		conectedBase2 = true;
+
+	unvisitedPegQ.push(Position(line, column));
+	while (!unvisitedPegQ.empty())
+	{
+		Position currentPeg = unvisitedPegQ.front();
+		unvisitedPegQ.pop();
+
+		std::list<Position> validPegs = GetValidPegs(currentPeg.GetRow(), currentPeg.GetCol());
+		for (const auto& peg : validPegs)
+		{
+			if (!visitedMatrix[peg.GetRow()][peg.GetCol()])
+			{
+				visitedMatrix[peg.GetRow()][peg.GetCol()] = true;
+				unvisitedPegQ.push(peg);
+
+				if (peg.GetRow() == 0 || peg.GetCol() == 0)
+					conectedBase1 = true;
+
+				if (peg.GetRow() == m_boardSize - 1 || peg.GetCol() == m_boardSize - 1)
+					conectedBase2 = true;
+
+				if (conectedBase1 && conectedBase2)
+					return true;
+			}
+		}
+	}
 	return false;
 }
 
@@ -298,4 +335,18 @@ void Board::InitializeBridgeGenerator4()
 	m_vBridgeGenerator4.emplace_back(Position(0, 1), Position(1, -1));
 	m_vBridgeGenerator4.emplace_back(Position(0, 2), Position(1, 0));
 	m_vBridgeGenerator4.emplace_back(Position(0, 3), Position(1, 1));
+}
+
+std::list<Position> Board::GetValidPegs(int line, int column)
+{
+	std::list<Position> validPegs; // This Pegs make bridge with line and column //
+	std::list<Position> PegsToVerify = { {-2,-1}, {-2,1}, {-1,-2}, {-1,2}, {1,-2}, {1,2}, {2,-1}, {2,1} };
+
+	for (const auto& peg : PegsToVerify)
+	{
+		Bridge possibleBridge = Bridge{ Position{line,column} ,Position{line + peg.GetRow(),column + peg.GetCol()} };
+		if (m_bridges.find(possibleBridge) != m_bridges.end())
+			validPegs.emplace_back(line + peg.GetRow(), column + peg.GetCol());
+	}
+	return validPegs;
 }

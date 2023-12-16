@@ -113,22 +113,7 @@ void Game::PlaceBridge(int firstLine, int firstColumn, int secondLine, int secon
 	else
 		m_blackBridgesRemaining--;
 
-	int lineToVerify = -1;
-	int columnToVerify = -1;
-
-	if (firstLine == 0 || firstLine == m_board->GetBoardSize() - 1 || firstColumn == 0 || firstColumn == m_board->GetBoardSize() - 1)
-	{
-		lineToVerify = firstLine;
-		columnToVerify = firstColumn;
-	}
-	else if (secondLine == 0 || secondLine == m_board->GetBoardSize() - 1 || secondColumn == 0 || secondColumn == m_board->GetBoardSize() - 1)
-	{
-		lineToVerify = secondLine;
-		columnToVerify = secondColumn;
-	}
-
-	if (lineToVerify != -1 && columnToVerify != -1)
-		ChangeStateIfGameWon(lineToVerify, columnToVerify);
+	ChangeStateIfGameWon(firstLine, firstColumn);
 
 	if (m_gameState == EGameState::Playing)
 		ChangeStateIfDraw();
@@ -325,6 +310,6 @@ void Game::ChangeStateIfDraw()
 
 void Game::ChangeStateIfGameWon(int line, int column)
 {
-	if (m_board->CheckGameWon(line, column) == true)
+	if (m_board->CheckGameWon(line, column))
 		m_gameState = (m_board->GetTurn() == EPiece::RedPeg) ? EGameState::WonByRed : EGameState::WonByBlack;
 }

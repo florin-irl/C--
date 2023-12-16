@@ -2,6 +2,7 @@
 #include "IBoard.h"
 #include <vector>
 #include <unordered_set>
+#include <list>
 
 // Hash function for : std::unordered_set<Bridge> m_bridges; //
 
@@ -61,5 +62,7 @@ private:
 	void InitializeBridgeGenerator2();
 	void InitializeBridgeGenerator3();
 	void InitializeBridgeGenerator4();
+
+	std::list<Position> GetValidPegs(int line, int column);
 };
 

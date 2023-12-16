@@ -22,7 +22,7 @@ public:
 	int GetNrBlackBridgesRemaining() const;
 
 	void PlacePeg(int line, int column) override;
-	void PlaceBridge(int firstLine, int firstColumn, int secondLine, int secondColumn) override;  // Verifici daca jocul s a terminat de fiecare data cand plasezi un bridge
+	void PlaceBridge(int firstLine, int firstColumn, int secondLine, int secondColumn) override;
 	void RemoveBridge(int firstLine, int firstColumn, int secondLine, int secondColumn) override;
 
 	bool IsGameOver() const override;
