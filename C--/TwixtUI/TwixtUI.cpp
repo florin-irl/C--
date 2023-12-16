@@ -10,6 +10,7 @@ TwixtUI::TwixtUI(QWidget *parent)
     initializeCoordinateMatrix();
     m_selected.setX(-1);
     m_selected.setY(-1);
+    setMouseTracking(true);
 }
 
 TwixtUI::~TwixtUI()
@@ -159,6 +160,49 @@ void TwixtUI::mouseReleaseEvent(QMouseEvent* e)
                
             }
     }
+}
+
+void TwixtUI::mouseMoveEvent(QMouseEvent* e)
+{
+   /* QPainter painter;
+    QPen pen;
+    pen.setWidth(2);
+    pen.setColor(Qt::black);
+    painter.setPen(pen);
+
+    switch (m_game->GetTurn())
+    {
+    case EPiece::BlackPeg:
+        painter.setBrush(QColor(Qt::black));
+        break;
+    case EPiece::RedPeg:
+        painter.setBrush(QColor(Qt::red));
+        break;
+
+    }
+    for (int i = 0; i < m_game->GetBoardSize(); i++)
+    {
+
+        for (int j = 0; j < m_game->GetBoardSize(); j++)
+        {
+            if (sqrt(pow(m_coordinateMatrix[i][j].x() - e->pos().x(), 2) +
+                pow(m_coordinateMatrix[i][j].y() - e->pos().y(), 2)) < 12)
+            {
+                QRect r(j * 27.5 + 40, i * 27.5 + 40, 12, 12);
+                painter.drawEllipse(r);
+                update();
+                break;
+            }
+        }
+    }*/
+    QPainter painter;
+    QPen pen;
+    pen.setWidth(10);
+    pen.setColor(Qt::black);
+    painter.setPen(pen);
+    QRect r(e->pos().x(), e->pos().y(), 12, 12);
+    painter.drawEllipse(r);
+    update();
 }
 
 void TwixtUI::updateGameStatus()

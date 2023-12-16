@@ -24,6 +24,7 @@ public:
 
     virtual void paintEvent(QPaintEvent* e);
     virtual void mouseReleaseEvent(QMouseEvent* e);
+    virtual void mouseMoveEvent(QMouseEvent* e);
 
     
     virtual void drawPegs(QPainter& painter,QPen& pen);
