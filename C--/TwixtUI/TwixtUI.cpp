@@ -23,112 +23,19 @@ void TwixtUI::paintEvent(QPaintEvent * e)
     
     QPainter p(this);
     QPen pen;
-    QBrush brush;
     
-    pen.setWidth(5);
-    pen.setColor(Qt::black);
-
-    p.setPen(pen);
-
-    //draw lines
-    //left line
-    
-    p.drawLine(60, 47, 60, 23 * 27.5 + 47);
-    //right line
-    p.drawLine(23*27.5+32, 47, 23 * 27.5 + 32, 23 * 27.5 + 45);
-
-    pen.setColor(Qt::red);
-    p.setPen(pen);
-    
-    //top line - facut bine
-    p.drawLine(45, 57, 23*27.5+45, 57);
-
-    //bottom line
-    p.drawLine(45, 27.5*23 +35, 27.5 * 23 + 50,27.5*23+35);
-
-    pen.setWidth(2);
-    pen.setColor(Qt::black);
-    p.setPen(pen);
-  
-    for (int i = 0; i < m_game->GetBoardSize(); i++)
-    {
-        
-        for (int j = 0; j < m_game->GetBoardSize(); j++)
-        {
-            if ((i == 0 && j == 0) || (i == 0 && j == m_game->GetBoardSize() - 1)
-                || (i == m_game->GetBoardSize() - 1 && j == 0) 
-                || (i == m_game->GetBoardSize() - 1 && j == m_game->GetBoardSize() - 1))
-                continue;
-            switch (m_game->GetPiece(i,j)) {
-            case EPiece::RedPeg:
-                p.setBrush(QColor(Qt::red));
-                break;
-
-            case EPiece::BlackPeg:
-                p.setBrush(QColor(Qt::black));
-                break;
-
-            case EPiece::None:
-                p.setBrush(QColor(Qt::white));
-                break;
-            }
-               
-            if (m_coordinateMatrix[i][j].x() == m_selected.x() &&
-                m_coordinateMatrix[i][j].y() == m_selected.y())
-            {
-                pen.setColor(Qt::green);
-                pen.setWidth(3);
-                p.setPen(pen);
-            }
-            QRect r(j * 27.5 + 40, i * 27.5 + 40, 12, 12);
-            p.drawEllipse(r);
-            pen.setColor(Qt::black);
-            pen.setWidth(2);
-            p.setPen(pen);
-          
-            
-        }
-    }
-    for (const auto& bridge : m_game->GetBridges())
-    {
-        float x1, x2, y1, y2;
-        x1 = bridge.GetFirstPegPos().GetCol()*27.5+40;
-        y1 = bridge.GetFirstPegPos().GetRow()*27.5+40;
-        x2 = bridge.GetSecondPegPos().GetCol() * 27.5 + 40;
-        y2 = bridge.GetSecondPegPos().GetRow() * 27.5 + 40;
-        switch (m_game->GetPiece(bridge.GetFirstPegPos().GetRow(), bridge.GetFirstPegPos().GetCol()))
-        {
-        case EPiece::BlackPeg:
-            pen.setColor(Qt::black);
-            p.setPen(pen);
-            break;
-        case EPiece::RedPeg:
-            pen.setColor(Qt::red);
-            p.setPen(pen);
-            break;
-        }
-        p.drawLine(x1+6, y1+6, x2+6, y2+6);
-        
-    }   
+    //draw border lines
+    drawBoardLines(p, pen);
+    //draw the pegs
+    drawPegs(p,pen);
+    //draw the bridges
+    drawBridges(p, pen);
 
     //update piece counters
-    ui.label_5->setText(QString::number(m_game->GetNrRedPegsRemaining()));
-    ui.label_6->setText(QString::number(m_game->GetNrRedBridgesRemaining()));
-    ui.label_7->setText(QString::number(m_game->GetNrBlackPegsRemaining()));
-    ui.label_8->setText(QString::number(m_game->GetNrBlackBridgesRemaining()));
+    updatePieceCounters();
 
     //update who is playing display
-    switch (m_game->GetTurn())
-    {
-    case EPiece::RedPeg:
-        ui.label_11->setText("RED");
-        ui.label_11->setStyleSheet("color: red; font-family: Bahnschrift;");
-        break;
-    case EPiece::BlackPeg:
-        ui.label_11->setText("BLACK");
-        ui.label_11->setStyleSheet("color: black; font-family: Bahnschrift;");
-        break;
-    }
+    updatePlayingDisplay();
 
     //update game status
     updateGameStatus();
@@ -276,6 +183,126 @@ void TwixtUI::updateGameStatus()
         break;
     }
    
+}
+
+void TwixtUI::drawPegs(QPainter& painter, QPen& pen)
+{
+    pen.setWidth(2);
+    pen.setColor(Qt::black);
+    painter.setPen(pen);
+
+    for (int i = 0; i < m_game->GetBoardSize(); i++)
+    {
+
+        for (int j = 0; j < m_game->GetBoardSize(); j++)
+        {
+            if ((i == 0 && j == 0) || (i == 0 && j == m_game->GetBoardSize() - 1)
+                || (i == m_game->GetBoardSize() - 1 && j == 0)
+                || (i == m_game->GetBoardSize() - 1 && j == m_game->GetBoardSize() - 1))
+                continue;
+            switch (m_game->GetPiece(i, j)) {
+            case EPiece::RedPeg:
+                painter.setBrush(QColor(Qt::red));
+                break;
+
+            case EPiece::BlackPeg:
+                painter.setBrush(QColor(Qt::black));
+                break;
+
+            case EPiece::None:
+                painter.setBrush(QColor(Qt::white));
+                break;
+            }
+
+            if (m_coordinateMatrix[i][j].x() == m_selected.x() &&
+                m_coordinateMatrix[i][j].y() == m_selected.y())
+            {
+                pen.setColor(Qt::green);
+                pen.setWidth(3);
+                painter.setPen(pen);
+            }
+            QRect r(j * 27.5 + 40, i * 27.5 + 40, 12, 12);
+            painter.drawEllipse(r);
+            pen.setColor(Qt::black);
+            pen.setWidth(2);
+            painter.setPen(pen);
+
+        }
+    }
+}
+
+void TwixtUI::drawBridges(QPainter& painter, QPen& pen)
+{
+    float firstPegX, firstPegY,
+        secondPegX, secondPegY;
+    for (const auto& bridge : m_game->GetBridges())
+    {
+        firstPegX = bridge.GetFirstPegPos().GetCol() * pegSpacing + padding;
+        firstPegY = bridge.GetFirstPegPos().GetRow() * pegSpacing + padding;
+        secondPegX = bridge.GetSecondPegPos().GetCol() * pegSpacing + padding;
+        secondPegY = bridge.GetSecondPegPos().GetRow() * pegSpacing + padding;
+        switch (m_game->GetPiece(bridge.GetFirstPegPos().GetRow(), bridge.GetFirstPegPos().GetCol()))
+        {
+        case EPiece::BlackPeg:
+            pen.setColor(Qt::black);
+            painter.setPen(pen);
+            break;
+        case EPiece::RedPeg:
+            pen.setColor(Qt::red);
+            painter.setPen(pen);
+            break;
+        }
+        painter.drawLine(firstPegX + pegDiameter/2, firstPegY + pegDiameter/2, secondPegX + pegDiameter/2, secondPegY + pegDiameter/2);
+
+    }
+}
+
+void TwixtUI::drawBoardLines(QPainter& painter, QPen& pen)
+{
+    pen.setWidth(5);
+    pen.setColor(Qt::black);
+    painter.setPen(pen);
+
+    //left line
+    painter.drawLine(leftPadding, topPadding, leftPadding, (m_game->GetBoardSize()-1) * pegSpacing + topPadding);
+    //right line
+    painter.drawLine((m_game->GetBoardSize() - 1) * pegSpacing + rightPadding, topPadding, (m_game->GetBoardSize() - 1)
+        * pegSpacing + rightPadding, (m_game->GetBoardSize() - 1) * pegSpacing + bottomPadding);
+
+    pen.setColor(Qt::red);
+    painter.setPen(pen);
+
+    //top line - facut bine
+    painter.drawLine(bottomPadding, redTopPadding, (m_game->GetBoardSize() - 1) * pegSpacing + bottomPadding, redTopPadding);
+
+    //bottom line
+    painter.drawLine(bottomPadding, pegSpacing * (m_game->GetBoardSize() - 1) + redBottomPadding, pegSpacing
+        * (m_game->GetBoardSize() - 1) + redRightPadding, pegSpacing * (m_game->GetBoardSize() - 1) + redBottomPadding);
+
+
+}
+
+void TwixtUI::updatePlayingDisplay()
+{
+    switch (m_game->GetTurn())
+    {
+    case EPiece::RedPeg:
+        ui.label_11->setText("RED");
+        ui.label_11->setStyleSheet("color: red; font-family: Bahnschrift;");
+        break;
+    case EPiece::BlackPeg:
+        ui.label_11->setText("BLACK");
+        ui.label_11->setStyleSheet("color: black; font-family: Bahnschrift;");
+        break;
+    }
+}
+
+void TwixtUI::updatePieceCounters()
+{
+    ui.label_5->setText(QString::number(m_game->GetNrRedPegsRemaining()));
+    ui.label_6->setText(QString::number(m_game->GetNrRedBridgesRemaining()));
+    ui.label_7->setText(QString::number(m_game->GetNrBlackPegsRemaining()));
+    ui.label_8->setText(QString::number(m_game->GetNrBlackBridgesRemaining()));
 }
 
 void TwixtUI::on_pushButton_2_clicked()
