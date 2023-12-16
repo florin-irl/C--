@@ -114,9 +114,6 @@ void Game::PlaceBridge(int firstLine, int firstColumn, int secondLine, int secon
 		m_blackBridgesRemaining--;
 
 	ChangeStateIfGameWon(firstLine, firstColumn);
-
-	if (m_gameState == EGameState::Playing)
-		ChangeStateIfDraw();
 }
 
 void Game::RemoveBridge(int firstLine, int firstColumn, int secondLine, int secondColumn)
@@ -301,10 +298,7 @@ void Game::SetUpGame(int boardSize, int nrPegs, int nrBridges)
 
 void Game::ChangeStateIfDraw()
 {
-	if (m_redPegsRemaining == 0 && m_redBridgesRemaining == 0
-		&& m_blackPegsRemaining == 0 && m_blackBridgesRemaining == 0
-		&& m_gameState == EGameState::Playing
-		)
+	if (m_redPegsRemaining == 0 && m_blackPegsRemaining == 0)
 		m_gameState = EGameState::Draw;
 }
 
