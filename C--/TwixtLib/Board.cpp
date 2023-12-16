@@ -339,7 +339,7 @@ void Board::InitializeBridgeGenerator4()
 
 std::list<Position> Board::GetValidPegs(int line, int column)
 {
-	std::list<Position> validPegs; // This Pegs make bridge with line and column //
+	std::list<Position> validPegs; // The Pegs that make bridge with line and column //
 	std::list<Position> PegsToVerify = { {-2,-1}, {-2,1}, {-1,-2}, {-1,2}, {1,-2}, {1,2}, {2,-1}, {2,1} };
 
 	for (const auto& peg : PegsToVerify)
