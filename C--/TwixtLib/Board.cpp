@@ -172,6 +172,8 @@ void Board::RemoveBridge(int firstLine, int firstColumn, int secondLine, int sec
 bool Board::CheckGameWon(int line, int column)
 {
 	std::vector<std::vector<bool>> visitedMatrix(m_boardSize, std::vector<bool>(m_boardSize, false));
+	visitedMatrix[line][column] = true;
+
 	std::queue<Position> unvisitedPegQ;
 
 	bool conectedBase1 = false;
@@ -341,10 +343,22 @@ std::list<Position> Board::GetValidPegs(int line, int column)
 {
 	std::list<Position> validPegs; // The Pegs that make bridge with line and column //
 	std::list<Position> PegsToVerify = { {-2,-1}, {-2,1}, {-1,-2}, {-1,2}, {1,-2}, {1,2}, {2,-1}, {2,1} };
+	int firstLine, firstColumn, secondLine, secondColumn;
 
 	for (const auto& peg : PegsToVerify)
 	{
-		Bridge possibleBridge = Bridge{ Position{line,column} ,Position{line + peg.GetRow(),column + peg.GetCol()} };
+		firstLine = line;
+		firstColumn = column;
+		secondLine = line + peg.GetRow();
+		secondColumn = column + peg.GetCol();
+
+		if (firstLine > secondLine)
+		{
+			Swap(firstLine, secondLine);
+			Swap(firstColumn, secondColumn);
+		}
+
+		Bridge possibleBridge = Bridge{ Position{firstLine,firstColumn} ,Position{secondLine,secondColumn} };
 		if (m_bridges.find(possibleBridge) != m_bridges.end())
 			validPegs.emplace_back(line + peg.GetRow(), column + peg.GetCol());
 	}
