@@ -265,7 +265,7 @@ void TwixtUI::drawPegs(QPainter& painter, QPen& pen)
                 pen.setWidth(3);
                 painter.setPen(pen);
             }
-            QRect r(j * 27.5 + 40, i * 27.5 + 40, 12, 12);
+            QRect r(j * pegSpacing + padding, i * pegSpacing + padding, pegDiameter, pegDiameter);
             painter.drawEllipse(r);
             pen.setColor(Qt::black);
             pen.setWidth(2);
@@ -415,19 +415,17 @@ void TwixtUI::on_pushButton_5_clicked()
 
 void TwixtUI::initializeCoordinateMatrix()
 {
-    QPainter p(this);
-    QPen pen;
-    p.setPen(pen);
+    double x, y;
     m_coordinateMatrix.resize(m_game->GetBoardSize());
     for (int i = 0; i < m_game->GetBoardSize(); i++)
     {
         m_coordinateMatrix[i].resize(m_game->GetBoardSize());
         for (int j = 0; j < m_game->GetBoardSize(); j++)
         {
-            double x= i * 27.5 + 40;
-            double y= j * 27.5 + 40;
-            m_coordinateMatrix[i][j].setX(y);
-            m_coordinateMatrix[i][j].setY(x);
+             y= i * pegSpacing + padding;
+             x= j * pegSpacing + padding;
+            m_coordinateMatrix[i][j].setX(x);
+            m_coordinateMatrix[i][j].setY(y);
             
         }
     }
