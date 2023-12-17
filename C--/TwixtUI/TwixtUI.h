@@ -11,6 +11,7 @@
 #include "ui_TwixtUI.h"
 #include "IGame.h"
 #include <vector>
+#include <qmessagebox.h>
 #include <qpushbutton.h>
 #include <fstream>
 #include <math.h>

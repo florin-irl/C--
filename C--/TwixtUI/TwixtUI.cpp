@@ -45,6 +45,7 @@ void TwixtUI::paintEvent(QPaintEvent * e)
 
 void TwixtUI::mouseReleaseEvent(QMouseEvent* e)
 {
+    std::unordered_set<Bridge> bridges = m_game->GetBridges();
     if (e->button() == Qt::LeftButton)
     {
         for (int i = 0; i < m_game->GetBoardSize(); i++)
@@ -74,7 +75,7 @@ void TwixtUI::mouseReleaseEvent(QMouseEvent* e)
                 }
             }
     }
-    if (e->button() == Qt::RightButton)
+    if (e->button() == Qt::RightButton && m_game->GetGameState()==EGameState::Playing)
     {
         for (int i = 0; i < m_game->GetBoardSize(); i++)
             for (int j = 0; j < m_game->GetBoardSize(); j++)
@@ -104,9 +105,36 @@ void TwixtUI::mouseReleaseEvent(QMouseEvent* e)
                     }
                     else
                     {
+                        float xselected = (m_selected.x() - 40) / 27.5;
+                        float yselected = (m_selected.y() - 40) / 27.5;
+
+                        int ceilingxselected = static_cast<int>(std::ceil(xselected));
+                        int ceilingyselected = static_cast<int>(std::ceil(yselected));
+
+                        float x = (m_coordinateMatrix[i][j].x() - 40) / 27.5;
+                        float y = (m_coordinateMatrix[i][j].y() - 40) / 27.5;
+
+                        int ceilingx = static_cast<int>(std::ceil(x));
+                        int ceilingy = static_cast<int>(std::ceil(y));
+                        // de aplicat find
+
+
                         //daca deja exista bridge-ul cu nodurile selectate, il sterg
-                        try
+                        if (std::find(bridges.begin(), bridges.end(), Bridge{ Position{ceilingyselected,
+                            ceilingxselected},Position{ceilingy,ceilingx} }) != bridges.end())
                         {
+                            try
+                            {
+
+                                /* if(m_game->)*/
+                                m_game->RemoveBridge(ceilingyselected, ceilingxselected, ceilingy, ceilingx);
+                                m_selected.setX(-1);
+                                m_selected.setY(-1);
+                            }
+                            catch (std::exception excep)
+                            {
+                                ui.label_18->setText(excep.what());
+                            }
                             float xselected = (m_selected.x() - 40) / 27.5;
                             float yselected = (m_selected.y() - 40) / 27.5;
 
@@ -118,39 +146,22 @@ void TwixtUI::mouseReleaseEvent(QMouseEvent* e)
 
                             int ceilingx = static_cast<int>(std::ceil(x));
                             int ceilingy = static_cast<int>(std::ceil(y));
-                            /* if(m_game->)*/
-                            m_game->RemoveBridge(ceilingyselected, ceilingxselected, ceilingy, ceilingx);
-                            m_selected.setX(-1);
-                            m_selected.setY(-1);
                         }
-                        catch (std::exception excep)
+                        else
                         {
-                            ui.label_18->setText(excep.what());
-                        }
+
+                            try {
+                                //creez un bridge de la nodul selectat pana in punctul nou determinat;
 
 
-                        try {
-                            //creez un bridge de la nodul selectat pana in punctul nou determinat;
-                            float xselected = (m_selected.x() - 40) / 27.5;
-                            float yselected = (m_selected.y() - 40) / 27.5;
-
-                            int ceilingxselected = static_cast<int>(std::ceil(xselected));
-                            int ceilingyselected = static_cast<int>(std::ceil(yselected));
-
-                            float x = (m_coordinateMatrix[i][j].x() - 40) / 27.5;
-                            float y = (m_coordinateMatrix[i][j].y() - 40) / 27.5;
-
-                            int ceilingx = static_cast<int>(std::ceil(x));
-                            int ceilingy = static_cast<int>(std::ceil(y));
-
-
-                            m_selected.setX(-1);
-                            m_selected.setY(-1);
-                            m_game->PlaceBridge(ceilingyselected, ceilingxselected, ceilingy, ceilingx);
-                        }
-                        catch (std::exception excep)
-                        {
-                            ui.label_18->setText(excep.what());
+                                m_selected.setX(-1);
+                                m_selected.setY(-1);
+                                m_game->PlaceBridge(ceilingyselected, ceilingxselected, ceilingy, ceilingx);
+                            }
+                            catch (std::exception excep)
+                            {
+                                ui.label_18->setText(excep.what());
+                            }
                         }
                         update();
                         break;
@@ -388,21 +399,40 @@ void TwixtUI::on_pushButton_5_clicked()
     int boardSize = text.toInt(&conversionOk);
     if (!conversionOk)
     {
-        qDebug() << "Conversion to int failed.";
+        QMessageBox::critical(this, "Error", "Input must be a number!", QMessageBox::Ok);
+        return;
+
+    }
+    if (boardSize < 5 || boardSize>24)
+    {
+        QMessageBox::critical(this, "Error", "Boardsize must be at least 5 and at most 24!", QMessageBox::Ok);
+        return;
     }
     
     text = ui.lineEdit_2->text();
     int nrPegs = text.toInt(&conversionOk);
     if (!conversionOk)
     {
-        qDebug() << "Conversion to int failed.";
+        QMessageBox::critical(this, "Error", "Input must be a number!", QMessageBox::Ok);
+        return;
+    }
+    if (nrPegs < 3)
+    {
+        QMessageBox::critical(this, "Error", "Nr of pegs should be at least 3!", QMessageBox::Ok);
+        return;
     }
 
     text = ui.lineEdit_3->text();
     int nrBridges = text.toInt(&conversionOk);
     if (!conversionOk)
     {
-        qDebug() << "Conversion to int failed.";
+        QMessageBox::critical(this, "Error", "Input must be a number!", QMessageBox::Ok);
+        return;
+    }
+    if (nrBridges < 2)
+    {
+        QMessageBox::critical(this, "Error", "Nr of bridges should be at least 2!", QMessageBox::Ok);
+        return;
     }
     
     m_game->SetUpGame(boardSize, nrPegs, nrBridges);
