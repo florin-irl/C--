@@ -1,11 +1,15 @@
 #include "Bridge.h"
 
 
+Bridge::Bridge()
+	: m_firstPegPos{}
+	, m_secondPegPos{}
+{}
+
 Bridge::Bridge(Position firstPegPos, Position secondPegPos)
-	:m_firstPegPos{ firstPegPos }
+	: m_firstPegPos{ firstPegPos }
 	, m_secondPegPos{ secondPegPos }
-{
-}
+{}
 
 Position Bridge::GetFirstPegPos() const
 {

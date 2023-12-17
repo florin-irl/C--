@@ -2,6 +2,7 @@
 class Position
 {
 public:
+	Position();
 	Position(int row, int col);
 
 	int GetRow() const;

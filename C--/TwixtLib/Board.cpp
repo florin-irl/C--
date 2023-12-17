@@ -122,7 +122,7 @@ void Board::PlaceBridge(int firstLine, int firstColumn, int secondLine, int seco
 			throw CantFormBridgeException("The positions you provided don't form a bridge !");
 	}
 
-	std::vector<Bridge> vBridgeGenerator;
+	std::array<Bridge,9> vBridgeGenerator;
 
 	if (firstLine + 2 == secondLine && firstColumn + 1 == secondColumn)
 		vBridgeGenerator = m_vBridgeGenerator1;
@@ -292,54 +292,54 @@ void Board::InitializeBridgeGenerators()
 
 void Board::InitializeBridgeGenerator1()
 {
-	m_vBridgeGenerator1.emplace_back(Position(0, 1), Position(1, -1));
-	m_vBridgeGenerator1.emplace_back(Position(0, 2), Position(1, 0));
-	m_vBridgeGenerator1.emplace_back(Position(1, 1), Position(2, -1));
-	m_vBridgeGenerator1.emplace_back(Position(1, 2), Position(2, 0));
-	m_vBridgeGenerator1.emplace_back(Position(0, -1), Position(1, 1));
-	m_vBridgeGenerator1.emplace_back(Position(1, 0), Position(2, 2));
-	m_vBridgeGenerator1.emplace_back(Position(-1, 1), Position(1, 0));
-	m_vBridgeGenerator1.emplace_back(Position(0, 1), Position(2, 0));
-	m_vBridgeGenerator1.emplace_back(Position(1, 1), Position(3, 0));
+	m_vBridgeGenerator1[0] = Bridge(Position( 0,  1), Position(1, -1));
+	m_vBridgeGenerator1[1] = Bridge(Position( 0,  2), Position(1,  0));
+	m_vBridgeGenerator1[2] = Bridge(Position( 1,  1), Position(2, -1));
+	m_vBridgeGenerator1[3] = Bridge(Position( 1,  2), Position(2,  0));
+	m_vBridgeGenerator1[4] = Bridge(Position( 0, -1), Position(1,  1));
+	m_vBridgeGenerator1[5] = Bridge(Position( 1,  0), Position(2,  2));
+	m_vBridgeGenerator1[6] = Bridge(Position(-1,  1), Position(1,  0));
+	m_vBridgeGenerator1[7] = Bridge(Position( 0,  1), Position(2,  0));
+	m_vBridgeGenerator1[8] = Bridge(Position( 1,  1), Position(3,  0));
 }
 
 void Board::InitializeBridgeGenerator2()
 {
-	m_vBridgeGenerator2.emplace_back(Position(0, -1), Position(1, 1));
-	m_vBridgeGenerator2.emplace_back(Position(0, -2), Position(1, 0));
-	m_vBridgeGenerator2.emplace_back(Position(1, -1), Position(2, 1));
-	m_vBridgeGenerator2.emplace_back(Position(1, -2), Position(2, 0));
-	m_vBridgeGenerator2.emplace_back(Position(-1, -1), Position(1, 0));
-	m_vBridgeGenerator2.emplace_back(Position(0, -1), Position(2, 0));
-	m_vBridgeGenerator2.emplace_back(Position(0, 1), Position(1, -1));
-	m_vBridgeGenerator2.emplace_back(Position(1, 0), Position(2, -2));
-	m_vBridgeGenerator2.emplace_back(Position(1, -1), Position(3, 0));
+	m_vBridgeGenerator2[0] = Bridge(Position( 0, -1), Position(1,  1));
+	m_vBridgeGenerator2[1] = Bridge(Position( 0, -2), Position(1,  0));
+	m_vBridgeGenerator2[2] = Bridge(Position( 1, -1), Position(2,  1));
+	m_vBridgeGenerator2[3] = Bridge(Position( 1, -2), Position(2,  0));
+	m_vBridgeGenerator2[4] = Bridge(Position(-1, -1), Position(1,  0));
+	m_vBridgeGenerator2[5] = Bridge(Position( 0, -1), Position(2,  0));
+	m_vBridgeGenerator2[6] = Bridge(Position( 0,  1), Position(1, -1));
+	m_vBridgeGenerator2[7] = Bridge(Position( 1,  0), Position(2, -2));
+	m_vBridgeGenerator2[8] = Bridge(Position( 1, -1), Position(3,  0));
 }
 
 void Board::InitializeBridgeGenerator3()
 {
-	m_vBridgeGenerator3.emplace_back(Position(0, -3), Position(1, -1));
-	m_vBridgeGenerator3.emplace_back(Position(0, -2), Position(1, 0));
-	m_vBridgeGenerator3.emplace_back(Position(0, -1), Position(1, 1));
-	m_vBridgeGenerator3.emplace_back(Position(0, -2), Position(2, -1));
-	m_vBridgeGenerator3.emplace_back(Position(0, -1), Position(2, 0));
-	m_vBridgeGenerator3.emplace_back(Position(-1, -1), Position(1, 0));
-	m_vBridgeGenerator3.emplace_back(Position(-1, -2), Position(1, -1));
-	m_vBridgeGenerator3.emplace_back(Position(0, -1), Position(2, -2));
-	m_vBridgeGenerator3.emplace_back(Position(-1, 0), Position(1, -1));
+	m_vBridgeGenerator3[0] = Bridge(Position( 0, -3), Position(1, -1));
+	m_vBridgeGenerator3[1] = Bridge(Position( 0, -2), Position(1,  0));
+	m_vBridgeGenerator3[2] = Bridge(Position( 0, -1), Position(1,  1));
+	m_vBridgeGenerator3[3] = Bridge(Position( 0, -2), Position(2, -1));
+	m_vBridgeGenerator3[4] = Bridge(Position( 0, -1), Position(2,  0));
+	m_vBridgeGenerator3[5] = Bridge(Position(-1, -1), Position(1,  0));
+	m_vBridgeGenerator3[6] = Bridge(Position(-1, -2), Position(1, -1));
+	m_vBridgeGenerator3[7] = Bridge(Position( 0, -1), Position(2, -2));
+	m_vBridgeGenerator3[8] = Bridge(Position(-1,  0), Position(1, -1));
 }
 
 void Board::InitializeBridgeGenerator4()
 {
-	m_vBridgeGenerator4.emplace_back(Position(-1, 1), Position(1, 0));
-	m_vBridgeGenerator4.emplace_back(Position(0, 1), Position(2, 0));
-	m_vBridgeGenerator4.emplace_back(Position(-1, 2), Position(1, 1));
-	m_vBridgeGenerator4.emplace_back(Position(0, 2), Position(2, 1));
-	m_vBridgeGenerator4.emplace_back(Position(0, 1), Position(2, 2));
-	m_vBridgeGenerator4.emplace_back(Position(-1, 0), Position(1, 1));
-	m_vBridgeGenerator4.emplace_back(Position(0, 1), Position(1, -1));
-	m_vBridgeGenerator4.emplace_back(Position(0, 2), Position(1, 0));
-	m_vBridgeGenerator4.emplace_back(Position(0, 3), Position(1, 1));
+	m_vBridgeGenerator4[0] = Bridge(Position(-1, 1), Position(1,  0));
+	m_vBridgeGenerator4[1] = Bridge(Position( 0, 1), Position(2,  0));
+	m_vBridgeGenerator4[2] = Bridge(Position(-1, 2), Position(1,  1));
+	m_vBridgeGenerator4[3] = Bridge(Position( 0, 2), Position(2,  1));
+	m_vBridgeGenerator4[4] = Bridge(Position( 0, 1), Position(2,  2));
+	m_vBridgeGenerator4[5] = Bridge(Position(-1, 0), Position(1,  1));
+	m_vBridgeGenerator4[6] = Bridge(Position( 0, 1), Position(1, -1));
+	m_vBridgeGenerator4[7] = Bridge(Position( 0, 2), Position(1,  0));
+	m_vBridgeGenerator4[8] = Bridge(Position( 0, 3), Position(1,  1));
 }
 
 std::list<Position> Board::GetValidPegs(int line, int column)

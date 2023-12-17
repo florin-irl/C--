@@ -3,6 +3,7 @@
 #include <vector>
 #include <unordered_set>
 #include <list>
+#include <array>
 
 // Hash function for : std::unordered_set<Bridge> m_bridges; //
 
@@ -55,10 +56,10 @@ private:
 	std::vector<std::vector<EPiece>> m_board;
 	std::unordered_set<Bridge> m_bridges;
 
-	std::vector<Bridge> m_vBridgeGenerator1;	// (2, 1) = +2 linii, +1 coloana //
-	std::vector<Bridge> m_vBridgeGenerator2;	// (2,-1) //
-	std::vector<Bridge> m_vBridgeGenerator3;	// (1,-2) //
-	std::vector<Bridge> m_vBridgeGenerator4;	// (1, 2) //
+	std::array<Bridge, 9> m_vBridgeGenerator1;	// (2, 1) = +2 linii, +1 coloana //
+	std::array<Bridge, 9> m_vBridgeGenerator2;	// (2,-1) //
+	std::array<Bridge, 9> m_vBridgeGenerator3;	// (1,-2) //
+	std::array<Bridge, 9> m_vBridgeGenerator4;	// (1, 2) //
 
 	void ResizeBoard(int boardSize);
 	void InitializeBoard();
