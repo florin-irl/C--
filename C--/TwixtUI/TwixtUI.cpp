@@ -11,6 +11,7 @@ TwixtUI::TwixtUI(QWidget *parent)
     m_selected.setX(-1);
     m_selected.setY(-1);
     setMouseTracking(true);
+    ui.label_18->setText("");
 }
 
 TwixtUI::~TwixtUI()
@@ -60,10 +61,11 @@ void TwixtUI::mouseReleaseEvent(QMouseEvent* e)
                         m_game->PlacePeg(i, j);
 
                     }
-                    catch (std::exception)
+                    catch (std::exception excep)
                     {
                         m_selected.setX(-1);
                         m_selected.setY(-1);
+                        ui.label_18->setText(excep.what());
                     }
 
 
@@ -121,9 +123,9 @@ void TwixtUI::mouseReleaseEvent(QMouseEvent* e)
                             m_selected.setX(-1);
                             m_selected.setY(-1);
                         }
-                        catch (std::exception)
+                        catch (std::exception excep)
                         {
-
+                            ui.label_18->setText(excep.what());
                         }
 
 
@@ -146,9 +148,9 @@ void TwixtUI::mouseReleaseEvent(QMouseEvent* e)
                             m_selected.setY(-1);
                             m_game->PlaceBridge(ceilingyselected, ceilingxselected, ceilingy, ceilingx);
                         }
-                        catch (std::exception)
+                        catch (std::exception excep)
                         {
-
+                            ui.label_18->setText(excep.what());
                         }
                         update();
                         break;
@@ -358,9 +360,9 @@ void TwixtUI::on_pushButton_3_clicked()
         m_game->SaveGame("data.out");
         
     }
-    catch (std::exception)
+    catch (std::exception excep)
     {
-
+        ui.label_18->setText(excep.what());
     }
 }
 
@@ -371,9 +373,9 @@ void TwixtUI::on_pushButton_4_clicked()
         m_game->LoadGame("data.out");
         update();
     }
-    catch (std::exception)
+    catch (std::exception excep)
     {
-
+        ui.label_18->setText(excep.what());
     }
 }
 
@@ -432,11 +434,12 @@ void TwixtUI::on_pushButton_clicked()
         m_game->SwitchTurn();
         m_selected.setX(-1);
         m_selected.setY(-1);
+        ui.label_18->setText("");
         update();
     }
-    catch (std::exception)
+    catch (std::exception excep)
     {
-
+        ui.label_18->setText(excep.what());
     }
 }
 
