@@ -73,6 +73,9 @@ int Game::GetNrBlackBridgesRemaining() const
 
 void Game::PlacePeg(int line, int column)
 {
+	if (m_gameState != EGameState::Playing)
+		throw GameOverException("The game is over ! You can t place pegs anymore !");
+
 	if (
 		(m_board->GetTurn() == EPiece::RedPeg && m_redPegsRemaining == 0)
 		|| (m_board->GetTurn() == EPiece::BlackPeg && m_blackPegsRemaining == 0)
@@ -81,9 +84,6 @@ void Game::PlacePeg(int line, int column)
 
 	if (m_pegPlaced)
 		throw CantPlaceMoreThanOnePegException("You can't place more than 1 peg in a turn !");
-
-	if (m_gameState != EGameState::Playing)
-		throw GameOverException("The game is over ! You can t place pegs anymore !");
 
 	m_board->PlacePeg(line, column); // This can Throw Exception //
 
@@ -98,14 +98,14 @@ void Game::PlacePeg(int line, int column)
 
 void Game::PlaceBridge(int firstLine, int firstColumn, int secondLine, int secondColumn)
 {
+	if (m_gameState != EGameState::Playing)
+		throw GameOverException("The game is over ! You can t place bridges anymore !");
+
 	if (
 		(m_board->GetTurn() == EPiece::RedPeg && m_redBridgesRemaining == 0)
 		|| (m_board->GetTurn() == EPiece::BlackPeg && m_blackBridgesRemaining == 0)
 		)
 		throw NoMoreBridgesException("You have no bridges left !");
-
-	if (m_gameState != EGameState::Playing)
-		throw GameOverException("The game is over ! You can t place bridges anymore !");
 
 	m_board->PlaceBridge(firstLine, firstColumn, secondLine, secondColumn); // This can Throw Exception //
 	if (m_board->GetTurn() == EPiece::RedPeg)
@@ -137,11 +137,11 @@ bool Game::IsGameOver() const
 
 void Game::SwitchTurn()
 {
-	if (!m_pegPlaced)
-		throw MustPlacePegBeforeSwitchingTurnException("You must place a peg before switching turn !");
-
 	if (m_gameState != EGameState::Playing)
 		throw GameOverException("The game is over ! You can t switch turn anymore !");
+
+	if (!m_pegPlaced)
+		throw MustPlacePegBeforeSwitchingTurnException("You must place a peg before switching turn !");
 
 	m_board->SwitchTurn();
 	m_pegPlaced = false;
