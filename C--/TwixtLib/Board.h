@@ -32,16 +32,19 @@ public:
 	Board(int boardSize);
 
 	void SetBoardSize(int boardSize) override;
+
 	int GetBoardSize() const override;
 	EPiece GetTurn() const override;
 	EPiece GetPiece(int line, int column) const override;
 	std::vector<std::vector<EPiece>> GetBoard() const override;
 	std::unordered_set<Bridge> GetBridges() const override;
+
 	void PlacePeg(int line, int column) override;
 	void PlaceBridge(int firstLine, int firstColumn, int secondLine, int secondColumn) override;
 	void RemoveBridge(int firstLine, int firstColumn, int secondLine, int secondColumn) override;
 	bool CheckGameWon(int line, int column) override;
 	void SwitchTurn() override;
+
 	void LoadBoard(const std::ostringstream& stringBoard) override;
 	void ResetBoard() override;
 
