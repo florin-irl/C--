@@ -51,6 +51,7 @@ private:
     void initializeCoordinateMatrix();
 
     QPoint m_selected;
+    bool m_turnSwitched;
 
     const float pegSpacing = 27.5;
     const float padding = 40;
@@ -63,4 +64,6 @@ private:
     const float redTopPadding = 57;
     const float redBottomPadding = 35;
     const float redRightPadding = 50;
+
+
 };

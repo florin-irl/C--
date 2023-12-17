@@ -3,6 +3,7 @@
 
 TwixtUI::TwixtUI(QWidget *parent)
     : QMainWindow(parent)
+    ,m_turnSwitched{false}
 {
     ui.setupUi(this);
     setWindowTitle("Twixt With a Twist! by Team C--");
@@ -361,6 +362,11 @@ void TwixtUI::updatePieceCounters()
 void TwixtUI::on_pushButton_2_clicked()
 {
     m_game->RestartGame();
+    m_turnSwitched = false;
+    ui.label_21->setText("RED");
+    ui.label_21->setStyleSheet("color: red; font-family: Bahnschrift;");
+    ui.label_22->setText("BLACK");
+    ui.label_22->setStyleSheet("color: black; font-family: Bahnschrift;");
     ui.label_18->setText("");
     update();
 }
@@ -465,9 +471,22 @@ void TwixtUI::on_pushButton_clicked()
 {
     try {
         m_game->SwitchTurn();
+        if (m_turnSwitched == false)
+        {
+            QMessageBox::StandardButton reply;
+            reply = QMessageBox::question(this, "Confirmation", "Do you want to play as red?", QMessageBox::Yes | QMessageBox::No);
+            if (reply == QMessageBox::Yes)
+            {
+                ui.label_21->setText("BLACK");
+                ui.label_21->setStyleSheet("color: black; font-family: Bahnschrift;");
+                ui.label_22->setText("RED");
+                ui.label_22->setStyleSheet("color: red; font-family: Bahnschrift;");
+            }
+        }
         m_selected.setX(-1);
         m_selected.setY(-1);
         ui.label_18->setText("");
+        m_turnSwitched = true;
         update();
     }
     catch (std::exception excep)
