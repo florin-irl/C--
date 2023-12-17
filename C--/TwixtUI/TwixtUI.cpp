@@ -44,29 +44,26 @@ void TwixtUI::paintEvent(QPaintEvent * e)
 
 void TwixtUI::mouseReleaseEvent(QMouseEvent* e)
 {
+    float xselected, yselected,
+        x, y;
+    int ceilingxselected, ceilingyselected,
+        ceilingx, ceilingy;
     if (e->button() == Qt::LeftButton)
     {
        for(int i=0;i< m_game->GetBoardSize();i++)
            for(int j=0;j< m_game->GetBoardSize();j++)
         {
             if (sqrt(pow(m_coordinateMatrix[i][j].x() - e->pos().x(), 2) +
-                pow(m_coordinateMatrix[i][j].y() - e->pos().y(), 2)) < 12)
-               /*if (fabs(m_coordinateMatrix[i][j].x() - e->pos().x()) < 10 && fabs(m_coordinateMatrix[i][j].y()
-                   - e->pos().y() < 10))*/
+                pow(m_coordinateMatrix[i][j].y() - e->pos().y(), 2)) < pegDiameter)
             {
-                
-               
                     try {
-                        m_game->PlacePeg(i, j);
-                       
+                        m_game->PlacePeg(i, j);  
                     }
                     catch (std::exception)
                     {
                         m_selected.setX(-1);
                         m_selected.setY(-1);
                     }
-                
-              
                 update();
                 break;
             }
@@ -77,9 +74,19 @@ void TwixtUI::mouseReleaseEvent(QMouseEvent* e)
         for (int i = 0; i < m_game->GetBoardSize(); i++)
             for (int j = 0; j < m_game->GetBoardSize(); j++)
             {
-                
+                xselected = (m_selected.x() - padding) / pegSpacing;
+                yselected = (m_selected.y() - padding) / pegSpacing;
+
+                ceilingxselected = static_cast<int>(std::ceil(xselected));
+                ceilingyselected = static_cast<int>(std::ceil(yselected));
+
+                x = (m_coordinateMatrix[i][j].x() - padding) / pegSpacing;
+                y = (m_coordinateMatrix[i][j].y() - padding) / pegSpacing;
+
+                ceilingx = static_cast<int>(std::ceil(x));
+                ceilingy = static_cast<int>(std::ceil(y));
                 if (sqrt(pow(m_coordinateMatrix[i][j].x() - e->pos().x(), 2) +
-                    pow(m_coordinateMatrix[i][j].y() - e->pos().y(), 2)) < 12)
+                    pow(m_coordinateMatrix[i][j].y() - e->pos().y(), 2)) < pegDiameter)
                 {
                     //deselectez nodul daca apas din nou pe el
                     if (m_selected.x() == m_coordinateMatrix[i][j].x() && m_selected.y() == m_coordinateMatrix[i][j].y())
@@ -105,18 +112,8 @@ void TwixtUI::mouseReleaseEvent(QMouseEvent* e)
                         //daca deja exista bridge-ul cu nodurile selectate, il sterg
                         try
                         {
-                            float xselected = (m_selected.x() - 40) / 27.5;
-                            float yselected = (m_selected.y() - 40) / 27.5;
-
-                            int ceilingxselected = static_cast<int>(std::ceil(xselected));
-                            int ceilingyselected = static_cast<int>(std::ceil(yselected));
-
-                            float x = (m_coordinateMatrix[i][j].x() - 40) / 27.5;
-                            float y = (m_coordinateMatrix[i][j].y() - 40) / 27.5;
-
-                            int ceilingx = static_cast<int>(std::ceil(x));
-                            int ceilingy = static_cast<int>(std::ceil(y));
-                           /* if(m_game->)*/
+                            
+                           
                             m_game->RemoveBridge(ceilingyselected, ceilingxselected, ceilingy, ceilingx);
                             m_selected.setX(-1);
                             m_selected.setY(-1);
@@ -129,18 +126,7 @@ void TwixtUI::mouseReleaseEvent(QMouseEvent* e)
 
                         try {
                             //creez un bridge de la nodul selectat pana in punctul nou determinat;
-                            float xselected = (m_selected.x() - 40) / 27.5;
-                            float yselected = (m_selected.y() - 40) / 27.5;
-
-                            int ceilingxselected = static_cast<int>(std::ceil(xselected));
-                            int ceilingyselected = static_cast<int>(std::ceil(yselected));
-
-                            float x = (m_coordinateMatrix[i][j].x() - 40) / 27.5;
-                            float y = (m_coordinateMatrix[i][j].y() - 40) / 27.5;
-
-                            int ceilingx = static_cast<int>(std::ceil(x));
-                            int ceilingy = static_cast<int>(std::ceil(y));
-
+                          
                             
                             m_selected.setX(-1);
                             m_selected.setY(-1);
@@ -152,12 +138,8 @@ void TwixtUI::mouseReleaseEvent(QMouseEvent* e)
                         }
                         update();
                         break;
-                    }
-                    
-                   
-                    
+                    } 
                 }
-               
             }
     }
 }
