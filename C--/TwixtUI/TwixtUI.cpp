@@ -350,6 +350,7 @@ void TwixtUI::updatePieceCounters()
 void TwixtUI::on_pushButton_2_clicked()
 {
     m_game->RestartGame();
+    ui.label_18->setText("");
     update();
 }
 
@@ -371,6 +372,7 @@ void TwixtUI::on_pushButton_4_clicked()
     try
     {
         m_game->LoadGame("data.out");
+        ui.label_18->setText("");
         update();
     }
     catch (std::exception excep)
@@ -404,6 +406,7 @@ void TwixtUI::on_pushButton_5_clicked()
     }
     
     m_game->SetUpGame(boardSize, nrPegs, nrBridges);
+    ui.label_18->setText("");
     update();
 }
 
