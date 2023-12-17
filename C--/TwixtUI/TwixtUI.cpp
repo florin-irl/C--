@@ -405,13 +405,9 @@ void TwixtUI::on_pushButton_5_clicked()
         qDebug() << "Conversion to int failed.";
     }
     
-
     m_game->SetUpGame(boardSize, nrPegs, nrBridges);
     update();
-
 }
-
-
 
 void TwixtUI::initializeCoordinateMatrix()
 {

@@ -256,6 +256,9 @@ void Board::ResetBoard()
 	// Reset Turn //
 	m_turn = EPiece::RedPeg;
 
+	// Resize Board //
+	ResizeBoard(m_boardSize);
+
 	// Reset Board //
 	InitializeBoard();
 
