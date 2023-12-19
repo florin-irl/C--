@@ -24,6 +24,11 @@ TEST(InitialBoard, FirstTurn)
 	EXPECT_EQ(b.GetTurn(), EPiece::RedPeg);
 }
 
+TEST(CustomBoard, CustomBoardSize)
+{
+	Board b(19);
+	EXPECT_EQ(b.GetBoardSize(), 19);
+}
 TEST(TurnManagement, SwitchTurn)
 {
 	Board b;
