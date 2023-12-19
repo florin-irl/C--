@@ -132,6 +132,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <None Include="data.out" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

@@ -41,6 +41,15 @@ TEST(InitialGameBoard, InitialBoardSize)
 	EXPECT_EQ(g.GetBoardSize(), 24);
 }
 
+TEST(InitialGameBoard, InitialBoardPieces)
+{
+	Game g;
+	EXPECT_EQ(g.GetNrBlackPegsRemaining(), 50);
+	EXPECT_EQ(g.GetNrRedPegsRemaining(), 50);
+	EXPECT_EQ(g.GetNrBlackBridgesRemaining(), 50);
+	EXPECT_EQ(g.GetNrRedBridgesRemaining(), 50);
+}
+
 TEST(InitialBoardGame, CustomBoardSize)
 {
 	Game g;
@@ -99,6 +108,12 @@ TEST(GameFunctions, TestFunctionAfterGameOver)
 	g.SwitchTurn();
 	g.PlacePeg(6, 4);
 	g.PlaceBridge(4, 3, 6, 4);
+
+	//
+
+	g.SaveGame("data.out");
+	g.RestartGame();
+	g.LoadGame("data.out");
 	
 	EXPECT_EQ(g.GetGameState(), EGameState::WonByRed);
 	EXPECT_EQ(g.IsGameOver(), true);
@@ -177,3 +192,4 @@ TEST(GameRemoveBridge, RemoveBlackBridge)
 	EXPECT_EQ(Bridges.find(blackBridge), Bridges.end());
 
 }
+
