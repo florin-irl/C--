@@ -128,3 +128,19 @@ TEST(GamePlaceBridge, PlaceBlackBridge)
 	const auto it = bridges.find(blackBridge);
 	EXPECT_EQ(*it, blackBridge);
 }
+
+TEST(GameRemoveBridge, RemoveBridge)
+{
+	Game g;
+	g.PlacePeg(6, 17);
+	g.SwitchTurn();
+	g.PlacePeg(20, 22);
+	g.SwitchTurn();
+	g.PlacePeg(8, 16);
+	g.PlaceBridge(6, 17, 8, 16);
+	Bridge firstBridge({ 6,17 }, { 8,16 });
+	g.RemoveBridge(6, 17, 8, 16);
+	auto Bridges = g.GetBridges();
+	EXPECT_EQ(Bridges.find(firstBridge), Bridges.end());
+
+}
