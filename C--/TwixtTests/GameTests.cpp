@@ -12,6 +12,7 @@ TEST(GameTurnManagement, FirstGameTurn)
 TEST(GameTurnManagement, SwitchGameTurn)
 {
 	Game g;
+	g.PlacePeg(6, 7);
 	g.SwitchTurn();
 	EXPECT_EQ(g.GetTurn(), EPiece::BlackPeg);
 }
