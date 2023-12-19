@@ -18,6 +18,54 @@ inline TwixtException::TwixtException(const std::string& message)
 	: std::logic_error(message)
 {}
 
+// CantPlaceMoreThanOnePegException class //
+
+class CantPlaceMoreThanOnePegException : public TwixtException
+{
+public:
+	CantPlaceMoreThanOnePegException(const std::string& message);
+};
+
+inline CantPlaceMoreThanOnePegException::CantPlaceMoreThanOnePegException(const std::string& message)
+	: TwixtException(message)
+{}
+
+// MustPlacePegBeforeSwitchingTurnException class //
+
+class MustPlacePegBeforeSwitchingTurnException : public TwixtException
+{
+public:
+	MustPlacePegBeforeSwitchingTurnException(const std::string& message);
+};
+
+inline MustPlacePegBeforeSwitchingTurnException::MustPlacePegBeforeSwitchingTurnException(const std::string& message)
+	: TwixtException(message)
+{}
+
+// NoMorePegsException class //
+
+class NoMorePegsException : public TwixtException
+{
+public:
+	NoMorePegsException(const std::string& message);
+};
+
+inline NoMorePegsException::NoMorePegsException(const std::string& message)
+	: TwixtException(message)
+{}
+
+// NoMoreBridgesException class //
+
+class NoMoreBridgesException : public TwixtException
+{
+public:
+	NoMoreBridgesException(const std::string& message);
+};
+
+inline NoMoreBridgesException::NoMoreBridgesException(const std::string& message)
+	: TwixtException(message)
+{}
+
 // OcuppiedPositionException class //
 
 class OcuppiedPositionException : public TwixtException

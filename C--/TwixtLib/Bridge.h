@@ -4,6 +4,7 @@
 class Bridge
 {
 public:
+	Bridge();
 	Bridge(Position firstPegPos, Position secondPegPos);
 
 	Position GetFirstPegPos() const;

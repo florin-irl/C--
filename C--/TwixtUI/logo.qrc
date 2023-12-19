@@ -1,0 +1,5 @@
+<RCC>
+  <qresource prefix="newPrefix">
+    <file>twixtLogoC--.png</file>
+  </qresource>
+</RCC>
