@@ -35,6 +35,12 @@ TEST(InitialGameBoard, AllGameHolesEmpty)
 	}
 }
 
+TEST(InitialGameBoard, InitialBoardSize)
+{
+	Game g;
+	EXPECT_EQ(g.GetBoardSize(), 24);
+}
+
 TEST(GameState, StartingGameState)
 {
 	Game g;
@@ -68,6 +74,7 @@ TEST(GamePlacePeg, PlaceMoreThanOnePegPerTurn)
 TEST(GameFunctions, TestFunctionAfterGameOver)
 {
 	Game g;
+	EXPECT_EQ(g.IsGameOver(), false);
 	g.SetUpGame(7, 50, 50);
 	g.PlacePeg(0, 1);
 	g.SwitchTurn();
@@ -88,6 +95,7 @@ TEST(GameFunctions, TestFunctionAfterGameOver)
 	g.PlaceBridge(4, 3, 6, 4);
 	
 	EXPECT_EQ(g.GetGameState(), EGameState::WonByRed);
+	EXPECT_EQ(g.IsGameOver(), true);
 	EXPECT_THROW(g.PlacePeg(0, 3), GameOverException);
 	EXPECT_THROW(g.PlaceBridge(0, 1, 2, 2), GameOverException);
 	EXPECT_THROW(g.RemoveBridge(2, 2, 4, 3), GameOverException);
