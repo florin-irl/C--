@@ -39,6 +39,14 @@ TEST(TurnManagement, SwitchTurn)
 
 }
 
+TEST(GetPeg, GetOutofBoundsPeg)
+{
+	Board b;
+	EXPECT_THROW(b.GetPiece(-3, -18), OutOfBoundsException);
+	EXPECT_THROW(b.GetPiece(-15, 40), OutOfBoundsException);
+	EXPECT_THROW(b.GetPiece(59, -20), OutOfBoundsException);
+	EXPECT_THROW(b.GetPiece(70, 41), OutOfBoundsException);
+}
 TEST(PlacePeg, PlaceRedPeg)
 {
 	Board b;
