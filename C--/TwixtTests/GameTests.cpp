@@ -129,7 +129,7 @@ TEST(GamePlaceBridge, PlaceBlackBridge)
 	EXPECT_EQ(*it, blackBridge);
 }
 
-TEST(GameRemoveBridge, RemoveBridge)
+TEST(GameRemoveBridge, RemoveRedBridge)
 {
 	Game g;
 	g.PlacePeg(6, 17);
@@ -138,9 +138,28 @@ TEST(GameRemoveBridge, RemoveBridge)
 	g.SwitchTurn();
 	g.PlacePeg(8, 16);
 	g.PlaceBridge(6, 17, 8, 16);
-	Bridge firstBridge({ 6,17 }, { 8,16 });
+	Bridge redBridge({ 6,17 }, { 8,16 });
 	g.RemoveBridge(6, 17, 8, 16);
 	auto Bridges = g.GetBridges();
-	EXPECT_EQ(Bridges.find(firstBridge), Bridges.end());
+	EXPECT_EQ(Bridges.find(redBridge), Bridges.end());
+
+}
+
+TEST(GameRemoveBridge, RemoveBlackBridge)
+{
+	Game g;
+	g.PlacePeg(6, 20);
+	g.SwitchTurn();
+	g.PlacePeg(4, 6);
+	g.SwitchTurn();
+	g.PlacePeg(19, 4);
+	g.SwitchTurn();
+	g.PlacePeg(3, 8);
+	g.PlaceBridge(4, 6, 3, 8);
+
+	Bridge blackBridge({ 4,6 }, { 3,8 });
+	g.RemoveBridge(4, 6, 3, 8);
+	auto Bridges = g.GetBridges();
+	EXPECT_EQ(Bridges.find(blackBridge), Bridges.end());
 
 }
