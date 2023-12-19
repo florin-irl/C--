@@ -17,6 +17,12 @@ TEST(GameTurnManagement, SwitchGameTurn)
 	EXPECT_EQ(g.GetTurn(), EPiece::BlackPeg);
 }
 
+TEST(GameTurnManagement, SwitchTurnBeforePlacingPeg)
+{
+	Game g;
+	EXPECT_THROW(g.SwitchTurn(), MustPlacePegBeforeSwitchingTurnException);
+}
+
 TEST(InitialGameBoard, AllGameHolesEmpty)
 {
 	Game g;
@@ -79,7 +85,6 @@ TEST(GameFunctions, TestFunctionAfterGameOver)
 	EXPECT_THROW(g.PlaceBridge(0, 1, 2, 2), GameOverException);
 	EXPECT_THROW(g.RemoveBridge(2, 2, 4, 3), GameOverException);
 	EXPECT_THROW(g.SwitchTurn(), GameOverException);
-
 }
 
 
