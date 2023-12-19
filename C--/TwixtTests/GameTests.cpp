@@ -17,7 +17,6 @@ TEST(GameTurnManagement, SwitchGameTurn)
 	EXPECT_EQ(g.GetTurn(), EPiece::BlackPeg);
 }
 
-//?
 TEST(InitialGameBoard, AllGameHolesEmpty)
 {
 	Game g;
@@ -53,13 +52,38 @@ TEST(GamePlacePeg, PlaceBlackPeg)
 }
 
 //??
-TEST(GameFunctions, TestFuncitonAfterGameOver)
+TEST(GameFunctions, TestFunctionAfterGameOver)
 {
-	//TO DO 
+	Game g;
+	g.SetUpGame(7, 50, 50);
+	g.PlacePeg(0, 1);
+	g.SwitchTurn();
+	g.PlacePeg(3, 0);
+	g.SwitchTurn();
+	g.PlacePeg(2, 2);
+	g.PlaceBridge(0, 1, 2, 2);
+	g.SwitchTurn();
+	g.PlacePeg(4, 2);
+	g.PlaceBridge(3, 0, 4, 2);
+	g.SwitchTurn();
+	g.PlacePeg(4, 3);
+	g.PlaceBridge(2, 2, 4, 3);
+	g.SwitchTurn();
+	g.PlacePeg(3, 4);
+	g.SwitchTurn();
+	g.PlacePeg(6, 4);
+	g.PlaceBridge(4, 3, 6, 4);
+	
+	EXPECT_EQ(g.GetGameState(), EGameState::WonByRed);
+	EXPECT_THROW(g.PlacePeg(0, 3), GameOverException);
+	EXPECT_THROW(g.PlaceBridge(0, 1, 2, 2), GameOverException);
+	EXPECT_THROW(g.RemoveBridge(2, 2, 4, 3), GameOverException);
+	EXPECT_THROW(g.SwitchTurn(), GameOverException);
+
 }
 
 
-TEST(GamePlaceBridge, PlaceRedBridge) //xhash file error
+TEST(GamePlaceBridge, PlaceRedBridge) 
 {
 	Game g;
 	g.PlacePeg(16, 19);
