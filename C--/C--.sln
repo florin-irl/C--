@@ -20,11 +20,6 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TwixtTests", "TwixtTests\Tw
 		{BA2030A0-2F71-4304-B8D0-B76CCFE0C7BA} = {BA2030A0-2F71-4304-B8D0-B76CCFE0C7BA}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TwixtTests", "TwixtTests\TwixtTests.vcxproj", "{576E7E27-1D1A-4A8F-92A3-62329AE19405}"
-	ProjectSection(ProjectDependencies) = postProject
-		{BA2030A0-2F71-4304-B8D0-B76CCFE0C7BA} = {BA2030A0-2F71-4304-B8D0-B76CCFE0C7BA}
-	EndProjectSection
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
