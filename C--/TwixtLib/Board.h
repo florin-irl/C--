@@ -2,6 +2,8 @@
 #include "IBoard.h"
 #include <vector>
 #include <unordered_set>
+#include <list>
+#include <array>
 
 // Hash function for : std::unordered_set<Bridge> m_bridges; //
 
@@ -30,30 +32,43 @@ public:
 	Board();
 	Board(int boardSize);
 
+	void SetBoardSize(int boardSize) override;
+
+	int GetBoardSize() const override;
 	EPiece GetTurn() const override;
 	EPiece GetPiece(int line, int column) const override;
+	std::vector<std::vector<EPiece>> GetBoard() const override;
 	std::unordered_set<Bridge> GetBridges() const override;
+
 	void PlacePeg(int line, int column) override;
 	void PlaceBridge(int firstLine, int firstColumn, int secondLine, int secondColumn) override;
 	void RemoveBridge(int firstLine, int firstColumn, int secondLine, int secondColumn) override;
 	bool CheckGameWon(int line, int column) override;
 	void SwitchTurn() override;
 
+	void LoadBoard(const std::ostringstream& stringBoard) override;
+	void ResetBoard() override;
+
 private:
 	int m_boardSize;
 	EPiece m_turn;
+
 	std::vector<std::vector<EPiece>> m_board;
 	std::unordered_set<Bridge> m_bridges;
-	std::vector<Bridge> m_vBridgeGenerator1;	// (2, 1) = +2 linii, +1 coloana //
-	std::vector<Bridge> m_vBridgeGenerator2;	// (2,-1) //
-	std::vector<Bridge> m_vBridgeGenerator3;	// (1,-2) //
-	std::vector<Bridge> m_vBridgeGenerator4;	// (1, 2) //
 
-	void InitializeBoard(int boardSize);
+	std::array<Bridge, 9> m_vBridgeGenerator1;	// (2, 1) = +2 linii, +1 coloana //
+	std::array<Bridge, 9> m_vBridgeGenerator2;	// (2,-1) //
+	std::array<Bridge, 9> m_vBridgeGenerator3;	// (1,-2) //
+	std::array<Bridge, 9> m_vBridgeGenerator4;	// (1, 2) //
+
+	void ResizeBoard(int boardSize);
+	void InitializeBoard();
 	void InitializeBridgeGenerators();
 	void InitializeBridgeGenerator1();
 	void InitializeBridgeGenerator2();
 	void InitializeBridgeGenerator3();
 	void InitializeBridgeGenerator4();
+
+	std::list<Position> GetValidPegs(int line, int column);
 };
 
