@@ -87,3 +87,13 @@ TEST(GamePlacePeg, PlaceMoreThanOnePegPerTurn)
     g.PlacePeg(18, 9);
     EXPECT_THROW(g.PlacePeg(3, 16), CantPlaceMoreThanOnePegException);
 }
+
+TEST(GamePlacePeg, NoMorePegsLeft)
+{
+    Game g;
+    g.SetUpGame(24, 1, 1);
+    g.PlacePeg(15, 3);
+    g.SwitchTurn();
+    g.PlacePeg(6, 22);
+    EXPECT_EQ(g.GetGameState(), EGameState::Draw);
+}
