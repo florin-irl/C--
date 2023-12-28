@@ -17,3 +17,9 @@ TEST(GameTurnManagement, SwitchGameTurn)
     g.SwitchTurn();
     EXPECT_EQ(g.GetTurn(), EPiece::BlackPeg);
 }
+
+TEST(GameTurnManagement, SwitchTurnBeforePlacingPeg)
+{
+    Game g;
+    EXPECT_THROW(g.SwitchTurn(), MustPlacePegBeforeSwitchingTurnException);
+}
