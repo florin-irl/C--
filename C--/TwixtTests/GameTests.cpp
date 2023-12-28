@@ -80,3 +80,10 @@ TEST(GamePlacePeg, PlaceBlackPeg)
     g.PlacePeg(4, 7);
     EXPECT_EQ(g.GetPiece(4, 7), EPiece::BlackPeg);
 }
+
+TEST(GamePlacePeg, PlaceMoreThanOnePegPerTurn)
+{
+    Game g;
+    g.PlacePeg(18, 9);
+    EXPECT_THROW(g.PlacePeg(3, 16), CantPlaceMoreThanOnePegException);
+}
