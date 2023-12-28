@@ -71,3 +71,12 @@ TEST(GamePlacePeg, PlaceRedPeg)
     g.PlacePeg(5, 19);
     EXPECT_EQ(g.GetPiece(5, 19), EPiece::RedPeg);
 }
+
+TEST(GamePlacePeg, PlaceBlackPeg)
+{
+    Game g;
+    g.PlacePeg(10, 16);
+    g.SwitchTurn();
+    g.PlacePeg(4, 7);
+    EXPECT_EQ(g.GetPiece(4, 7), EPiece::BlackPeg);
+}
