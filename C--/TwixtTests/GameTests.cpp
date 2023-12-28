@@ -23,3 +23,15 @@ TEST(GameTurnManagement, SwitchTurnBeforePlacingPeg)
     Game g;
     EXPECT_THROW(g.SwitchTurn(), MustPlacePegBeforeSwitchingTurnException);
 }
+
+TEST(InitialGameBoard, AllGameHolesEmpty)
+{
+    Game g;
+    for (size_t i = 0; i < 24; i++)
+    {
+        for (size_t j = 0; j < 24; j++)
+        {
+            EXPECT_EQ(g.GetPiece(i, j), EPiece::None);
+        }
+    }
+}
