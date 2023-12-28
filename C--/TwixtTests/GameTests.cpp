@@ -58,3 +58,9 @@ TEST(InitialBoardGame, CustomBoardSize)
     g.SetUpGame(15, 50, 50);
     EXPECT_EQ(g.GetBoardSize(), 15);
 }
+
+TEST(GameState, StartingGameState)
+{
+    Game g;
+    EXPECT_EQ(g.GetGameState(), EGameState::Playing);
+}
