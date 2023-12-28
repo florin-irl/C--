@@ -41,3 +41,12 @@ TEST(InitialGameBoard, InitialBoardSize)
     Game g;
     EXPECT_EQ(g.GetBoardSize(), 24);
 }
+
+TEST(InitialGameBoard, InitialBoardPieces)
+{
+    Game g;
+    EXPECT_EQ(g.GetNrBlackPegsRemaining(), 50);
+    EXPECT_EQ(g.GetNrRedPegsRemaining(), 50);
+    EXPECT_EQ(g.GetNrBlackBridgesRemaining(), 50);
+    EXPECT_EQ(g.GetNrRedBridgesRemaining(), 50);
+}
