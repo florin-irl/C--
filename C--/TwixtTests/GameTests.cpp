@@ -35,3 +35,9 @@ TEST(InitialGameBoard, AllGameHolesEmpty)
         }
     }
 }
+
+TEST(InitialGameBoard, InitialBoardSize)
+{
+    Game g;
+    EXPECT_EQ(g.GetBoardSize(), 24);
+}
