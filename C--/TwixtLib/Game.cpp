@@ -197,6 +197,9 @@ void Game::SaveGame(const std::string& fileName) const
 	// Write BoardSize //
 	fout << m_board->GetBoardSize() << std::endl;
 
+	// Write NrPegs and NrBridges //
+	fout << m_nrPegs << " " << m_nrBridges << std::endl;
+
 	// Write Red Pegs Remaining //
 	fout << m_redPegsRemaining << " ";
 
@@ -261,6 +264,9 @@ void Game::LoadGame(const std::string& fileName)
 	fin >> boardSize;
 	boardString << boardSize << std::endl;
 
+	// Read NrPegs and NrBridges //
+	fin >> m_nrPegs >> m_nrBridges;
+
 	// Read Red Pegs Remaining //
 	fin >> m_redPegsRemaining;
 
@@ -276,8 +282,11 @@ void Game::LoadGame(const std::string& fileName)
 	// Read PegPlaced value //
 	fin >> m_pegPlaced;
 
-	// Set NrPegs + NrBridges //
-	//m_nrPegs = ; m_nrBridges = // 
+	// Set NrPegs //
+	m_nrPegs = ;
+
+	//  NrBridges //
+	m_nrBridges = 
 
 	// Read Board //
 	int piece;

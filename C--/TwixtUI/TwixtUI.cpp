@@ -39,6 +39,9 @@ void TwixtUI::paintEvent(QPaintEvent * e)
 
     //update game status
     updateGameStatus();
+
+    //update player labels
+    UpdatePlayerLabels();
 }
 
 void TwixtUI::mouseReleaseEvent(QMouseEvent* e)
@@ -382,7 +385,6 @@ void TwixtUI::on_pushButton_2_clicked()
 {
     m_game->RestartGame();
     m_turnSwitched = false;
-    UpdatePlayerLabels();
     ui.label_18->setText("");
     update();
 }
@@ -405,7 +407,6 @@ void TwixtUI::on_pushButton_4_clicked()
     {
         m_game->LoadGame("data.out");
         m_turnSwitched = true;
-        UpdatePlayerLabels();
         ui.label_18->setText("");
         update();
     }
@@ -460,7 +461,6 @@ void TwixtUI::on_pushButton_5_clicked()
     
     m_game->SetUpGame(boardSize, nrPegs, nrBridges);
     m_turnSwitched = false;
-    UpdatePlayerLabels();
     ui.label_18->setText("");
     update();
 }
@@ -497,7 +497,6 @@ void TwixtUI::on_pushButton_clicked()
             if (reply == QMessageBox::Yes)
             {
                 m_game->ChangePlayer1WithPlayer2();
-                UpdatePlayerLabels();
             }
         }
         m_selected.setX(-1);
