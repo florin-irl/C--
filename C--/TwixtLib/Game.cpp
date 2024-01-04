@@ -282,12 +282,6 @@ void Game::LoadGame(const std::string& fileName)
 	// Read PegPlaced value //
 	fin >> m_pegPlaced;
 
-	// Set NrPegs //
-	m_nrPegs = ;
-
-	//  NrBridges //
-	m_nrBridges = 
-
 	// Read Board //
 	int piece;
 	for (int i = 0; i < boardSize; i++)
