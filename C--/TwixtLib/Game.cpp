@@ -230,10 +230,15 @@ void Game::LoadGame(const std::string& fileName)
 	if (!fin.is_open())
 	{
 		return;
-		// Throw Exception //
 	}
 
 	std::ostringstream boardString;
+
+	// Read Player1 and Player2 //
+	int player1, player2;
+	fin >> player1 >> player2;
+	m_player1 = static_cast<EPiece>(player1);
+	m_player2 = static_cast<EPiece>(player2);
 
 	// Read Game State //
 	int state;
