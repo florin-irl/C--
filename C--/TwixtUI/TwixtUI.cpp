@@ -392,7 +392,6 @@ void TwixtUI::on_pushButton_3_clicked()
     try
     {
         m_game->SaveGame("data.out");
-        
     }
     catch (std::exception excep)
     {
@@ -405,6 +404,7 @@ void TwixtUI::on_pushButton_4_clicked()
     try
     {
         m_game->LoadGame("data.out");
+        m_turnSwitched = true;
         UpdatePlayerLabels();
         ui.label_18->setText("");
         update();
@@ -459,6 +459,7 @@ void TwixtUI::on_pushButton_5_clicked()
     }
     
     m_game->SetUpGame(boardSize, nrPegs, nrBridges);
+    m_turnSwitched = false;
     UpdatePlayerLabels();
     ui.label_18->setText("");
     update();
