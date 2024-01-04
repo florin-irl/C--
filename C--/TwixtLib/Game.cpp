@@ -293,6 +293,10 @@ void Game::LoadGame(const std::string& fileName)
 
 void Game::RestartGame()
 {
+	// Reset Players //
+	m_player1 = EPiece::RedPeg;
+	m_player2 = EPiece::BlackPeg;
+	
 	// Reset Game State //
 	m_gameState = EGameState::Playing;
 
