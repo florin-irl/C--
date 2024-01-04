@@ -202,3 +202,14 @@ TEST(RemoveBridge, RemoveABridgeThatIsNotYours)
 	b.SwitchTurn();
 	EXPECT_THROW(b.RemoveBridge(18, 7, 19, 5), InvalidPegsForBridgeException);
 }
+
+TEST(RemoveBridge, RemoveANonExistingBridge)
+{
+	Game g;
+	g.PlacePeg(2, 2);
+	g.SwitchTurn();
+	g.PlacePeg(7, 9);
+	g.SwitchTurn();
+	g.PlacePeg(4, 3);
+	EXPECT_THROW(g.RemoveBridge(2, 2, 4, 3), InexistentBridgeException);
+}
