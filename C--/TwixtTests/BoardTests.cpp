@@ -1,5 +1,6 @@
 #include "gtest/gtest.h"
 
+#include "Game.h"
 #include "Board.h"
 #include"GameExceptions.h"
 
@@ -23,6 +24,11 @@ TEST(InitialBoard, FirstTurn)
 	EXPECT_EQ(b.GetTurn(), EPiece::RedPeg);
 }
 
+TEST(CustomBoard, CustomBoardSize)
+{
+	Board b(19);
+	EXPECT_EQ(b.GetBoardSize(), 19);
+}
 TEST(TurnManagement, SwitchTurn)
 {
 	Board b;
@@ -33,6 +39,14 @@ TEST(TurnManagement, SwitchTurn)
 
 }
 
+TEST(GetPeg, GetOutofBoundsPeg)
+{
+	Board b;
+	EXPECT_THROW(b.GetPiece(-3, -18), OutOfBoundsException);
+	EXPECT_THROW(b.GetPiece(-15, 40), OutOfBoundsException);
+	EXPECT_THROW(b.GetPiece(59, -20), OutOfBoundsException);
+	EXPECT_THROW(b.GetPiece(70, 41), OutOfBoundsException);
+}
 TEST(PlacePeg, PlaceRedPeg)
 {
 	Board b;
@@ -125,7 +139,10 @@ TEST(PlaceBridge, PlaceBlackBridge)
 	b.PlacePeg(18, 15);
 	b.PlaceBridge(19, 17, 18, 15);
 	Bridge firstBridge({ 18,15 }, { 19,17 });
+	Bridge sameBridge({ 19,17 }, { 18, 15 });
+	EXPECT_EQ(firstBridge, sameBridge);
 	EXPECT_EQ(*(b.GetBridges().find(firstBridge)), firstBridge);
+	
 }
 //?
 TEST(PlaceBridge, PlaceBridgeOutsideTable)

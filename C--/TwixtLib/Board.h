@@ -48,7 +48,7 @@ public:
 
 	void LoadBoard(const std::ostringstream& stringBoard) override;
 	void ResetBoard() override;
-
+	
 private:
 	int m_boardSize;
 	EPiece m_turn;
