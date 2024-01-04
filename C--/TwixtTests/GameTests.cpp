@@ -23,6 +23,14 @@ TEST(GameTurnManagement, SwitchTurnBeforePlacingPeg)
 	EXPECT_THROW(g.SwitchTurn(), MustPlacePegBeforeSwitchingTurnException);
 }
 
+TEST(GameTurnManagement, ChangePlayer1WithPlayer2)
+{
+	Game g;
+	g.ChangePlayer1WithPlayer2();
+	EXPECT_EQ(g.GetPlayer1(), EPiece::BlackPeg);
+	EXPECT_EQ(g.GetPlayer2(), EPiece::RedPeg);
+}
+
 TEST(InitialGameBoard, AllGameHolesEmpty)
 {
 	Game g;
