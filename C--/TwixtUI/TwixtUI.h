@@ -35,6 +35,7 @@ public:
     virtual void updateGameStatus();
     virtual void updatePlayingDisplay();
     virtual void updatePieceCounters();
+    virtual void UpdatePlayerLabels();
 
 private slots:
     void on_pushButton_clicked();

@@ -18,9 +18,6 @@ TwixtUI::TwixtUI(QWidget *parent)
 TwixtUI::~TwixtUI()
 {}
 
-
-
-
 void TwixtUI::paintEvent(QPaintEvent * e)
 {
     
@@ -359,14 +356,33 @@ void TwixtUI::updatePieceCounters()
     ui.label_8->setText(QString::number(m_game->GetNrBlackBridgesRemaining()));
 }
 
+void TwixtUI::UpdatePlayerLabels()
+{
+    QString player1, player2;
+    if (m_game->GetPlayer1() == EPiece::RedPeg)
+    {
+        player1 = "RED";
+        player2 = "BLACK";
+        ui.label_21->setStyleSheet("color: red; font-family: Bahnschrift;");
+        ui.label_22->setStyleSheet("color: black; font-family: Bahnschrift;");
+    }
+    else
+    {
+        player1 = "BLACK";
+        player2 = "RED";
+        ui.label_21->setStyleSheet("color: black; font-family: Bahnschrift;");
+        ui.label_22->setStyleSheet("color: red; font-family: Bahnschrift;");
+    }
+
+    ui.label_21->setText(player1);
+    ui.label_22->setText(player2);
+}
+
 void TwixtUI::on_pushButton_2_clicked()
 {
     m_game->RestartGame();
     m_turnSwitched = false;
-    ui.label_21->setText("RED");
-    ui.label_21->setStyleSheet("color: red; font-family: Bahnschrift;");
-    ui.label_22->setText("BLACK");
-    ui.label_22->setStyleSheet("color: black; font-family: Bahnschrift;");
+    UpdatePlayerLabels();
     ui.label_18->setText("");
     update();
 }
@@ -478,10 +494,7 @@ void TwixtUI::on_pushButton_clicked()
             if (reply == QMessageBox::Yes)
             {
                 m_game->ChangePlayer1WithPlayer2();
-                ui.label_21->setText("BLACK");
-                ui.label_21->setStyleSheet("color: black; font-family: Bahnschrift;");
-                ui.label_22->setText("RED");
-                ui.label_22->setStyleSheet("color: red; font-family: Bahnschrift;");
+                UpdatePlayerLabels();
             }
         }
         m_selected.setX(-1);
