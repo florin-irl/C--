@@ -208,6 +208,14 @@ TEST(GameRemoveBridge, RemoveBlackBridge)
 	g.RemoveBridge(4, 6, 3, 8);
 	auto Bridges = g.GetBridges();
 	EXPECT_EQ(Bridges.find(blackBridge), Bridges.end());
+}
 
+TEST(CreateGameBoard, CreateGameBoardSharePtr)
+{
+	IGamePtr g = Game::CreateGame();
+
+	EXPECT_EQ(g->GetTurn(), EPiece::RedPeg);
+
+	
 }
 
