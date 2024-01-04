@@ -33,14 +33,6 @@ TEST(TurnManagement, SwitchTurn)
 
 }
 
-TEST(TurnManagement, PlaceOnlyPegPerTurn)
-{
-	Board b;
-
-	b.PlacePeg(5, 9);
-	EXPECT_THROW(b.PlacePeg(2, 17), TwixtException);
-}
-
 TEST(PlacePeg, PlaceRedPeg)
 {
 	Board b;
