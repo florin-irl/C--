@@ -186,7 +186,7 @@ void Game::SaveGame(const std::string& fileName) const
 	}
 
 	// Write Player1 and Player2 //
-	fout << static_cast<int>(m_player1) << static_cast<int>(m_player2) << std::endl;
+	fout << static_cast<int>(m_player1) << " " << static_cast<int>(m_player2) << std::endl;
 
 	// Write Game State //
 	fout<< static_cast<int>(m_gameState) << std::endl;
