@@ -10,8 +10,8 @@ class IGame
 public:
 	static IGamePtr CreateGame();
 
-	virtual EPiece GetFirstPlayer() const = 0;
-	virtual EPiece GetSecondPlayer() const = 0;
+	virtual EPiece GetPlayer1() const = 0;
+	virtual EPiece GetPlayer2() const = 0;
 
 	virtual int GetBoardSize() const = 0;
 

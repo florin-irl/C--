@@ -7,8 +7,8 @@ public:
 	Game();
 	Game(int boardSize, int nrPegs, int nrBridges);
 
-	EPiece GetFirstPlayer() const;
-	EPiece GetSecondPlayer() const;
+	EPiece GetPlayer1() const;
+	EPiece GetPlayer2() const;
 
 	int GetBoardSize() const;
 

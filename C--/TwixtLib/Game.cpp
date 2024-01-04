@@ -28,12 +28,12 @@ Game::Game(int boardSize, int nrPegs, int nrBridges)
 	m_board->SetBoardSize(boardSize);
 }
 
-EPiece Game::GetFirstPlayer() const
+EPiece Game::GetPlayer1() const
 {
 	return m_player1;
 }
 
-EPiece Game::GetSecondPlayer() const
+EPiece Game::GetPlayer2() const
 {
 	return m_player2;
 }
@@ -177,8 +177,10 @@ void Game::SaveGame(const std::string& fileName) const
 	if (!fout.is_open())
 	{
 		return;
-		// Throw Exception //
 	}
+
+	// Write Player1 and Player2 //
+	fout << static_cast<int>(m_player1) << static_cast<int>(m_player2) << std::endl;
 
 	// Write Game State //
 	fout<< static_cast<int>(m_gameState) << std::endl;
