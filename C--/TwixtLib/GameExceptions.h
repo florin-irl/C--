@@ -54,18 +54,6 @@ inline NoMorePegsException::NoMorePegsException(const std::string& message)
 	: TwixtException(message)
 {}
 
-// NoMoreBridgesException class //
-
-class NoMoreBridgesException : public TwixtException
-{
-public:
-	NoMoreBridgesException(const std::string& message);
-};
-
-inline NoMoreBridgesException::NoMoreBridgesException(const std::string& message)
-	: TwixtException(message)
-{}
-
 // OcuppiedPositionException class //
 
 class OcuppiedPositionException : public TwixtException

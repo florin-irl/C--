@@ -122,20 +122,8 @@ void Game::PlacePeg(int line, int column)
 
 void Game::PlaceBridge(int firstLine, int firstColumn, int secondLine, int secondColumn)
 {
-	if (
-		(m_board->GetTurn() == EPiece::RedPeg && m_redBridgesRemaining == 0)
-		|| (m_board->GetTurn() == EPiece::BlackPeg && m_blackBridgesRemaining == 0)
-		)
-		throw NoMoreBridgesException("You have no bridges left !");
-
 	if (m_gameState != EGameState::Playing)
 		throw GameOverException("The game is over ! You can t place bridges anymore !");
-
-	if (
-		(m_board->GetTurn() == EPiece::RedPeg && m_redBridgesRemaining == 0)
-		|| (m_board->GetTurn() == EPiece::BlackPeg && m_blackBridgesRemaining == 0)
-		)
-		throw NoMoreBridgesException("You have no bridges left !");
 
 	m_board->PlaceBridge(firstLine, firstColumn, secondLine, secondColumn); // This can Throw Exception //
 	if (m_board->GetTurn() == EPiece::RedPeg)
