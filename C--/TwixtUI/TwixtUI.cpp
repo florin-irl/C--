@@ -405,6 +405,7 @@ void TwixtUI::on_pushButton_4_clicked()
     try
     {
         m_game->LoadGame("data.out");
+        UpdatePlayerLabels();
         ui.label_18->setText("");
         update();
     }
@@ -458,6 +459,7 @@ void TwixtUI::on_pushButton_5_clicked()
     }
     
     m_game->SetUpGame(boardSize, nrPegs, nrBridges);
+    UpdatePlayerLabels();
     ui.label_18->setText("");
     update();
 }
