@@ -13,7 +13,9 @@ Game::Game()
 {}
 
 Game::Game(int boardSize, int nrPegs, int nrBridges)
-	: m_gameState{ EGameState::Playing }
+	: m_player1{ EPiece::RedPeg }
+	, m_player2{ EPiece::BlackPeg }
+	, m_gameState{ EGameState::Playing }
 	, m_nrPegs{ nrPegs }
 	, m_nrBridges{ nrBridges }
 	, m_redPegsRemaining{ nrPegs }
@@ -24,6 +26,16 @@ Game::Game(int boardSize, int nrPegs, int nrBridges)
 {
 	m_board = IBoard::CreateBoard();
 	m_board->SetBoardSize(boardSize);
+}
+
+EPiece Game::GetFirstPlayer() const
+{
+	return m_player1;
+}
+
+EPiece Game::GetSecondPlayer() const
+{
+	return m_player2;
 }
 
 int Game::GetBoardSize() const

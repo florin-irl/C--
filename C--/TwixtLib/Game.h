@@ -7,6 +7,9 @@ public:
 	Game();
 	Game(int boardSize, int nrPegs, int nrBridges);
 
+	EPiece GetFirstPlayer() const;
+	EPiece GetSecondPlayer() const;
+
 	int GetBoardSize() const;
 
 	EPiece GetTurn() const override;
@@ -35,6 +38,9 @@ public:
 	void SetUpGame(int boardSize, int nrPegs, int nrBridges) override;
 
 private:
+	EPiece m_player1;
+	EPiece m_player2;
+
 	EGameState m_gameState;
 	IBoardPtr m_board;
 
