@@ -477,6 +477,7 @@ void TwixtUI::on_pushButton_clicked()
             reply = QMessageBox::question(this, "Confirmation", "Do you want to play as red?", QMessageBox::Yes | QMessageBox::No);
             if (reply == QMessageBox::Yes)
             {
+                m_game->ChangePlayer1WithPlayer2();
                 ui.label_21->setText("BLACK");
                 ui.label_21->setStyleSheet("color: black; font-family: Bahnschrift;");
                 ui.label_22->setText("RED");

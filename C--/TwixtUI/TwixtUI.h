@@ -64,6 +64,4 @@ private:
     const float redTopPadding = 57;
     const float redBottomPadding = 35;
     const float redRightPadding = 50;
-
-
 };
