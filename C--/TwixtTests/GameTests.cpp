@@ -216,6 +216,20 @@ TEST(CreateGameBoard, CreateGameBoardSharePtr)
 
 	EXPECT_EQ(g->GetTurn(), EPiece::RedPeg);
 
-	
+	for (size_t i = 0; i < 24; i++)
+	{
+		for (size_t j = 0; j < 24; j++)
+		{
+			EXPECT_EQ(g->GetPiece(i, j), EPiece::None);
+		}
+	}
+	EXPECT_EQ(g->GetBoardSize(), 24);
+
+	EXPECT_EQ(g->GetNrBlackPegsRemaining(), 50);
+	EXPECT_EQ(g->GetNrRedPegsRemaining(), 50);
+	EXPECT_EQ(g->GetNrBlackBridgesRemaining(), 50);
+	EXPECT_EQ(g->GetNrRedBridgesRemaining(), 50);
+
+	EXPECT_EQ(g->GetGameState(), EGameState::Playing);
 }
 
