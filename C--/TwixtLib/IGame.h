@@ -27,6 +27,7 @@ public:
 	virtual int GetNrBlackPegsRemaining() const = 0;
 	virtual int GetNrBlackBridgesRemaining() const = 0;
 
+	virtual void ChangePlayer1WithPlayer2() = 0;
 	virtual void PlacePeg(int line, int column) = 0; // Can throw exceptions //
 	virtual void PlaceBridge(int firstLine, int firstColumn, int secondLine, int secondColumn) = 0; // Can throw exceptions //
 	virtual void RemoveBridge(int firstLine, int firstColumn, int secondLine, int secondColumn) = 0; // Can throw exceptions //

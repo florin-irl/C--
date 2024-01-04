@@ -24,6 +24,7 @@ public:
 	int GetNrBlackPegsRemaining() const;
 	int GetNrBlackBridgesRemaining() const;
 
+	void ChangePlayer1WithPlayer2();
 	void PlacePeg(int line, int column) override;
 	void PlaceBridge(int firstLine, int firstColumn, int secondLine, int secondColumn) override;
 	void RemoveBridge(int firstLine, int firstColumn, int secondLine, int secondColumn) override;

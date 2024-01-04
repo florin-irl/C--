@@ -83,6 +83,12 @@ int Game::GetNrBlackBridgesRemaining() const
 	return m_blackBridgesRemaining;
 }
 
+void Game::ChangePlayer1WithPlayer2()
+{
+	m_player1 = EPiece::BlackPeg;
+	m_player2 = EPiece::RedPeg;
+}
+
 void Game::PlacePeg(int line, int column)
 {
 	if (
