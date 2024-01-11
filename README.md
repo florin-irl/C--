@@ -64,11 +64,35 @@ Displays semnificative information about the game
 
 ![gif3GameStatus](https://github.com/florin-irl/C--/assets/147153949/c32c371c-4c04-4e9c-9f3f-399f1350849c)
 
-### Piece Panel
+### Piece Counter Panel
 
 Displays the number of pegs and bridges left for each player, auto-updates after every semnificative move ( placing of a peg, placing of a bridge)
 
 ![PiecesCounter](https://github.com/florin-irl/C--/assets/147153949/68f26552-daca-4650-a179-e3a3662b7595)
 
+### Button Section
+
+![buttonsPanel](https://github.com/florin-irl/C--/assets/147153949/011033c7-223e-41ba-a209-fd0f7c6b6099)
+
+```SWITCH TURN``` - switches turn ( obviously )
+
+```RESTART``` - cleans the board of pegs and bridges, resets the piece counter for each player
+
+![gif4restart](https://github.com/florin-irl/C--/assets/147153949/1f9f9372-cee8-4361-936f-fd3f1c2bd5a5)
+
+```SAVE GAME``` - save the current configuration of the game, number of pieces left for both players, status of the game, basically all the information required for loading the game back to the moment that the save has been commenced 
+
+```LOAD GAME``` - loads up the game from the save file
+
+![gif5load](https://github.com/florin-irl/C--/assets/147153949/e76f0c43-f780-4aad-bcae-a5f84d68647a)
+
+### Game SetUp Panel
+
+Allows the players to customize their game experience by configuring the board size and number of pegs and bridges given to each player, with some limitations:
++ Board Size must be between 5 and 24
++ Number of Pegs must be at least 3
++ Number of Bridges must be at least 2
+
+![game_setup_panel](https://github.com/florin-irl/C--/assets/147153949/1db8cd15-8b5a-4788-b038-b3ebae19d30d)
 
 
