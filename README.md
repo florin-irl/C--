@@ -54,3 +54,21 @@ OR used to select pegs of the same color and delete the bridge between them if a
 
 ---------------------------------------------------------
 ## About the Side Panel
+
+### Game Status Panel
+
+Displays semnificative information about the game
++ Current Game Status - PLAYING / WON BY RED! / WON BY BLACK! / DRAW!
++ Current player turn
++ Colors coresponding to each player
+
+![gif3GameStatus](https://github.com/florin-irl/C--/assets/147153949/c32c371c-4c04-4e9c-9f3f-399f1350849c)
+
+### Piece Panel
+
+Displays the number of pegs and bridges left for each player, auto-updates after every semnificative move ( placing of a peg, placing of a bridge)
+
+![PiecesCounter](https://github.com/florin-irl/C--/assets/147153949/68f26552-daca-4650-a179-e3a3662b7595)
+
+
+
