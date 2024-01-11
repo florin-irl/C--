@@ -105,7 +105,7 @@ The Message Panel is located in the bottom right of the screen and displays diff
 ![message_displayer](https://github.com/florin-irl/C--/assets/147153949/840bb7a2-fd76-4337-897a-a520f365bf0d)
 
 
-
+ReadMe written and updated by Ivana Florin-Andrei - @florin-irl
 
 
 
