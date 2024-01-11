@@ -26,7 +26,7 @@ your specific player color.
 Every turn, a player can do the following: he <i>MUST</i> place <i>a single peg</i> of his color on the board, but can create and delete as many of his own bridges between two pegs of his color as he wants ( he can even choose to not place or delete any bridges, and simply switch turns after he placed his peg ). 
 
 RED goes first! After RED finished his first moves and presses the <b>SWITCH TURN</b> button, the BLACK player is then prompted by a pop-up window asking him if he would like to switch places with the RED player.
-If so, player 1 become BLACK and player 2 becomes RED. <b>This happens only once, after the first SWITCH TURN!</b> If the BLACK player chooses <b>No</b> on the prompt, game goes on with player 1 remaining RED
+If so, player 1 becomes BLACK and player 2 becomes RED. <b>This happens only once, after the first SWITCH TURN!</b> If the BLACK player chooses <b>No</b> on the prompt, game goes on with player 1 remaining RED
 and player 2 remaining as BLACK.
 
 ![switchTurnPrompt](https://github.com/florin-irl/C--/assets/147153949/7ea7ff5f-4e6c-4342-9600-1e12808cf0fb)
