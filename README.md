@@ -14,6 +14,7 @@ Măndoiu Vlad-Ștefan - @Vlazzzz - <b>Front-End</b><br>
 This project has been made for the Modern Elements of C++ course taken at UniTBv and has been completed in under 10 weeks.
 
 Back-End and Tests code written in C++
+
 Front-End made in Qt C++
 
 ![game_screenshot](https://github.com/florin-irl/C--/assets/147153949/3ee5565d-0bc9-44ca-a24f-977bd4c11d10)
