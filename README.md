@@ -4,6 +4,9 @@
 
 C--'s modern C++ project - UniTBv - Informatică Aplicată - Anul II 2023-2024
 
+Youtube presentation video:
+https://youtu.be/X3Sln9Wy5sQ
+
 Team members:
 
 Ivana Florin-Andrei - @florin-irl - <b>Front-End</b><br>
