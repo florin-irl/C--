@@ -88,11 +88,24 @@ Displays the number of pegs and bridges left for each player, auto-updates after
 
 ### Game SetUp Panel
 
+![game_setup_panel](https://github.com/florin-irl/C--/assets/147153949/1db8cd15-8b5a-4788-b038-b3ebae19d30d)
+
 Allows the players to customize their game experience by configuring the board size and number of pegs and bridges given to each player, with some limitations:
 + Board Size must be between 5 and 24
 + Number of Pegs must be at least 3
 + Number of Bridges must be at least 2
 
-![game_setup_panel](https://github.com/florin-irl/C--/assets/147153949/1db8cd15-8b5a-4788-b038-b3ebae19d30d)
+
+![gif6set_up](https://github.com/florin-irl/C--/assets/147153949/d5d769f4-760e-4b92-825f-1c3c1fc7c22c)
+
+### Message Panel
+
+The Message Panel is located in the bottom right of the screen and displays different warnings and tips for the players
+
+![message_displayer](https://github.com/florin-irl/C--/assets/147153949/840bb7a2-fd76-4337-897a-a520f365bf0d)
+
+
+
+
 
 
