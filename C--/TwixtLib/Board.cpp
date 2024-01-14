@@ -70,8 +70,6 @@ std::unordered_set<Bridge> Board::GetBridges() const
 
 void Board::PlacePeg(int line, int column)
 {
-	// Poti adauga o exceptie care este aruncata atunci cand incerci sa pui un peg de 2 in aceasi tura //
-
 	if (line < 0 || line > m_boardSize - 1 || column < 0 || column > m_boardSize - 1)
 		throw OutOfBoundsException("Line or column is out of bounds !");
 
