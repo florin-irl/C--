@@ -2,6 +2,9 @@
 
 ## General Information
 
+> [!CAUTION]
+> In order to run the application, set **TwixtUI** as **StartUp Project!!!**
+
 C--'s modern C++ project - UniTBv - Informatică Aplicată - Anul II 2023-2024
 
 Youtube presentation video:
