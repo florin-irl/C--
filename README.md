@@ -15,7 +15,7 @@ Team members:
 Ivana Florin-Andrei - @florin-irl - <b>Front-End</b><br>
 Mițoi Alex-Gabriel - @m1toi - <b>Tests</b><br>
 Ploșniță Gabriel Valentin - @gabi-plosnita - <b>Back-End</b><br>
-Măndoiu Vlad-Ștefan - @Vlazzzz - <b>Front-End</b><br>
+Măndoiu Vlad-Ștefan - @Vlazzzz - <b>Back-End</b><br>
 
 This project has been made for the Modern Elements of C++ course taken at UniTBv and has been completed in under 10 weeks.
 
